@@ -8,11 +8,15 @@
     <body>
         <h1>hello/index</h1>
         <p>{{message|safe}}</p>
-        <p>This is sample page.</p>
-        <form action="{% url 'index' %}" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="click">
-        </form>
+        <table>
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                {{ form.as_table }}
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="click"></td>
+                </tr>
+            </form>
+        </table>
     </body>
 </html>

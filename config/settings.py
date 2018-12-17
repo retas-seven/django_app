@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'hello',
+    'hello.apps.HelloConfig',
 ]
 
 MIDDLEWARE = [
@@ -76,10 +76,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# MySQLの接続設定
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django_app',
+        'USER': 'django_app_user',
+        'PASSWORD': 'django_app_user!',
+        # 'HOST': '',  # 未設定 (localhostとして扱われる)
+        # 'PORT': '',  # 未設定（デフォルトポート（3306）として扱われる）
     }
 }
 
