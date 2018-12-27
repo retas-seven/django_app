@@ -85,6 +85,7 @@ DATABASES = {
         'PASSWORD': 'django_app_user!',
         # 'HOST': '',  # 未設定 (localhostとして扱われる)
         # 'PORT': '',  # 未設定（デフォルトポート（3306）として扱われる）
+        'ATOMIC_REQUESTS': True,
     }
 }
 
