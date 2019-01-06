@@ -1,0 +1,41 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'sns/style.css' %}" />
+    </head>
+    <body>
+        <div class="body_content">
+            <div class="body_content_inner">
+                <table class="login_table" width="100%">
+                    <tr>
+                        <th width="150px">menu</th>
+                        <td>
+                            <table class="login_table_inner">
+                                <tr>
+                                    <td><a href="{% url 'index' %}">top</a></td>
+                                    <td><a href="{% url 'post' %}">post</a></td>
+                                    <td><a href="{% url 'groups' %}">group</a></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="150px">login user:</th><td>"{{login_user}}"</td>
+                    </tr>
+                </table>
+                <div class="header">{% block header %}{% endblock %}</div>
+                <div class="content">{% block content %}{% endblock %}</div>
+                <div class="footer">
+                <hr>
+                <div>
+                    <span style="float:left;font-weight:bold;"><a href="/admin/logout?next=/sns/">[ logout ]</a></span>
+                    <span style="float:right">2018 test django-app</span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
