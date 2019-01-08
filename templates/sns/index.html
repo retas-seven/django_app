@@ -1,0 +1,52 @@
+{% extends 'sns/layout.html' %}
+
+{% block title %}Index{% endblock %}
+
+{% block header %}
+    <h1>Sns</h1>
+    <p class="caption">※グループのチェックをONにしてupdateすると、そのグループに登録されている利用者のメッセージだけが表示されます。</p>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="mode" value="__search_form__">
+        {{search_form}}
+        <button>Search</button>
+    </form>
+    <hr>
+    <form action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="mode" value="__check_form__">
+        {{check_form}}
+        <button>update</button>
+    </form>
+
+    {% for item in contents %}
+        <hr>
+        <p class="message_public">
+            {% if item.group.title == 'public' %}
+                [public]
+            {% endif %}
+        </p>
+        <p class="message_content">{{item.content}}</p>
+        <p class="message_date"> ({{item.pub_date}})</p>
+        {% if item.share_id > 0 %}
+            <hr class="share_line">
+            <p class="share_item_content">{{item.get_share}}</p>
+        {% endif %}
+        <p class="message_owner">
+            <span class="message_counter">share={{item.share_count}} good={{item.good_count}}</span>
+            "{{item.owner}}" (<a href="{% url 'add' %}?name={{item.owner}}">add friend</a>)
+            <a href="{% url 'share' item.id %}"><button>share</button></a>
+            <a href="{% url 'good' item.id %}"><button>good!</button></a>
+        </p>
+    {% endfor %}
+{% endblock %}
