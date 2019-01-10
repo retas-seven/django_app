@@ -36,7 +36,9 @@ a {
 }
 
 table {
+    /*
     margin:10px;
+    */
     font-size:14pt;
 }
 
@@ -44,7 +46,9 @@ table tr th {
     background-color:#99f;
     color:white;
     padding:2px 10px;
+    /*
     border-size:2px;
+    */
 }
 
 table tr td {
@@ -73,6 +77,7 @@ table tr td {
     margin:8px;
     */
     margin: 0px;
+    z-index: 9999;
 }
 
 .login_table_inner {
