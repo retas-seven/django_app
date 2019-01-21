@@ -177,6 +177,7 @@ input:-webkit-autofill {
 /* ------------------------------------------- */
 /* 画面別 */
 /* ------------------------------------------- */
+/* 一覧部 */
 .align_center {
     display: flex;
     align-items: center;
@@ -209,36 +210,37 @@ input:-webkit-autofill {
     margin: 0px;
     font-weight: 400;
 }
+.row_circle_btn {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    text-decoration: none;
+    text-align: center;
+    color: rgb(81, 81, 71);
+}
+.row_circle_btn:hover {
+    color: white;
+    background-color: rgba(0, 184, 184, 0.5);
+}
 
 /* 下部エリア */
 .bottom_area {
-    position: fixed;
-    right: 0;
-    left: 0;
-    bottom: 0px;
+    position: relative;
     display: flex;
     justify-content: flex-end;
+    align-items: start;
+    padding: 0px;
+    height: 85px;
     /*
-    margin-bottom: 10px;
     background-color: rgba(0, 184, 184, 0.5);
     */
 }
-/*
-.circle_icon {
-    width: 55px;
-    height: 55px;   
-    background-color: rgba(136, 136, 136, 0.9);
-    border-radius: 50%;
-    color: white;
-}
-*/
-.center {
-    display: flex;
-    align-items: center;
-    justify-content: center
-}
 .circle_btn {
+    position: fixed;
     display: block;
+    margin-bottom: 20px;
     width: 80px;
     height: 80px;
     line-height: 80px;
@@ -248,22 +250,8 @@ input:-webkit-autofill {
     text-decoration: none;
     text-align: center;
     font-size: 1.5rem;
-  }
-  .circle_btn:hover {
+}
+.circle_btn:hover {
     background-color: rgba(115, 207, 207, 1);
     color: white;
-  }
-  .row_circle_btn {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    border-radius: 50%;
-    text-decoration: none;
-    text-align: center;
-    color: rgb(81, 81, 71);
-  }
-  .row_circle_btn:hover {
-    color: white;
-    background-color: rgba(0, 184, 184, 0.5);
-  }
+}
