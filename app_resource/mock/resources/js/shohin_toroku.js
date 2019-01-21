@@ -24,8 +24,8 @@ $(function(){
 		$window = $(e.currentTarget);
 		windowHeight = $window.height(); // ウィンドウの高さ
 		pageHeight = $(document).height(); // ページの高さ
-            // footerHeight = $('.footer').height(); // フッタの高さ
-            footerHeight = 120; // フッタの高さ
+		// footerHeight = $('.footer').height(); // フッタの高さ
+		footerHeight = 120; // フッタの高さ
 		scrollTop = $window.scrollTop(); // スクロールした量
 		bottom = windowHeight + scrollTop + footerHeight - pageHeight;
 

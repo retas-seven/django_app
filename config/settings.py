@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'hello.apps.HelloConfig',
     'sns.apps.SnsConfig',
+    'shohin_toroku.app.ShohinTorokuConfig',
 ]
 
 MIDDLEWARE = [
