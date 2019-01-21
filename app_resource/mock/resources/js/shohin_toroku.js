@@ -18,8 +18,9 @@ $(function(){
 		fixedBackground: true
 	});
 
+	// 下部ボタンの位置調整
 	$(window).scroll(function(e) {
-		var circleBtn = $('.circle_btn');
+		let circleBtn = $('.circle_btn');
 		$window = $(e.currentTarget);
 		windowHeight = $window.height(); // ウィンドウの高さ
 		pageHeight = $(document).height(); // ページの高さ
@@ -34,4 +35,7 @@ $(function(){
 			circleBtn.css("bottom", 0);
 		}	
 	});
+	
+	// 下部ボタンの初期位置
+	$('.circle_btn').css("bottom", 0);
 });

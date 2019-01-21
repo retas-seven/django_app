@@ -25,7 +25,6 @@ body {
     font-family: 'Noto Sans JP';
     color: rgb(81, 81, 71);
 }
-
 /* ------------------------------------------- */
 /* レイアウト設定 */
 /* ------------------------------------------- */
@@ -167,15 +166,36 @@ input:-webkit-autofill {
 }
 
 /* ------------------------------------------- */
-/* その他 */
+/* ヘッダ部のタイトル文字 */
 /* ------------------------------------------- */
 .header-title {
     font-size: 4rem;
     font-family: 'Libre Barcode 128 Text', cursive;
 }
-
 /* ------------------------------------------- */
-/* 画面別 */
+/* 汎用 */
+/* ------------------------------------------- */
+.color_white {
+    color: white;
+}
+.common_btn {
+    background-color: rgb(164, 164, 164);
+    text-align: center;
+    font-size: 1.6rem;
+    padding: 12px 21px;
+    border-radius: calc(1.6rem + 12px);
+    color: white;
+    border: none;
+    font-family: 'Noto Sans JP';
+    font-weight: 100;
+    outline: none;
+}
+.common_btn:hover {
+    background-color: rgb(115, 207, 207);
+    outline: none;
+}
+/* ------------------------------------------- */
+/* 商品登録画面 */
 /* ------------------------------------------- */
 /* 一覧部 */
 .align_center {
@@ -246,12 +266,40 @@ input:-webkit-autofill {
     line-height: 80px;
     background-color: rgba(164, 164, 164, 1);
     border-radius: 50%;
-    color: white;
-    text-decoration: none;
     text-align: center;
     font-size: 1.5rem;
 }
 .circle_btn:hover {
     background-color: rgba(115, 207, 207, 1);
-    color: white;
+}
+
+/* ------------------------------------------- */
+/* 商品登録画面‐モーダル */
+/* ------------------------------------------- */
+.modal_global {
+    background: linear-gradient(105deg, rgb(239, 239, 239) 0%,rgb(239, 239, 239) 60%,rgb(227, 227, 227) 61%,rgb(227, 227, 227) 100%);
+}
+.modal_header_global {
+    background-color: rgba(255, 255, 255, .5);
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.modal_title {
+	display: flex;
+	align-items: center;
+    font-size: 2rem;
+    font-weight: 400;
+}
+.modal_boddy_global {
+    padding: 25px;
+}
+.modal_footer_global {
+    background-color: rgba(255, 255, 255, .5);
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.label_name {
+    text-align: right;
+    font-size: 1.6rem;
+    font-weight: 400;
 }
