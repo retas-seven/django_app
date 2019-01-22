@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', include('hello.urls')),
     path('sns/', include('sns.urls')),
+    path('shohin_toroku/', include('shohin_toroku.urls')),
 ]
