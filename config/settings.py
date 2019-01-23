@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'hello.apps.HelloConfig',
-    'sns.apps.SnsConfig',
     'shohin_toroku.apps.ShohinTorokuConfig',
     'app_table.apps.AppTableConfig',
 ]
