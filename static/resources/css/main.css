@@ -194,9 +194,6 @@ input:-webkit-autofill {
     background-color: rgb(115, 207, 207);
     outline: none;
 }
-.font_16 {
-    font-size: 1.6rem;
-}
 /* ------------------------------------------- */
 /* 商品登録画面 */
 /* ------------------------------------------- */
@@ -206,22 +203,14 @@ input:-webkit-autofill {
     align-items: center;
 }
 .syohin {
-    width: 50%;
-    overflow: hidden;
-}
-.price {
-    font-size: 2.2rem;
-    font-family: 'Merriweather', serif;
-    font-weight: 100;
-    width: 18%;
-    text-align: right;
+    width: 66%;
     overflow: hidden;
 }
 .zaikosu {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     font-family: 'Merriweather', serif;
     font-weight: 100;
-    width: 18%;
+    width: 20%;
     text-align: right;
     overflow: hidden;
 }
