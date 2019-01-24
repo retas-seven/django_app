@@ -21,6 +21,7 @@ class Shohin(BaseModel):
     kataban = models.CharField(verbose_name='型番', max_length=50)
     shohin_name = models.CharField(verbose_name='商品名', max_length=100)
     zaikosu = models.IntegerField(verbose_name='在庫数')
+    price = models.IntegerField(verbose_name='単価')
     memo = models.TextField(verbose_name='メモ', max_length=1000)
     
     def __str__(self):
