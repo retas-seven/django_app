@@ -25,7 +25,7 @@ class Shohin(BaseModel):
     memo = models.TextField(verbose_name='メモ', max_length=1000)
     
     def __str__(self):
-        return '{}, {}, {}'.format(self.kataban, self.zaikosu, self.shohin_name)
+        return '{}, {}, {}, {}'.format(self.kataban, self.zaikosu, self.price, self.shohin_name)
 
     class Meta:
         unique_together=(('belong_user', 'kataban'))

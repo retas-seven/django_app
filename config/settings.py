@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'hello.apps.HelloConfig',
     'shohin.apps.ShohinConfig',
     'app_table.apps.AppTableConfig',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # 静的ファイル格納場所（本番用）
 STATIC_ROOT = '/var/www/{}/static'.format(PROJECT_NAME)
+
+# 'django.contrib.humanize'のための設定（数値３桁区切りでカンマ）
+NUMBER_GROUPING = 3

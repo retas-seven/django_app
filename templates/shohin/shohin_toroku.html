@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -12,11 +13,13 @@
     </head>
     <body>
         <!-- HEADER -->
-        <div class="container">
-            <div class="row">
-                <nav class="navbar navbar-light header">
-                    <a class="navbar-brand header-title" href="#">Web-IMS</a>
-                </nav>
+        <div class="header">
+            <div class="container">
+                <div class="row">
+                    <nav class="navbar navbar-light">
+                        <a class="navbar-brand header-title" href="#">Web-IMS</a>
+                    </nav>
+                </div>
             </div>
         </div>
 
@@ -36,7 +39,27 @@
                     <div class="col-12">
                         <table class="table table-striped animated fadeInUpSmall">
                             <tbody>
+                                {% for shohin in shohinList %}
+                                    <tr class="align_center">
+                                        <td class="syohin pl-5">
+                                            <span class="syohin_kataban">{{shohin.kataban}}</span><br>
+                                            <span class="syohin_name">{{shohin.shohin_name}}</span>
+                                        </td>
+                                        <td class="price">
+                                            <i class="fas fa-yen-sign font_16"></i>
+                                            <span>{{shohin.price|intcomma}}</span>
+                                        </td>
+                                        <td class="zaikosu pr-5">
+                                            <span>{{shohin.zaikosu|intcomma}}</span>
+                                        </td>
+                                        <td class="func_icon pr-5">
+                                            <a class="row_circle_btn" href="#"><i class="fa-lg far fa-list-alt pl-1"></i></a>
+                                            <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
                                 <!-- 行サンプル -->
+                                <!--
                                 <tr class="align_center">
                                     <td class="syohin pl-5">
                                         <span class="syohin_kataban">R105HA-GR060T</span><br>
@@ -47,14 +70,13 @@
                                         <span>1,108,000</span>
                                     </td>
                                     <td class="zaikosu pr-5">
-                                        <span>1234500</span>
+                                        <span>1,234,500</span>
                                     </td>
                                     <td class="func_icon pr-5">
                                         <a class="row_circle_btn" href="#"><i class="fa-lg far fa-list-alt pl-1"></i></a>
                                         <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
                                     </td>
                                 </tr>
-                                <!-- 行サンプル -->
                                 <tr class="align_center">
                                     <td class="syohin pl-5">
                                         <span class="syohin_kataban">HDR-CX430V/T</span><br>
@@ -72,11 +94,10 @@
                                         <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
                                     </td>
                                 </tr>
-                                <!-- 行サンプル -->
                                 <tr class="align_center">
                                     <td class="syohin pl-5">
                                         <span class="syohin_kataban">VJS1111AZL5B</span><br>
-                                        <span class="syohin_name">SIMフリー VAIO ビジネス VAIO S11</span>
+                                        <span class="syohin_name">{{test}}</span>
                                     </td>
                                     <td class="price">
                                         <i class="fas fa-yen-sign font_16"></i>
@@ -90,7 +111,6 @@
                                         <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
                                     </td>
                                 </tr>
-                                <!-- 行サンプル -->
                                 <tr class="align_center">
                                     <td class="syohin pl-5">
                                         <span class="syohin_kataban">VJS1112AZL5B</span><br>
@@ -108,7 +128,6 @@
                                         <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
                                     </td>
                                 </tr>
-                                <!-- 行サンプル -->
                                 <tr class="align_center">
                                     <td class="syohin pl-5">
                                         <span class="syohin_kataban">VJS1113AZL5B</span><br>
@@ -126,7 +145,6 @@
                                         <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
                                     </td>
                                 </tr>
-                                <!-- 行サンプル -->
                                 <tr class="align_center">
                                     <td class="syohin pl-5">
                                         <span class="syohin_kataban">VJS1114AZL5B</span><br>
@@ -144,7 +162,6 @@
                                         <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
                                     </td>
                                 </tr>
-                                <!-- 行サンプル -->
                                 <tr class="align_center">
                                     <td class="syohin pl-5">
                                         <span class="syohin_kataban">VJS1115AZL5B</span><br>
@@ -162,7 +179,6 @@
                                         <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
                                     </td>
                                 </tr>
-                                <!-- 行サンプル -->
                                 <tr class="align_center">
                                     <td class="syohin pl-5">
                                         <span class="syohin_kataban">VJS1116AZL5B</span><br>
@@ -180,7 +196,6 @@
                                         <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
                                     </td>
                                 </tr>
-                                <!-- 行サンプル -->
                                 <tr class="align_center">
                                     <td class="syohin pl-5">
                                         <span class="syohin_kataban">VJS1117AZL5B</span><br>
@@ -198,7 +213,6 @@
                                         <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
                                     </td>
                                 </tr>
-                                <!-- 行サンプル -->
                                 <tr class="align_center">
                                     <td class="syohin pl-5">
                                         <span class="syohin_kataban">VJS1118AZL5B</span><br>
@@ -216,7 +230,6 @@
                                         <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
                                     </td>
                                 </tr>
-                                <!-- 行サンプル -->
                                 <tr class="align_center">
                                     <td class="syohin pl-5">
                                         <span class="syohin_kataban">VJS1119AZL5B</span><br>
@@ -234,7 +247,6 @@
                                         <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
                                     </td>
                                 </tr>
-                                <!-- 行サンプル -->
                                 <tr class="align_center">
                                     <td class="syohin pl-5">
                                         <span class="syohin_kataban">VJS1120AZL5B</span><br>
@@ -252,7 +264,6 @@
                                         <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
                                     </td>
                                 </tr>
-                                <!-- 行サンプル -->
                                 <tr class="align_center">
                                     <td class="syohin pl-5">
                                         <span class="syohin_kataban">VJS1121AZL5B</span><br>
@@ -270,6 +281,7 @@
                                         <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
                                     </td>
                                 </tr>
+                                -->
                             </tbody>
                         </table>
                     </div>

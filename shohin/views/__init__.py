@@ -1,1 +1,1 @@
-from shohin.views.shohin_toroku import ShohinTorokuView
+from shohin.views.shohin_toroku_view import ShohinTorokuView
