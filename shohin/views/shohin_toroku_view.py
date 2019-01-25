@@ -7,7 +7,7 @@ class ShohinTorokuView(View):
         '''
         商品登録画面初期表示処理
         '''
-        condition = {}
+        condition = {'belong_user': 'testuser'}
         params = ShohinTorokuService().retrieveShohin(condition)
 
         return render(request, 'shohin/shohin_toroku.html', params)

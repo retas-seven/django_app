@@ -10,7 +10,7 @@ class ShohinTorokuService:
         商品一覧情報を検索する
         '''
         shohinList = (Shohin.objects
-            .filter(belong_user='testuser')
+            .filter(belong_user=condition.get('belong_user'))
             .values('kataban', 'shohin_name', 'price', 'zaikosu')
             .order_by('kataban')
         )
