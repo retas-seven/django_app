@@ -11,7 +11,7 @@ class ShohinTorokuService:
         '''
         shohinList = (Shohin.objects
             .filter(belong_user=condition.get('belong_user'))
-            .values('kataban', 'shohin_name', 'price', 'zaikosu')
+            .values('id', 'kataban', 'shohin_name', 'price', 'zaikosu')
             .order_by('kataban')
         )
         
