@@ -99,20 +99,19 @@
         <div class="modal fade" id="shohinTorokuModal" tabindex="-1">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content modal_global">
-                    <form>
-                        {% csrf_token %}
-                    
-                        <!-- MODAL HEADER -->
-                        <div class="modal-header modal_header_global">
-                            <div class="modal-title modal_title">
-                                <span>商品登録</span>
-                            </div>
-                            <!-- 閉じるボタン -->
-                            <!--
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            -->
+                    <!-- MODAL HEADER -->
+                    <div class="modal-header modal_header_global">
+                        <div class="modal-title modal_title">
+                            <span>商品登録</span>
                         </div>
+                        <!-- 閉じるボタン -->
+                        <!--
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        -->
+                    </div>
 
+                    <form action={% url 'ShohinToroku' %} method="post">
+                        {% csrf_token %}
                         <div class="container">
                             <div class="row">
                                 <!-- MODAL BODY -->
@@ -120,37 +119,31 @@
                                     <div class="form-group row">
                                         <label for="kataban" class="col-2 col-form-label label_name">型番</label>
                                         <div class="col-10">
-                                            <!--
-                                            <input type="text" class="form-control form-control-lg" id="kataban" name="kataban" autocomplete="off"/>
-                                            -->
                                             {{ form.kataban }}
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="shohin_name" class="col-2 col-form-label label_name">商品名</label>
                                         <div class="col-10">
-                                            <!--
-                                            <input type="text" class="form-control form-control-lg" id="shohin_name" name="shohin_name" autocomplete="off"/>
-                                            -->
                                             {{ form.shohinName }}
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="price" class="col-2 col-form-label label_name">単価</label>
                                         <div class="col-10">
-                                            <!--
-                                            <input type="text" class="form-control form-control-lg" id="price" name="price" autocomplete="off"/>
-                                            -->
                                             {{ form.price }}
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="zaikosu" class="col-2 col-form-label label_name">在庫数</label>
                                         <div class="col-10">
-                                            <!--
-                                            <input type="text" class="form-control form-control-lg" id="zaikosu" name="zaikosu" autocomplete="off"/>
-                                            -->
                                             {{ form.zaikosu }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="memo" class="col-2 col-form-label label_name">メモ</label>
+                                        <div class="col-10">
+                                            {{ form.memo }}
                                         </div>
                                     </div>
                                 </div>

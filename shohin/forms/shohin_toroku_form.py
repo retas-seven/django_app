@@ -32,6 +32,5 @@ class ShohinTorokuForm(forms.Form):
     memo = forms.CharField(
         label='メモ',
         max_length=1000,
+        widget=forms.Textarea,
     )
-
-
