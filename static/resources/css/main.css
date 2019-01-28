@@ -41,9 +41,9 @@ body {
     border-bottom-color: rgba(80, 80, 80, .3);
     box-shadow: 0px 2px 5px 0px rgba(1, 1, 1, .9);
     box-shadow: 0px 1px 15px -3px rgba(130, 130, 130, 0.5);
+    */
     box-shadow: 0px 6px 3px -1px rgba(190, 190, 190, 0.2);
     z-index: 1;
-    */
 }
 .contents{
     flex: 1;
@@ -196,6 +196,7 @@ input:-webkit-autofill {
     font-family: 'Noto Sans JP';
     font-weight: 300;
     outline: none;
+    transition: all 250ms 0s ease;
 }
 .common_btn:hover {
     background-color: rgb(115, 207, 207);
@@ -218,6 +219,7 @@ input:-webkit-autofill {
     text-decoration: none;
     text-align: center;
     color: rgb(81, 81, 71);
+    transition: all 170ms 0s ease;
 }
 .row_circle_btn:hover {
     color: white;
@@ -248,12 +250,22 @@ input:-webkit-autofill {
     border-radius: 50%;
     text-align: center;
     font-size: 1.5rem;
-    /*
-    box-shadow: 0px 7px 5px 0px rgba(190, 190, 190, 0.7);
-    */
+    box-shadow: 0px 7px 5px 0px rgba(190, 190, 190, 0.6);
+    transition: all 170ms 0s ease;
 }
 .circle_btn:hover {
     background-color: rgba(115, 207, 207, 1);
+}
+
+/* エラーメッセージ */
+.error_msg {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-name: fadeIn;
+    color: rgb(249, 89, 89);
+    font-size: 1.5rem;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
 }
 /* ------------------------------------------- */
 /* 商品登録画面 */

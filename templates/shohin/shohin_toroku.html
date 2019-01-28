@@ -120,30 +120,45 @@
                                         <label for="kataban" class="col-2 col-form-label label_name">型番</label>
                                         <div class="col-10">
                                             {{ form.kataban }}
+                                            {% if form.kataban.errors %}
+                                                <p class="error_msg">{{ form.kataban.errors.0 }}</p>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="shohin_name" class="col-2 col-form-label label_name">商品名</label>
                                         <div class="col-10">
                                             {{ form.shohinName }}
+                                            {% if form.shohinName.errors %}
+                                                <p class="error_msg">{{ form.shohinName.errors.0 }}</p>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="price" class="col-2 col-form-label label_name">単価</label>
                                         <div class="col-10">
                                             {{ form.price }}
+                                            {% if form.shohinName.price %}
+                                                <p class="error_msg">{{ form.shohinName.price.0 }}</p>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="zaikosu" class="col-2 col-form-label label_name">在庫数</label>
                                         <div class="col-10">
                                             {{ form.zaikosu }}
+                                            {% if form.shohinName.zaikosu %}
+                                                <p class="error_msg">{{ form.shohinName.zaikosu.0 }}</p>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="memo" class="col-2 col-form-label label_name">メモ</label>
                                         <div class="col-10">
                                             {{ form.memo }}
+                                            {% if form.shohinName.memo %}
+                                                <p class="error_msg">{{ form.shohinName.memo.0 }}</p>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>

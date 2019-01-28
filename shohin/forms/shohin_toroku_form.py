@@ -1,4 +1,5 @@
 from django import forms
+from shohin.services.shohin_toroku_service import ShohinTorokuService
 
 class ShohinTorokuForm(forms.Form):
     '''
@@ -35,3 +36,13 @@ class ShohinTorokuForm(forms.Form):
         widget=forms.Textarea,
         required=False,
     )
+
+    def clean_kataban(self):
+        kataban = self.cleaned_data['kataban']
+        condition = {
+            'belong_user': 'testuser',
+            'kataban': kataban,
+        }
+        if ShohinTorokuService().existShohin(condition):
+            raise forms.ValidationError('既に登録されている型番です。未登録の型番を入力してください。')
+        return kataban

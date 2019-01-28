@@ -22,6 +22,19 @@ class ShohinTorokuService:
         }
         return ret
     
+    
+    def existShohin(self, condition):
+        '''
+        商品の存在有無を確認する
+        '''
+        ret = (Shohin.objects
+            .filter(
+                belong_user=condition.get('belong_user'),
+                kataban=condition.get('kataban'),
+            )
+        )
+        return ret
+
     def registShohin(self, form):
         '''
         商品情報を登録する
