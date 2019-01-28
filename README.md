@@ -8,3 +8,4 @@ Python Practice
     
     * 現場で使える Django の教科書《基礎編》
 
+    * 現場で使える Django の教科書《実践編》
