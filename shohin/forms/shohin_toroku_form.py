@@ -33,4 +33,5 @@ class ShohinTorokuForm(forms.Form):
         label='メモ',
         max_length=1000,
         widget=forms.Textarea,
+        required=False,
     )
