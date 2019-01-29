@@ -25,6 +25,7 @@ class ShohinTorokuView(View):
         form = ShohinTorokuForm(request.POST)
         if not form.is_valid():
             params = self.__initParams(form)
+            params['openDialog'] = True
             return render(request, 'shohin/shohin_toroku.html', params)
     
         # 商品を登録する

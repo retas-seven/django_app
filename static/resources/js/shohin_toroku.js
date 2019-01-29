@@ -38,4 +38,9 @@ $(function(){
 	
 	// 下部ボタンの初期位置
 	$('.circle_btn').css("bottom", 0);
+
+	// 商品登録モーダルを開くか判別
+	if ($('#jsOpenDialog').val() == "True") {
+		$('#shohinTorokuModal').modal();
+	}
 });

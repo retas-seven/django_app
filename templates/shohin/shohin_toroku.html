@@ -12,6 +12,7 @@
         <title>在庫管理</title>
     </head>
     <body>
+        <input type="hidden" value="{{openDialog}}" id="jsOpenDialog">
         <!-- HEADER -->
         <div class="header">
             <div class="container">
@@ -105,9 +106,7 @@
                             <span>商品登録</span>
                         </div>
                         <!-- 閉じるボタン -->
-                        <!--
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        -->
                     </div>
 
                     <form action={% url 'ShohinToroku' %} method="post">

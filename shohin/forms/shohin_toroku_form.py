@@ -44,5 +44,5 @@ class ShohinTorokuForm(forms.Form):
             'kataban': kataban,
         }
         if ShohinTorokuService().existShohin(condition):
-            raise forms.ValidationError('既に登録されている型番です。未登録の型番を入力してください。')
+            raise forms.ValidationError('既に登録済みの型番です。未登録の型番を入力し、再度登録を行ってください。')
         return kataban
