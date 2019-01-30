@@ -2,6 +2,7 @@ from django.views import View
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.contrib import messages
 from shohin.services.shohin_toroku_service import ShohinTorokuService
 from shohin.forms.shohin_toroku_form import ShohinTorokuForm
 
@@ -25,10 +26,13 @@ class ShohinTorokuView(View):
         form = ShohinTorokuForm(request.POST)
         if not form.is_valid():
             params = self.__initParams(form)
+            # 登録画面へ戻った際に自動でダイアログを開くためのパラメータを設定
             params['openDialog'] = True
             return render(request, 'shohin/shohin_toroku.html', params)
     
         # 商品を登録する
         ShohinTorokuService().registShohin(form)
+        messages.success(request, '商品を登録しました。')
+
         # 商品登録画面初期表示処理へリダイレクト
         return redirect(reverse('ShohinToroku'))

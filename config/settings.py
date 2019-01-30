@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from django.contrib.messages import constants as message_constants
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -138,3 +139,9 @@ STATIC_ROOT = '/var/www/{}/static'.format(PROJECT_NAME)
 
 # 'django.contrib.humanize'のための設定（数値３桁区切りでカンマ）
 NUMBER_GROUPING = 3
+
+# メッセージ出力用DIVに適用するCSSクラス
+MESSAGE_TAGS = {
+    message_constants.SUCCESS: 'alert alert-success alert-dismissible fade show animated fadeInLeftBig',
+    message_constants.ERROR: 'alert alert-danger alert-dismissible fade show animated fadeInLeftBig',
+}

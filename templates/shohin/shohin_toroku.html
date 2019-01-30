@@ -29,6 +29,19 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
+
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="{{ message.tags }}" role="alert" style="padding: 10px 20px;">
+                                    <span>{{ message }}</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+                                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                            <br>
+                        {% endif %}
+
                         <table class="table table-striped animated fadeInUpSmall">
                             <thead>
                                 <tr class="align_center" style="color: rgb(111, 111, 111);">
@@ -106,7 +119,7 @@
                             <span>商品登録</span>
                         </div>
                         <!-- 閉じるボタン -->
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     </div>
 
                     <form action={% url 'ShohinToroku' %} method="post">
