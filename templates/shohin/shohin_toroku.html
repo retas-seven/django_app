@@ -12,7 +12,7 @@
         <title>在庫管理</title>
     </head>
     <body>
-        <input type="hidden" value="{{openDialog}}" id="jsOpenDialog">
+        <input type="hidden" value="{{open_dialog}}" class="js_open_dialog">
         <!-- HEADER -->
         <div class="header">
             <div class="container">
@@ -63,7 +63,7 @@
                             </thead>
                             <tbody>
                                 {% for shohin in shohinList %}
-                                    <tr id="{{shohin.id}}" class="align_center">
+                                    <tr class="align_center">
                                         <td class="syohin pl-5">
                                             <span class="syohin_kataban">{{shohin.kataban}}</span><br>
                                             <span class="syohin_name">{{shohin.shohin_name}}</span>
@@ -75,9 +75,14 @@
                                         <td class="zaikosu pr-5">
                                             <span>{{shohin.zaikosu|intcomma}}</span>
                                         </td>
-                                        <td class="func_icon pr-5">
+                                        <td class="func_icon pr-5"
+                                                data-kataban="{{shohin.kataban}}"
+                                                data-shohin_name="{{shohin.shohin_name}}"
+                                                data-price="{{shohin.price}}"
+                                                data-zaikosu="{{shohin.zaikosu}}"
+                                                data-memo="{{shohin.memo}}">
                                             <a class="row_circle_btn" href="#"><i class="fa-lg far fa-list-alt pl-1"></i></a>
-                                            <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
+                                            <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1 js_delete_btn"></i></a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -86,12 +91,17 @@
                     </div>
                 </div><!-- end row-->
             </div>
+            <!-- 商品削除用のForm-->
+            <form action={% url 'shohin_sakujo' %} method="post" name="shohins_sakujo_form">
+                {% csrf_token %}
+                <input type="hidden" value="" class="js_shohin_sakujo_key_kataban" name="kataban">
+            </form>
 
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="bottom_area">
-                            <a class="circle_btn" data-toggle="modal" data-target="#shohinTorokuModal">
+                            <a class="circle_btn" data-toggle="modal" data-target="#shohin_toroku_modal">
                                 <i class="fa-lg fas fa-plus pl-1 color_white"></i>
                             </a>
                         </div>
@@ -110,7 +120,7 @@
         </footer>
 
         <!-- MODAL -->
-        <div class="modal fade" id="shohinTorokuModal" tabindex="-1">
+        <div class="modal fade" id="shohin_toroku_modal" tabindex="-1">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content modal_global">
                     <!-- MODAL HEADER -->
@@ -122,7 +132,7 @@
                         <button type="button" class="close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     </div>
 
-                    <form action={% url 'ShohinToroku' %} method="post">
+                    <form action={% url 'shohin_toroku' %} method="post" autocomplete="off">
                         {% csrf_token %}
                         <div class="container">
                             <div class="row">

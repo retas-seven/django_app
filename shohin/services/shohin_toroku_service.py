@@ -6,32 +6,31 @@ class ShohinTorokuService:
     商品登録画面用サービスクラス
     '''
 
-    def retrieveShohin(self, condition):
+    def retrieveShohin(self):
         '''
         商品一覧情報を検索する
         '''
         shohinList = (Shohin.objects
-            .filter(belong_user=condition.get('belong_user'))
+            .filter(belong_user='testuser')
             .values('id', 'kataban', 'shohin_name', 'price', 'zaikosu')
             .order_by('kataban')
         )
         
         ret = {
-            'test': 'testresult!',
             'shohinList': shohinList,
         }
         return ret
     
     
-    def existShohin(self, condition):
+    def existShohin(self, kataban):
         '''
         商品の存在有無を確認する
         '''
         ret = (Shohin.objects
             .filter(
-                belong_user=condition.get('belong_user'),
-                kataban=condition.get('kataban'),
-            )
+                belong_user='testuser',
+                kataban=kataban,
+            ).exists()
         )
         return ret
 
@@ -50,3 +49,9 @@ class ShohinTorokuService:
         shohin.regist_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
         shohin.save()
 
+    def deleteShohin(self, kataban):
+        '''
+        商品情報を削除する
+        '''
+        shohin = Shohin.objects.get(belong_user='testuser', kataban=kataban)
+        shohin.delete()

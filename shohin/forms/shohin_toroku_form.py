@@ -39,10 +39,6 @@ class ShohinTorokuForm(forms.Form):
 
     def clean_kataban(self):
         kataban = self.cleaned_data['kataban']
-        condition = {
-            'belong_user': 'testuser',
-            'kataban': kataban,
-        }
-        if ShohinTorokuService().existShohin(condition):
+        if ShohinTorokuService().existShohin(kataban):
             raise forms.ValidationError('既に登録済みの型番です。未登録の型番を入力し、再度登録を行ってください。')
         return kataban

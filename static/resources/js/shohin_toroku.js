@@ -40,7 +40,21 @@ $(function(){
 	$('.circle_btn').css("bottom", 0);
 
 	// 商品登録モーダルを開くか判別
-	if ($('#jsOpenDialog').val() == "True") {
-		$('#shohinTorokuModal').modal();
+	if ($('.js_open_dialog').val() == "True") {
+		$('#shohin_toroku_modal').modal();
 	}
+
+	/**
+	 * 削除ボタン押下時の処理
+	 */
+    $('.js_delete_btn').click(function(e) {
+        if(!confirm('削除しますか？')){
+            return false;
+        }
+		
+		tergetKataban = $(this).parents('td').data('kataban');
+		form = $('[name=shohins_sakujo_form]');
+		$('.js_shohin_sakujo_key_kataban').val(tergetKataban);
+		form.submit();
+    });
 });
