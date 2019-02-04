@@ -52,9 +52,59 @@ $(function(){
             return false;
         }
 		
-		tergetKataban = $(this).parents('td').data('kataban');
+		kataban = $(this).parents('td').data('kataban');
 		form = $('[name=shohins_sakujo_form]');
-		$('.js_shohin_sakujo_key_kataban').val(tergetKataban);
+		$('.js_shohin_sakujo_key_kataban').val(kataban);
 		form.submit();
-    });
+	});
+	
+	/**
+	 * ダイアログ（登録）表示ボタン押下時の処理
+	 */
+    $('.js_toroku_btn').click(function(e) {
+		$('#id_kataban').val('');
+		$('#id_shohinName').val('');
+		$('#id_price').val('');
+		$('#id_zaikosu').val('');
+		$('#id_memo').val('');
+		
+		$('.js_btn_update').addClass('is_hide');
+		$('.js_btn_regist').removeClass('is_hide');
+		$('#shohin_toroku_modal').modal();
+	});
+	
+	/**
+	 * ダイアログ（更新）表示ボタン押下時の処理
+	 */
+    $('.js_koshin_btn').click(function(e) {
+		let datas = $(this).parents('td');
+
+		$('#id_kataban').val(datas.data('kataban'));
+		$('#id_shohinName').val(datas.data('shohin_name'));
+		$('#id_price').val(datas.data('price'));
+		$('#id_zaikosu').val(datas.data('zaikosu'));
+		$('#id_memo').val(datas.data('memo'));
+		
+		$('.js_btn_regist').addClass('is_hide');
+		$('.js_btn_update').removeClass('is_hide');
+		$('#shohin_toroku_modal').modal();
+	});
+	
+	/**
+	 * 登録ボタン押下時の処理
+	 */
+    $('.js_btn_regist').click(function(e) {
+		form = $('[name=shohins_toroku_form]');
+		form.attr('action', getShohinTorokuUrl());
+		form.submit();
+	});
+
+	/**
+	 * 更新ボタン押下時の処理
+	 */
+    $('.js_btn_update').click(function(e) {
+		form = $('[name=shohins_toroku_form]');
+		form.attr('action', getShohinKoshinUrl());
+		form.submit();
+	});
 });

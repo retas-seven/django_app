@@ -12,7 +12,7 @@ class ShohinTorokuService:
         '''
         shohinList = (Shohin.objects
             .filter(belong_user='testuser')
-            .values('id', 'kataban', 'shohin_name', 'price', 'zaikosu')
+            .values('id', 'kataban', 'shohin_name', 'price', 'zaikosu', 'memo')
             .order_by('kataban')
         )
         
@@ -55,3 +55,20 @@ class ShohinTorokuService:
         '''
         shohin = Shohin.objects.get(belong_user='testuser', kataban=kataban)
         shohin.delete()
+
+    def updateShohin(self, form):
+        '''
+        商品情報を更新する
+        '''
+        shohin = Shohin.objects.get(
+            belong_user='testuser',
+            kataban=form.cleaned_data['kataban'],
+        )
+
+        shohin.shohin_name = form.cleaned_data['shohinName']
+        shohin.price = form.cleaned_data['price']
+        shohin.zaikosu = form.cleaned_data['zaikosu']
+        shohin.memo = form.cleaned_data['memo']
+        shohin.update_user = 'testuser'
+        shohin.update_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        shohin.save()

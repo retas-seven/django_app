@@ -37,8 +37,18 @@ class ShohinTorokuForm(forms.Form):
         required=False,
     )
 
+    def is_valid(self, checkMode):
+        self.checkMode = checkMode
+        return super().is_valid()
+
     def clean_kataban(self):
         kataban = self.cleaned_data['kataban']
-        if ShohinTorokuService().existShohin(kataban):
-            raise forms.ValidationError('既に登録済みの型番です。未登録の型番を入力し、再度登録を行ってください。')
+        existShohin = ShohinTorokuService().existShohin(kataban)
+            
+        if self.checkMode == 'regist':
+            if existShohin:
+                raise forms.ValidationError('既に登録済みの型番です。未登録の型番を入力し、再度登録を行ってください。')
+        elif self.checkMode == 'update':
+            # TODO: 排他チェック
+            pass
         return kataban
