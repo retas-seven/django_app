@@ -12,6 +12,12 @@
     border-top: 0px;
     padding: .7rem;
 }
+.alert-success {
+    color: rgb(67, 124, 80);
+}
+.form-control:disabled, .form-control[readonly] {
+    background-color: rgba(0, 0, 0, 0);
+}
 /* ------------------------------------------- */
 /* 全体の設定 */
 /* ------------------------------------------- */

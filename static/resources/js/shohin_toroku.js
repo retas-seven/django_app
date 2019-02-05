@@ -68,6 +68,10 @@ $(function(){
 		$('#id_zaikosu').val('');
 		$('#id_memo').val('');
 		
+		$('#id_kataban').attr('readonly', false);
+		$('#id_kataban').removeClass('form-control-plaintext');
+
+		// 更新、登録ボタンの表示切り替え
 		$('.js_btn_update').addClass('is_hide');
 		$('.js_btn_regist').removeClass('is_hide');
 		$('#shohin_toroku_modal').modal();
@@ -85,6 +89,11 @@ $(function(){
 		$('#id_zaikosu').val(datas.data('zaikosu'));
 		$('#id_memo').val(datas.data('memo'));
 		
+		// 型番は読み取りのみとし、更新させない
+		$('#id_kataban').attr('readonly', true);
+		$('#id_kataban').addClass('form-control-plaintext');
+
+		// 更新、登録ボタンの表示切り替え
 		$('.js_btn_regist').addClass('is_hide');
 		$('.js_btn_update').removeClass('is_hide');
 		$('#shohin_toroku_modal').modal();
