@@ -18,6 +18,9 @@
 .form-control:disabled, .form-control[readonly] {
     background-color: rgba(0, 0, 0, 0);
 }
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,0,10,.05);
+}
 /* ------------------------------------------- */
 /* 全体の設定 */
 /* ------------------------------------------- */
@@ -29,7 +32,7 @@ body {
     line-height: 1.4;
     font-size: 1.6em;
     font-family: 'Noto Sans JP';
-    color: rgb(81, 81, 71);
+    color: rgb(81, 81, 81);
 }
 /* ------------------------------------------- */
 /* レイアウト設定 */
@@ -56,7 +59,8 @@ body {
     padding: 25px;
     /*background: rgb(225, 225, 225);*/
     /*background: linear-gradient(75deg, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(32,147,234,1) 100%);*/
-    background: linear-gradient(105deg, rgb(237, 237, 237) 0%,rgb(237, 237, 237) 70%,rgb(230, 230, 230) 71%,rgb(230, 230, 230) 100%);
+    /*background: linear-gradient(105deg, rgb(237, 237, 237) 0%,rgb(237, 237, 237) 70%,rgb(230, 230, 230) 71%,rgb(230, 230, 230) 100%);*/
+    background: linear-gradient(105deg, rgb(237, 237, 237) 0%,rgb(237, 237, 239) 70%,rgb(230, 230, 232) 71%,rgb(230, 230, 235) 100%);
     position: relative;
 }
 .footer{
@@ -218,7 +222,7 @@ input:-webkit-autofill {
 }
 /* tebleの各行に配置するボタン */
 .row_circle_btn {
-    display: inline-block;
+    display: block;
     width: 50px;
     height: 50px;
     line-height: 50px;
@@ -229,10 +233,9 @@ input:-webkit-autofill {
     transition: all 170ms 0s ease;
 }
 .row_circle_btn:hover {
-    color: white;
+    color: white !important;
     background-color: rgba(0, 184, 184, 0.5);
 }
-
 .circle_btn {
     position: fixed;
     display: block;
@@ -241,11 +244,11 @@ input:-webkit-autofill {
     width: 80px;
     height: 80px;
     line-height: 80px;
-    background-color: rgba(164, 164, 164, 1);
+    background-color: rgba(141, 141, 141, 1);
     border-radius: 50%;
     text-align: center;
     font-size: 1.5rem;
-    box-shadow: 0px 7px 5px 0px rgba(190, 190, 190, 0.6);
+    box-shadow: 0px 7px 5px 0px rgba(170, 170, 170, 0.5);
     transition: all 170ms 0s ease;
 }
 .circle_btn:hover {
@@ -282,16 +285,18 @@ input:-webkit-autofill {
     font-size: 2.2rem;
     font-family: 'Merriweather', serif;
     font-weight: 100;
-    width: 18%;
+    width: 17%;
     text-align: right;
     overflow: hidden;
 }
 .func_icon {
-    width: 14%;
+    width: 15%;
     display: flex;
     align-items: center;
     justify-content: space-around;
     overflow: hidden;
+    padding-left: 35px !important;
+    padding-right: 15px !important;
 }
 .syohin_kataban {
     font-size: 1.3rem;
