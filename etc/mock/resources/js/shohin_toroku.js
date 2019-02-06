@@ -17,7 +17,7 @@ $(function(){
 		touchpadSupport: true,
 		fixedBackground: true
 	});
-
+/*
 	// 下部ボタンの位置調整
 	$(window).scroll(function(e) {
 		let circleBtn = $('.circle_btn');
@@ -38,4 +38,5 @@ $(function(){
 	
 	// 下部ボタンの初期位置
 	$('.circle_btn').css("bottom", 0);
+	*/
 });
