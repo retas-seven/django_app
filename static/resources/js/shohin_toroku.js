@@ -20,6 +20,7 @@ $(function(){
 
 	// 商品登録モーダルを開くか判別
 	if ($('.js_open_dialog').val() == "True") {
+		$('.js_btn_update').addClass('is_hide');
 		$('#shohin_toroku_modal').modal();
 	}
 
@@ -53,6 +54,11 @@ $(function(){
 		// 更新、登録ボタンの表示切り替え
 		$('.js_btn_update').addClass('is_hide');
 		$('.js_btn_regist').removeClass('is_hide');
+
+		// formのアクション設定
+		form = $('[name=shohins_toroku_form]');
+		form.attr('action', getShohinTorokuUrl());
+
 		$('#shohin_toroku_modal').modal();
 	});
 	
@@ -75,24 +81,11 @@ $(function(){
 		// 更新、登録ボタンの表示切り替え
 		$('.js_btn_regist').addClass('is_hide');
 		$('.js_btn_update').removeClass('is_hide');
-		$('#shohin_toroku_modal').modal();
-	});
-	
-	/**
-	 * 登録ボタン押下時の処理
-	 */
-    $('.js_btn_regist').click(function(e) {
-		form = $('[name=shohins_toroku_form]');
-		form.attr('action', getShohinTorokuUrl());
-		form.submit();
-	});
 
-	/**
-	 * 更新ボタン押下時の処理
-	 */
-    $('.js_btn_update').click(function(e) {
+		// formのアクション設定
 		form = $('[name=shohins_toroku_form]');
 		form.attr('action', getShohinKoshinUrl());
-		form.submit();
+
+		$('#shohin_toroku_modal').modal();
 	});
 });

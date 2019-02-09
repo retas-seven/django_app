@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
         <link rel="stylesheet" href="{% static 'resources/css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'resources/css/shohin_toroku.css' %}">
         <title>在庫管理</title>
     </head>
     <body>
@@ -44,38 +45,39 @@
 
                         <table class="table table-striped animated fadeInUpSmall">
                             <thead>
-                                <tr class="align_center" style="color: rgb(111, 111, 111);">
-                                    <td style="text-align: center; width: 50%; padding-bottom: 15px">
+                                <tr class="thead_tr">
+                                    <td class="syohin_width">
                                         <span>型番・商品名</span>
-                                        <hr style="background-color: rgb(191, 191, 191);">
+                                        <hr>
                                     </td>
-                                    <td style="text-align: center; width: 18%; padding-bottom: 15px">
+                                    <td class="price_width">
                                         <span>単価</span>
-                                        <hr style="background-color: rgb(191, 191, 191);">
+                                        <hr>
                                     </td>
-                                    <td style="text-align: center; width: 17%; padding-bottom: 15px">
+                                    <td class="zaikosu_width">
                                         <span>在庫数</span>
-                                        <hr style="background-color: rgb(191, 191, 191);">
+                                        <hr>
                                     </td>
-                                    <td style="width: 15%;">
+                                    <td class="func_icon_width func_icon_head">
+                                        <!--TODO: 検索ボタンを追加する-->
                                     </td>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for shohin in shohinList %}
                                     <tr class="align_center">
-                                        <td class="syohin pl-5">
+                                        <td class="syohin_width syohin_row pl-5">
                                             <span class="syohin_kataban">{{shohin.kataban}}</span><br>
                                             <span class="syohin_name">{{shohin.shohin_name}}</span>
                                         </td>
-                                        <td class="price">
+                                        <td class="price_width price_row">
                                             <i class="fas fa-yen-sign font_16"></i>
                                             <span>{{shohin.price|intcomma}}</span>
                                         </td>
-                                        <td class="zaikosu">
+                                        <td class="zaikosu_width zaikosu_row">
                                             <span>{{shohin.zaikosu|intcomma}}</span>
                                         </td>
-                                        <td class="func_icon"
+                                        <td class="func_icon_width func_icon_row"
                                                 data-kataban="{{shohin.kataban}}"
                                                 data-shohin_name="{{shohin.shohin_name}}"
                                                 data-price="{{shohin.price}}"
@@ -181,8 +183,8 @@
                     
                         <!-- MODAL FOOTER -->
                         <div class="modal-footer modal_footer_global">
-                            <button type="button" onfocus="this.blur();" class="common_btn js_btn_regist"><i class="fas fa-plus"></i> 登録</button>
-                            <button type="button" onfocus="this.blur();" class="common_btn js_btn_update"><i class="fas fa-edit"></i> 更新</button>
+                            <button type="submit" onfocus="this.blur();" class="common_btn js_btn_regist"><i class="fas fa-plus"></i> 登録</button>
+                            <button type="submit" onfocus="this.blur();" class="common_btn js_btn_update"><i class="fas fa-edit"></i> 更新</button>
                         </div>
                     </form>
                 </div>

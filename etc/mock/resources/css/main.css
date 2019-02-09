@@ -64,14 +64,14 @@ body {
     position: relative;
 }
 .footer{
-    height: 30px;
+    height: 31px;
     /*
     background: rgb(199, 150, 131);
     */
     background: rgb(254, 254, 254);
     /*padding: 10px 20px 20px 20px;*/
     padding-top: 6px;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     /*
     box-shadow: 0px -1px 15px -3px rgba(130, 130, 130, 0.5);
     z-index: 1;
@@ -223,9 +223,9 @@ input:-webkit-autofill {
 /* tebleの各行に配置するボタン */
 .row_circle_btn {
     display: block;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
+    width: 47px;
+    height: 47px;
+    line-height: 47px;
     border-radius: 50%;
     text-decoration: none;
     text-align: center;
@@ -234,7 +234,7 @@ input:-webkit-autofill {
 }
 .row_circle_btn:hover {
     color: white !important;
-    background-color: rgba(0, 184, 184, 0.5);
+    background-color: rgb(115, 207, 207);
 }
 .circle_btn {
     position: fixed;
@@ -252,9 +252,22 @@ input:-webkit-autofill {
     transition: all 170ms 0s ease;
 }
 .circle_btn:hover {
-    background-color: rgba(115, 207, 207, 1);
+    background-color: rgb(115, 207, 207);
 }
-
+.circle_btn_small {
+    width: 47px;
+    height: 47px;
+    line-height: 47px;
+    text-align: center;
+    background-color: rgb(177, 177, 177);
+    border-radius: 50%;
+    font-size: 1.5rem;
+    transition: all 170ms 0s ease;
+    color:white !important;
+}
+.circle_btn_small:hover {
+    background-color: rgb(115, 207, 207);
+}
 /* エラーメッセージ */
 .error_msg {
     animation-duration: 1s;
@@ -264,77 +277,4 @@ input:-webkit-autofill {
     font-size: 1.5rem;
     margin-top: .5rem;
     margin-bottom: .5rem;
-}
-/* ------------------------------------------- */
-/* 商品登録画面 */
-/* ------------------------------------------- */
-/* 一覧部 */
-.syohin {
-    width: 50%;
-    overflow: hidden;
-}
-.price {
-    font-size: 2.2rem;
-    font-family: 'Merriweather', serif;
-    font-weight: 100;
-    width: 18%;
-    text-align: right;
-    overflow: hidden;
-}
-.zaikosu {
-    font-size: 2.2rem;
-    font-family: 'Merriweather', serif;
-    font-weight: 100;
-    width: 17%;
-    text-align: right;
-    overflow: hidden;
-}
-.func_icon {
-    width: 15%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    overflow: hidden;
-    padding-left: 35px !important;
-    padding-right: 15px !important;
-}
-.syohin_kataban {
-    font-size: 1.3rem;
-    font-weight: 200;
-}
-.syohin_name {
-    font-size: 2.1rem;
-    margin: 0px;
-    font-weight: 400;
-}
-
-/* ------------------------------------------- */
-/* 商品登録画面‐モーダル */
-/* ------------------------------------------- */
-.modal_global {
-    background: linear-gradient(105deg, rgb(239, 239, 239) 0%,rgb(239, 239, 239) 60%,rgb(227, 227, 227) 61%,rgb(227, 227, 227) 100%);
-}
-.modal_header_global {
-    background-color: rgba(255, 255, 255, .5);
-    padding-left: 25px;
-    padding-right: 25px;
-}
-.modal_title {
-	display: flex;
-	align-items: center;
-    font-size: 2rem;
-    font-weight: 400;
-}
-.modal_boddy_global {
-    padding: 25px;
-}
-.modal_footer_global {
-    background-color: rgba(255, 255, 255, .5);
-    padding-left: 25px;
-    padding-right: 25px;
-}
-.label_name {
-    text-align: right;
-    font-size: 1.6rem;
-    font-weight: 400;
 }
