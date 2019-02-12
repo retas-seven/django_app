@@ -16,7 +16,6 @@
 .thead_tr hr {
     background-color: rgb(191, 191, 191);
 }
-
 .syohin_width {
     width: 50%;
 }
@@ -95,6 +94,4 @@
 }
 .label_name {
     text-align: right;
-    font-size: 1.6rem;
-    font-weight: 400;
 }

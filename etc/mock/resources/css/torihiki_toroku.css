@@ -126,6 +126,22 @@
 }
 .label_name {
     text-align: right;
-    font-size: 1.6rem;
-    font-weight: 400;
 }
+.w100 {
+    width: 100%;
+}
+.w50 {
+    width: 50%;
+}
+.w100 span {
+    font-size: 1.6rem;
+    font-weight: 300;
+}
+.shohin_ithiran_hr {
+    margin: 10px 0px 0px 0px;
+}
+/*
+.modal-lg {
+    max-width: 95%;
+}
+*/
