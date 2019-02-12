@@ -16,24 +16,26 @@
         <input type="hidden" value="{{open_dialog}}" class="js_open_dialog">
         <!-- HEADER -->
         <div class="header">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
-                    <nav class="navbar navbar-light">
-                        <a class="navbar-brand header-title" href="#">Web-IMS</a>
-                    </nav>
+                    <div class="col-12">
+                        <nav class="navbar navbar-light">
+                            <a class="navbar-brand header-title" href="#">Web-IMS</a>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- CONTENTS -->
         <div class="contents">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
 
                         {% if messages %}
                             {% for message in messages %}
-                                <div class="{{ message.tags }}" role="alert" style="padding: 10px 20px;">
+                                <div class="{{ message.tags }}" role="alert" style="padding: 1.0ex 2.0ex;">
                                     <span>{{ message }}</span>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
                                         <span aria-hidden="true"><i class="fas fa-times"></i></span>
@@ -66,7 +68,7 @@
                             <tbody>
                                 {% for shohin in shohinList %}
                                     <tr class="align_center">
-                                        <td class="syohin_width syohin_row pl-5">
+                                        <td class="syohin_width syohin_row">
                                             <span class="syohin_kataban">{{shohin.kataban}}</span><br>
                                             <span class="syohin_name">{{shohin.shohin_name}}</span>
                                         </td>
@@ -83,8 +85,8 @@
                                                 data-price="{{shohin.price}}"
                                                 data-zaikosu="{{shohin.zaikosu}}"
                                                 data-memo="{{shohin.memo}}">
-                                            <a class="row_circle_btn js_koshin_btn"><i class="fa-lg far fa-list-alt pl-1"></i></a>
-                                            <a class="row_circle_btn js_delete_btn"><i class="fas fa-times pl-1"></i></a>
+                                            <a class="row_circle_btn js_koshin_btn"><i class="fa-lg far fa-list-alt"></i></a>
+                                            <a class="row_circle_btn js_delete_btn"><i class="fas fa-times"></i></a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -103,9 +105,11 @@
         
         <!-- FOOTER -->
         <footer class="footer">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
-                    <p>django sample app 2019</p>
+                    <div class="col-12">
+                        <p>django sample app 2019</p>
+                    </div>
                 </div>
             </div>
         </footer>
@@ -128,7 +132,7 @@
 
                     <form action="" method="post" autocomplete="off" name="shohins_toroku_form">
                         {% csrf_token %}
-                        <div class="container">
+                        <div class="container-fluid">
                             <div class="row">
                                 <!-- MODAL BODY -->
                                 <div class="modal-body modal_boddy_global">

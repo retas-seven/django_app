@@ -318,9 +318,6 @@ input:-webkit-autofill {
 	}
 	.circle_btn {
 	    bottom: 2.5ex;
-	    left: calc(100vw - 12.5ex);
-	    width: 7.0ex;
-	    height: 7.0ex;
-	    line-height: 7.0ex;
+	    left: calc(100vw - 14.3ex);
 	}
 }
