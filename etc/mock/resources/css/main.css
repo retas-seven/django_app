@@ -21,6 +21,9 @@
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: rgba(0,0,10,.05);
 }
+.container-fluid {
+    max-width: 1140px;
+}
 /* ------------------------------------------- */
 /* 全体の設定 */
 /* ------------------------------------------- */
@@ -30,9 +33,27 @@ html {
 body {
     letter-spacing: .1em;
     line-height: 1.4;
-    font-size: 1.6em;
-    font-family: 'Noto Sans JP';
+    font-size: 1.6rem;
+    /*font-family: 'Noto Sans JP';*/
     color: rgb(81, 81, 81);
+}
+/* ------------------------------------------- */
+/* 全体の設定（モバイル用設定） */
+/* ------------------------------------------- */
+@media all and (max-width: 992px) {
+	html {
+	    font-size: 52.6825%;
+	}
+}
+@media all and (max-width: 768px) {
+	html {
+	    font-size: 46.865%;
+	}
+}
+@media all and (max-width: 480px) {
+	html {
+	    font-size: 31.25%;
+	}
 }
 /* ------------------------------------------- */
 /* レイアウト設定 */
@@ -43,7 +64,6 @@ body {
     flex-direction: column;
 }
 .header{
-    height: 68px;
     background: rgb(254, 254, 254);
     /*
     border-bottom: solid 1px;
@@ -64,7 +84,6 @@ body {
     position: relative;
 }
 .footer{
-    height: 31px;
     /*
     background: rgb(199, 150, 131);
     */
@@ -200,8 +219,8 @@ input:-webkit-autofill {
     background-color: rgb(164, 164, 164);
     text-align: center;
     font-size: 1.6rem;
-    padding: 12px 21px;
-    border-radius: calc(1.6rem + 12px);
+    padding: 1.2rem 2.1rem;
+    border-radius: calc(1.6rem + 1.2rem);
     color: white;
     border: none;
     font-family: 'Noto Sans JP';
@@ -223,27 +242,31 @@ input:-webkit-autofill {
 /* tebleの各行に配置するボタン */
 .row_circle_btn {
     display: block;
-    width: 47px;
-    height: 47px;
-    line-height: 47px;
+    width: 5.1ex;
+    height: 5.1ex;
+    line-height: 5.1ex;
     border-radius: 50%;
     text-decoration: none;
     text-align: center;
     color: rgb(81, 81, 71);
     transition: all 170ms 0s ease;
+    font-size: 1.5rem;
 }
 .row_circle_btn:hover {
     color: white !important;
     background-color: rgb(115, 207, 207);
 }
+.row_circle_btn:first-child {
+	margin-right: 1.3ex !important;
+}
 .circle_btn {
     position: fixed;
     display: block;
-    bottom: 55px;
-    left: calc(100vw - 135px);
-    width: 80px;
-    height: 80px;
-    line-height: 80px;
+    bottom: 5.5ex;
+    left: calc(100vw - 16.5ex);
+    width: 10.0ex;
+    height: 10.0ex;
+    line-height: 10.0ex;
     background-color: rgba(141, 141, 141, 1);
     border-radius: 50%;
     text-align: center;
@@ -255,9 +278,9 @@ input:-webkit-autofill {
     background-color: rgb(115, 207, 207);
 }
 .circle_btn_small {
-    width: 47px;
-    height: 47px;
-    line-height: 47px;
+    width: 5.7ex;
+    height: 5.7ex;
+    line-height: 5.7ex;
     text-align: center;
     background-color: rgb(177, 177, 177);
     border-radius: 50%;
@@ -277,4 +300,27 @@ input:-webkit-autofill {
     font-size: 1.5rem;
     margin-top: .5rem;
     margin-bottom: .5rem;
+}
+
+/* ------------------------------------------- */
+/* モバイル用設定 */
+/* ------------------------------------------- */
+@media all and (max-width: 992px) {
+	.col-12 {
+	    padding-left: 0;
+	    padding-right: 0;
+	}
+	.modal-lg {
+	    min-width: 100vw;
+	}
+	.contents{
+	    padding: 10px 0px;
+	}
+	.circle_btn {
+	    bottom: 2.5ex;
+	    left: calc(100vw - 12.5ex);
+	    width: 7.0ex;
+	    height: 7.0ex;
+	    line-height: 7.0ex;
+	}
 }

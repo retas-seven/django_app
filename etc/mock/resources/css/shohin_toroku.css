@@ -18,15 +18,18 @@
 }
 .syohin_width {
     width: 50%;
+    word-break: break-all;
 }
 .price_width {
-    width: 18%;
+    width: 22%;
+    word-break: break-all;
 }
 .zaikosu_width {
-    width: 17%;
+    width: 15%;
+    word-break: break-all;
 }
 .func_icon_width {
-    width: 15%;
+    width: 13%;
 }
 .func_icon_head {
     display: flex;
@@ -34,6 +37,7 @@
 }
 .syohin_row {
     overflow: hidden;
+    padding-left: 2.5ex !important;
 }
 .price_row {
     font-size: 2.2rem;
@@ -52,19 +56,21 @@
 .func_icon_row {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     overflow: hidden;
-    padding-left: 35px !important;
-    padding-right: 15px !important;
+    /*
+    padding-left: 2.5ex !important;
+    padding-right: 2.5ex !important;
+    */
 }
 .syohin_kataban {
-    font-size: 1.3rem;
-    font-weight: 200;
+    font-size: 1.4rem;
+    font-weight: 400;
 }
 .syohin_name {
-    font-size: 2.1rem;
+    font-size: 2.2rem;
     margin: 0px;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 /* ------------------------------------------- */
