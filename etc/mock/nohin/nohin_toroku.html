@@ -7,17 +7,19 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
         <link rel="stylesheet" href="../resources/css/main.css">
-        <link rel="stylesheet" href="../resources/css/torihiki_toroku.css">
-        <title>在庫管理</title>
+        <link rel="stylesheet" href="../resources/css/nohin_toroku.css">
+        <title>納品登録</title>
     </head>
     <body>
         <!-- HEADER -->
         <div class="header">
             <div class="container-fluid">
                 <div class="row">
-                    <nav class="navbar navbar-light">
-                        <a class="navbar-brand header-title" href="#">Web-IMS</a>
-                    </nav>
+                    <div class="col-12">
+                        <nav class="navbar navbar-light">
+                            <a class="navbar-brand header-title" href="#">Web-IMS</a>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
@@ -31,11 +33,7 @@
                             <thead>
                                 <tr class="thead_tr">
                                     <td class="date_width">
-                                        <span>取引日</span>
-                                        <hr>
-                                    </td>
-                                    <td class="bunrui_width">
-                                        <span>分類</span>
+                                        <span>納品日</span>
                                         <hr>
                                     </td>
                                     <td class="torihikisaki_width">
@@ -57,9 +55,6 @@
                                     <td class="date_width date_row">
                                         <span>2018/12/02</span>
                                     </td>
-                                    <td class="bunrui_width bunrui_row">
-                                        <span>仕入</span>
-                                    </td>
                                     <td class="torihikisaki_width torihikisaki_row">
                                         <span>株式会社平成システム</span>
                                     </td>
@@ -77,9 +72,6 @@
                                     <td class="date_width date_row">
                                         <span>2018/10/20</span>
                                     </td>
-                                    <td class="bunrui_width bunrui_row">
-                                        <span>売上</span>
-                                    </td>
                                     <td class="torihikisaki_width torihikisaki_row">
                                         <span>株式会社Micro-Star International</span>
                                     </td>
@@ -96,9 +88,6 @@
                                 <tr class="align_center">
                                     <td class="date_width date_row">
                                         <span>2018/07/26</span>
-                                    </td>
-                                    <td class="bunrui_width bunrui_row">
-                                        <span>売上</span>
                                     </td>
                                     <td class="torihikisaki_width torihikisaki_row">
                                         <span>株式会社アドバンスドマイクロデバイセズ</span>
@@ -123,14 +112,16 @@
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <p>django sample app 2019</p>
+                    <div class="col-12">
+                        <p>django sample app 2019</p>
+                    </div>
                 </div>
             </div>
         </footer>
 
         <!-- 画面右下のボタン -->
         <a class="circle_btn animated fadeInRightBig" data-toggle="modal" data-target="#shohinTorokuModal">
-            <i class="fa-lg fas fa-plus pl-1 color_white"></i></a>
+            <i class="fa-lg fas fa-plus color_white"></i></a>
 
 
         <!-- MODAL -->
@@ -141,7 +132,7 @@
                     <!-- MODAL HEADER -->
                     <div class="modal-header modal_header_global">
                         <div class="modal-title modal_title">
-                            <span>取引登録</span>
+                            <span>納品登録</span>
                         </div>
                         <!-- 閉じるボタン -->
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -152,24 +143,13 @@
                             <!-- MODAL BODY -->
                             <div class="modal-body modal_boddy_global">
                                 <div class="form-group row">
-                                    <label for="kataban" class="col-2 col-form-label label_name">取引日</label>
-                                    <div class="col-3">
-                                        <input type="date" class="form-control form-control-lg" id="kataban" name="kataban" style="width: 100%;" autocomplete="off"/>
-                                    </div>
-                                    <label for="kataban" class="col-2 col-form-label label_name">分類</label>
-                                    <div class="col-5 btn-group" data-toggle="buttons">
-                                        <div class="btn-group btn-group-toggle w100" data-toggle="buttons">
-                                            <label class="btn btn-outline-secondary active w50">
-                                                <input type="radio" name="options" id="option1" autocomplete="off" checked><span>仕入</span>
-                                            </label>
-                                            <label class="btn btn-outline-secondary w50">
-                                                <input type="radio" name="options" id="option2" autocomplete="off"><span>売上</span>
-                                            </label>
-                                        </div>
+                                    <label for="kataban" class="col-2 col-form-label label_name">納品日</label>
+                                    <div class="col-10">
+                                        <input type="date" class="form-control form-control-lg width_170" id="kataban" name="kataban" autocomplete="off"/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="shohin_name" class="col-2 col-form-label label_name">取引先</label>
+                                    <label for="shohin_name" class="col-2 col-form-label label_name">納品先</label>
                                     <div class="col-10">
                                         <input type="search" class="form-control form-control-lg" name="q" autocomplete="off" list="keywords">
                                         <datalist id="keywords">
@@ -181,8 +161,9 @@
                                         </datalist>
                                     </div>
                                 </div>
+                                <!--
                                 <div class="form-group row" style="margin-top: 35px;">
-                                    <div class="col-2 label_name">
+                                    <div class="col-2 text-left">
                                         <span>取引商品</span>
                                     </div>
                                     <div class="col-10"></div>
@@ -190,6 +171,8 @@
                                         <hr class="shohin_ithiran_hr">
                                     </div>
                                 </div>
+                                -->
+                                <hr class="shohin_ithiran_hr">
                                 <div class="form-group row">
                                     <div class="col-12">
                                         <!--

@@ -1,16 +1,16 @@
 @charset "utf-8";
 
 /* ------------------------------------------- */
-/* 商品登録画面 */
+/* 納品登録画面 */
 /* ------------------------------------------- */
-.shohin_width {
-    width: 50%;
+.date_width {
+    width: 16%;
 }
-.price_width {
+.torihikisaki_width {
+    width: 49%;
+}
+.kingaku_width {
     width: 22%;
-}
-.zaikosu_width {
-    width: 15%;
 }
 .func_icon_width {
     width: 13%;
@@ -19,50 +19,49 @@
     display: flex;
     justify-content: flex-end;
 }
-.shohin_row {
+.date_row {
+    font-size: 2.0rem;
+    font-family: 'Merriweather', serif;
+    font-weight: 100;
+    text-align: center;
     overflow: hidden;
-    padding-left: 2.5ex !important;
-    word-break: break-all;
 }
-.price_row {
+.torihikisaki_row {
+    font-size: 2.2rem;
+    font-weight: 400;
+}
+.kingaku_row {
     font-size: 2.2rem;
     font-family: 'Merriweather', serif;
     font-weight: 100;
     text-align: right;
     overflow: hidden;
-    word-break: break-all;
-}
-.zaikosu_row {
-    font-size: 2.2rem;
-    font-family: 'Merriweather', serif;
-    font-weight: 100;
-    text-align: right;
-    overflow: hidden;
-    word-break: break-all;
 }
 .func_icon_row {
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    /*
-    padding-left: 2.5ex !important;
-    padding-right: 2.5ex !important;
-    */
-}
-.shohin_kataban {
-    font-size: 1.4rem;
-    font-weight: 400;
-}
-.shohin_name {
-    font-size: 2.2rem;
-    margin: 0px;
-    font-weight: 500;
 }
 
 /* ------------------------------------------- */
-/* 商品登録画面‐モーダル */
+/* 納品登録画面‐モーダル */
 /* ------------------------------------------- */
+.modal-lg {
+    min-width: 98vw;
+}
+
 .label_name {
     text-align: right;
+}
+.shohin_ithiran_hr {
+    margin: 3.0rem 0px 2.0rem 0px;
+}
+/* ------------------------------------------- */
+/* モバイル用設定 */
+/* ------------------------------------------- */
+@media all and (max-width: 992px) {
+    .modal-lg {
+        min-width: 100vw;
+    }
 }

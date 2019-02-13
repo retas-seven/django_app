@@ -235,9 +235,27 @@ input:-webkit-autofill {
 .font_16 {
     font-size: 1.6rem;
 }
+.width_170 {
+    width: 170px;
+}
 .align_center {
     display: flex;
     align-items: center;
+}
+/* ------------------------------------------- */
+/* 一覧部 */
+/* ------------------------------------------- */
+.thead_tr {
+    color: rgb(111, 111, 111);
+    display: flex;
+    align-items: center;
+}
+.thead_tr td {
+    text-align: center;
+    padding-bottom: 15px;
+}
+.thead_tr hr {
+    background-color: rgb(191, 191, 191);
 }
 /* tebleの各行に配置するボタン */
 .row_circle_btn {
@@ -291,7 +309,35 @@ input:-webkit-autofill {
 .circle_btn_small:hover {
     background-color: rgb(115, 207, 207);
 }
+
+/* ------------------------------------------- */
+/* モーダル */
+/* ------------------------------------------- */
+.modal_global {
+    background: linear-gradient(105deg, rgb(239, 239, 239) 0%,rgb(239, 239, 239) 60%,rgb(227, 227, 227) 61%,rgb(227, 227, 227) 100%);
+}
+.modal_header_global {
+    background-color: rgba(255, 255, 255, .5);
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+.modal_title {
+	display: flex;
+	align-items: center;
+    font-size: 2rem;
+    font-weight: 500;
+}
+.modal_boddy_global {
+    padding: 2.5rem;
+}
+.modal_footer_global {
+    background-color: rgba(255, 255, 255, .5);
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+/* ------------------------------------------- */
 /* エラーメッセージ */
+/* ------------------------------------------- */
 .error_msg {
     animation-duration: 1s;
     animation-fill-mode: both;
@@ -314,10 +360,16 @@ input:-webkit-autofill {
 	    min-width: 100vw;
 	}
 	.contents{
-	    padding: 10px 0px;
+        padding: 2.5rem 0 14ex 0; 
 	}
 	.circle_btn {
 	    bottom: 2.5ex;
 	    left: calc(100vw - 14.3ex);
-	}
+    }
+    .modal-dialog {
+        margin: 0;
+    }
+    .footer{
+        display: none;
+    }
 }
