@@ -19,7 +19,7 @@
     background-color: rgba(0, 0, 0, 0);
 }
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(0,0,10,.05);
+    background-color: rgba(0,0,0,.05);
 }
 .container-fluid {
     max-width: 1140px;
@@ -70,17 +70,27 @@ body {
     border-bottom-color: rgba(80, 80, 80, .3);
     box-shadow: 0px 2px 5px 0px rgba(1, 1, 1, .9);
     box-shadow: 0px 1px 15px -3px rgba(130, 130, 130, 0.5);
-    */
     box-shadow: 0px 6px 3px -1px rgba(190, 190, 190, 0.2);
+    */
+    filter: drop-shadow(.8rem .3rem .6rem rgba(140, 140, 140, .5));
+    border-bottom: solid 1px rgb(180, 180, 180);
     z-index: 1;
+    position: sticky;
+    top: 0;
 }
 .contents{
     flex: 1;
+    /*
     padding: 25px;
+    */
+    padding: 2.5rem 2.5rem 13ex 2.5rem; 
     /*background: rgb(225, 225, 225);*/
     /*background: linear-gradient(75deg, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(32,147,234,1) 100%);*/
     /*background: linear-gradient(105deg, rgb(237, 237, 237) 0%,rgb(237, 237, 237) 70%,rgb(230, 230, 230) 71%,rgb(230, 230, 230) 100%);*/
-    background: linear-gradient(105deg, rgb(237, 237, 237) 0%,rgb(237, 237, 239) 70%,rgb(230, 230, 232) 71%,rgb(230, 230, 235) 100%);
+    background: linear-gradient(105deg, rgb(247, 247, 247) 0%,rgb(247, 247, 247) 70%,rgb(240, 240, 240) 71%,rgb(240, 240, 240) 100%);
+    /*    
+    background: rgb(240, 240, 240);
+    */
     position: relative;
 }
 .footer{
@@ -246,16 +256,25 @@ input:-webkit-autofill {
 /* 一覧部 */
 /* ------------------------------------------- */
 .thead_tr {
-    color: rgb(111, 111, 111);
+    color: rgb(80, 80, 80);
     display: flex;
     align-items: center;
+    padding-top: .8rem;
+    padding-bottom: .5rem;
+    font-weight: 500;
+    /*
+    background-color: rgb(240, 240, 240);
+    */
 }
 .thead_tr td {
     text-align: center;
+    /*
     padding-bottom: 15px;
+    */
 }
 .thead_tr hr {
-    background-color: rgb(191, 191, 191);
+    background-color: rgb(181, 181, 181);
+    margin-bottom: 0;
 }
 /* tebleの各行に配置するボタン */
 .row_circle_btn {
@@ -360,7 +379,7 @@ input:-webkit-autofill {
 	    min-width: 100vw;
 	}
 	.contents{
-        padding: 2.5rem 0 14ex 0; 
+        padding: 2.5rem 0 13ex 0; 
 	}
 	.circle_btn {
 	    bottom: 2.5ex;
