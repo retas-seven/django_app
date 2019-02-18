@@ -19,7 +19,7 @@
     background-color: rgba(0, 0, 0, 0);
 }
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(0,0,10,.05);
+    background-color: rgba(0,0,0,.05);
 }
 .container-fluid {
     max-width: 1140px;
@@ -70,17 +70,27 @@ body {
     border-bottom-color: rgba(80, 80, 80, .3);
     box-shadow: 0px 2px 5px 0px rgba(1, 1, 1, .9);
     box-shadow: 0px 1px 15px -3px rgba(130, 130, 130, 0.5);
-    */
     box-shadow: 0px 6px 3px -1px rgba(190, 190, 190, 0.2);
+    */
+    filter: drop-shadow(.8rem .3rem .6rem rgba(140, 140, 140, .5));
+    border-bottom: solid 1px rgb(180, 180, 180);
     z-index: 1;
+    position: sticky;
+    top: 0;
 }
 .contents{
     flex: 1;
+    /*
     padding: 25px;
+    */
+    padding: 2.5rem 2.5rem 13ex 2.5rem; 
     /*background: rgb(225, 225, 225);*/
     /*background: linear-gradient(75deg, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(32,147,234,1) 100%);*/
     /*background: linear-gradient(105deg, rgb(237, 237, 237) 0%,rgb(237, 237, 237) 70%,rgb(230, 230, 230) 71%,rgb(230, 230, 230) 100%);*/
-    background: linear-gradient(105deg, rgb(237, 237, 237) 0%,rgb(237, 237, 239) 70%,rgb(230, 230, 232) 71%,rgb(230, 230, 235) 100%);
+    background: linear-gradient(105deg, rgb(247, 247, 247) 0%,rgb(247, 247, 247) 70%,rgb(240, 240, 240) 71%,rgb(240, 240, 240) 100%);
+    /*    
+    background: rgb(240, 240, 240);
+    */
     position: relative;
 }
 .footer{
@@ -235,9 +245,36 @@ input:-webkit-autofill {
 .font_16 {
     font-size: 1.6rem;
 }
+.width_170 {
+    width: 170px;
+}
 .align_center {
     display: flex;
     align-items: center;
+}
+/* ------------------------------------------- */
+/* 一覧部 */
+/* ------------------------------------------- */
+.thead_tr {
+    color: rgb(80, 80, 80);
+    display: flex;
+    align-items: center;
+    padding-top: .8rem;
+    padding-bottom: .5rem;
+    font-weight: 500;
+    /*
+    background-color: rgb(240, 240, 240);
+    */
+}
+.thead_tr td {
+    text-align: center;
+    /*
+    padding-bottom: 15px;
+    */
+}
+.thead_tr hr {
+    background-color: rgb(181, 181, 181);
+    margin-bottom: 0;
 }
 /* tebleの各行に配置するボタン */
 .row_circle_btn {
@@ -291,7 +328,35 @@ input:-webkit-autofill {
 .circle_btn_small:hover {
     background-color: rgb(115, 207, 207);
 }
+
+/* ------------------------------------------- */
+/* モーダル */
+/* ------------------------------------------- */
+.modal_global {
+    background: linear-gradient(105deg, rgb(239, 239, 239) 0%,rgb(239, 239, 239) 60%,rgb(227, 227, 227) 61%,rgb(227, 227, 227) 100%);
+}
+.modal_header_global {
+    background-color: rgba(255, 255, 255, .5);
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+.modal_title {
+	display: flex;
+	align-items: center;
+    font-size: 2rem;
+    font-weight: 500;
+}
+.modal_boddy_global {
+    padding: 2.5rem;
+}
+.modal_footer_global {
+    background-color: rgba(255, 255, 255, .5);
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+/* ------------------------------------------- */
 /* エラーメッセージ */
+/* ------------------------------------------- */
 .error_msg {
     animation-duration: 1s;
     animation-fill-mode: both;
@@ -314,10 +379,16 @@ input:-webkit-autofill {
 	    min-width: 100vw;
 	}
 	.contents{
-	    padding: 10px 0px;
+        padding: 2.5rem 0 13ex 0; 
 	}
 	.circle_btn {
 	    bottom: 2.5ex;
 	    left: calc(100vw - 14.3ex);
-	}
+    }
+    .modal-dialog {
+        margin: 0;
+    }
+    .footer{
+        display: none;
+    }
 }

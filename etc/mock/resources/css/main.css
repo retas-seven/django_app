@@ -32,7 +32,7 @@ html {
 }
 body {
     letter-spacing: .1em;
-    line-height: 1.4;
+    line-height: 1.6;
     font-size: 1.6rem;
     /*font-family: 'Noto Sans JP';*/
     color: rgb(81, 81, 81);
@@ -245,12 +245,51 @@ input:-webkit-autofill {
 .font_16 {
     font-size: 1.6rem;
 }
+.hr_2 {
+    /*
+    background-color: rgb(170, 170, 170);
+    height: 2px;
+    border: none;
+    */
+    margin-bottom: 1.5rem;
+    margin-left: -.5rem;
+    margin-right: -.5rem;
+    /*
+    border-top: 2px double rgb(170, 170, 170);
+    */
+    border-top: 2px solid rgb(187, 187, 187);
+    
+}
 .width_170 {
     width: 170px;
 }
 .align_center {
     display: flex;
     align-items: center;
+}
+
+.section_title {
+    height: 3.3rem;
+    border-bottom: solid 2px rgb(207, 207, 207);
+    position: relative;
+    width: 100%;
+    margin-top: 3.5rem;
+    margin-bottom: 2.5rem;
+}
+.section_title:before {
+    content: ' ';
+    margin-left: .5rem;
+}
+.section_title:after {
+    position: absolute;
+    content: ' ';
+    display: block;
+    /*
+    border-bottom: solid 2px rgb(255, 199, 120);
+    */
+    border-bottom: solid 2px rgb(150, 150, 150);
+    bottom: -2px;
+    width: 8.5rem;
 }
 /* ------------------------------------------- */
 /* 一覧部 */
@@ -295,6 +334,25 @@ input:-webkit-autofill {
 }
 .row_circle_btn:first-child {
 	margin-right: 1.3ex !important;
+}
+.row_circle_btn_small {
+    display: block;
+    width: 4.3ex;
+    height: 4.3ex;
+    line-height: 4.3ex;
+    border-radius: 50%;
+    text-decoration: none;
+    text-align: center;
+    color: rgb(81, 81, 71);
+    transition: all 170ms 0s ease;
+    font-size: 1.5rem;
+}
+.row_circle_btn_small:hover {
+    color: white !important;
+    background-color: rgb(115, 207, 207);
+}
+.row_circle_btn_small:first-child {
+	margin-left: 1.5ex !important;
 }
 .circle_btn {
     position: fixed;

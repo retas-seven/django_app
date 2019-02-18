@@ -47,8 +47,50 @@
 /* ------------------------------------------- */
 /* 納品登録画面‐モーダル */
 /* ------------------------------------------- */
+.modal_thead_tr {
+    color: rgb(80, 80, 80);
+    padding-bottom: .5rem;
+}
+.modal_thead_tr td {
+    text-align: center;
+}
+.modal_thead_tr hr {
+    background-color: rgb(181, 181, 181);
+    margin-bottom: 0;
+}
+.nohin_shohin_width {
+    width: 55%;
+}
+.nohin_tanka_width {
+    width: 14%;
+}
+.nohin_suryo_width {
+    width: 24%;
+}
+.nohin_func_icon_width {
+    width: 7%;
+}
+.nohin_suryo_row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+.nohin_suryo_row > input {
+    width: 50%;
+}
+.nohin_suryo_row > span:before {
+    content: '/ '
+}
+.nohin_suryo_row > span {
+    font-family: 'Merriweather', serif;
+    width: 50%;
+    text-align: right;
+}
+.nohin_func_icon_row {
+}
 .modal-lg {
-    min-width: 98vw;
+    max-width: 1140px;
 }
 
 .label_name {
