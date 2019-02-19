@@ -186,7 +186,7 @@
                                             <option value="VJS1112AZL5S12 ／ SIMフリー VAIO ビジネス VAIO S12">
                                             <option value="VJS1113AZL5S13 ／ SIMフリー VAIO ビジネス VAIO S13">
                                         </datalist>
-                                        <table class="table table-striped">
+                                        <table id="modal_table" class="table table-striped">
                                             <thead>
                                                 <tr class="modal_thead_tr">
                                                     <td class="nohin_shohin_width">
@@ -201,7 +201,8 @@
                                                         <span>数量</span>
                                                         <hr>
                                                     </td>
-                                                    <td class="nohin_func_icon_width"></td>
+                                                    <td class="nohin_func_icon_width nohin_func_icon_head">
+                                                        <a id="row_add_btn" class="circle_btn_small"><i class="fas fa-plus"></i></a>
                                                     </td>
                                                 </tr>
                                             </thead>
@@ -219,9 +220,25 @@
                                                         </select>
                                                     </td>
                                                     <td class="nohin_tanka_width">
+                                                        <input type="number" min="0" step="1000" class="form-control form-control-lg" name="nohin_tanka" autocomplete="off"/>
+                                                    </td>
+                                                    <td class="nohin_suryo_width nohin_suryo_row form-inline">
+                                                        <input type="number" min="0" class="form-control form-control-lg" name="nohin_suryo" autocomplete="off"/>
+                                                        <span>99,999</span>
+                                                    </td>
+                                                    <td class="nohin_func_icon_width nohin_func_icon_row">
+                                                        <a class="row_circle_btn_small js_row_delete_btn" href="#"><i class="fas fa-times"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <!--
+                                                <tr>
+                                                    <td class="nohin_shohin_width">
+                                                        <input type="search" class="form-control form-control-lg" name="shohin" autocomplete="off" list="shohin_list">
+                                                    </td>
+                                                    <td class="nohin_tanka_width">
                                                         <input type="number" min="0" step="1000" class="form-control form-control-lg" id="nohin_tanka" name="nohin_tanka" autocomplete="off"/>
                                                     </td>
-                                                    <td class="nohin_suryo_width nohin_suryo_row">
+                                                    <td class="nohin_suryo_width nohin_suryo_row form-inline">
                                                         <input type="number" min="0" class="form-control form-control-lg" id="nohin_suryo" name="nohin_suryo" autocomplete="off"/>
                                                         <span>51,000</span>
                                                     </td>
@@ -229,7 +246,6 @@
                                                         <a class="row_circle_btn_small" href="#"><i class="fas fa-times"></i></a>
                                                     </td>
                                                 </tr>
-                                                <!-- 行サンプル -->
                                                 <tr>
                                                     <td class="nohin_shohin_width">
                                                         <input type="search" class="form-control form-control-lg" name="shohin" autocomplete="off" list="shohin_list">
@@ -245,22 +261,7 @@
                                                         <a class="row_circle_btn_small" href="#"><i class="fas fa-times"></i></a>
                                                     </td>
                                                 </tr>
-                                                <!-- 行サンプル -->
-                                                <tr>
-                                                    <td class="nohin_shohin_width">
-                                                        <input type="search" class="form-control form-control-lg" name="shohin" autocomplete="off" list="shohin_list">
-                                                    </td>
-                                                    <td class="nohin_tanka_width">
-                                                        <input type="number" min="0" step="1000" class="form-control form-control-lg" id="nohin_tanka" name="nohin_tanka" autocomplete="off"/>
-                                                    </td>
-                                                    <td class="nohin_suryo_width nohin_suryo_row">
-                                                        <input type="number" min="0" class="form-control form-control-lg" id="nohin_suryo" name="nohin_suryo" autocomplete="off"/>
-                                                        <span>51,000</span>
-                                                    </td>
-                                                    <td class="nohin_func_icon_width nohin_func_icon_row">
-                                                        <a class="row_circle_btn_small" href="#"><i class="fas fa-times"></i></a>
-                                                    </td>
-                                                </tr>
+                                                -->
                                             </tbody>
                                         </table>
 
@@ -285,6 +286,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         <script src="../resources/js/lib/wow.min.js"></script>
         <script src="../resources/js/lib/easeScroll.js"></script>
-        <script src="../resources/js/shohin_toroku.js"></script>
+        <script src="../resources/js/nohin_toroku.js"></script>
     </body>
 </html>

@@ -16,8 +16,6 @@
     width: 13%;
 }
 .func_icon_head {
-    display: flex;
-    justify-content: flex-end;
 }
 .date_row {
     font-size: 2.0rem;
@@ -71,23 +69,20 @@
     width: 7%;
 }
 .nohin_suryo_row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     width: 100%;
 }
 .nohin_suryo_row > input {
-    width: 50%;
+    width: 50% !important;
 }
 .nohin_suryo_row > span:before {
     content: '/ '
 }
 .nohin_suryo_row > span {
     font-family: 'Merriweather', serif;
-    width: 50%;
+    width: 46%;
     text-align: right;
 }
-.nohin_func_icon_row {
+.nohin_func_icon_head {
 }
 .modal-lg {
     max-width: 1140px;
