@@ -373,6 +373,8 @@ input:-webkit-autofill {
     background-color: rgb(115, 207, 207);
 }
 .circle_btn_small {
+    display: block;
+    margin-left: auto;
     width: 5.7ex;
     height: 5.7ex;
     line-height: 5.7ex;

@@ -16,8 +16,6 @@
     width: 13%;
 }
 .func_icon_head {
-    display: flex;
-    justify-content: flex-end;
 }
 .shohin_row {
     overflow: hidden;
