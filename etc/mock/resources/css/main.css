@@ -87,10 +87,9 @@ body {
     /*background: rgb(225, 225, 225);*/
     /*background: linear-gradient(75deg, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(32,147,234,1) 100%);*/
     /*background: linear-gradient(105deg, rgb(237, 237, 237) 0%,rgb(237, 237, 237) 70%,rgb(230, 230, 230) 71%,rgb(230, 230, 230) 100%);*/
-    background: linear-gradient(105deg, rgb(247, 247, 247) 0%,rgb(247, 247, 247) 70%,rgb(240, 240, 240) 71%,rgb(240, 240, 240) 100%);
-    /*    
-    background: rgb(240, 240, 240);
-    */
+    /*background: linear-gradient(105deg, rgb(247, 247, 247) 0%,rgb(247, 247, 247) 70%,rgb(240, 240, 240) 71%,rgb(240, 240, 240) 100%);*/
+    background-color: rgb(247, 247, 247);
+    background-image: linear-gradient(103deg, transparent 68%, rgba(0,0,0,0.025) 32%);
     position: relative;
 }
 .footer{
@@ -393,7 +392,8 @@ input:-webkit-autofill {
 /* モーダル */
 /* ------------------------------------------- */
 .modal_global {
-    background: linear-gradient(105deg, rgb(239, 239, 239) 0%,rgb(239, 239, 239) 60%,rgb(227, 227, 227) 61%,rgb(227, 227, 227) 100%);
+    background-color: rgb(232, 232, 232);
+    background-image: linear-gradient(103deg, transparent 70%, rgba(0,0,0,0.025) 30%);
 }
 .modal_header_global {
     background-color: rgba(255, 255, 255, .5);
