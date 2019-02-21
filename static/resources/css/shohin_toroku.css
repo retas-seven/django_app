@@ -16,8 +16,6 @@
     width: 13%;
 }
 .func_icon_head {
-    display: flex;
-    justify-content: flex-end;
 }
 .shohin_row {
     overflow: hidden;
@@ -52,6 +50,7 @@
 }
 .shohin_kataban {
     font-size: 1.4rem;
+    line-height: 1.4;
     font-weight: 400;
 }
 .shohin_name {

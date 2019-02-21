@@ -32,7 +32,7 @@ html {
 }
 body {
     letter-spacing: .1em;
-    line-height: 1.4;
+    line-height: 1.6;
     font-size: 1.6rem;
     /*font-family: 'Noto Sans JP';*/
     color: rgb(81, 81, 81);
@@ -87,10 +87,9 @@ body {
     /*background: rgb(225, 225, 225);*/
     /*background: linear-gradient(75deg, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(32,147,234,1) 100%);*/
     /*background: linear-gradient(105deg, rgb(237, 237, 237) 0%,rgb(237, 237, 237) 70%,rgb(230, 230, 230) 71%,rgb(230, 230, 230) 100%);*/
-    background: linear-gradient(105deg, rgb(247, 247, 247) 0%,rgb(247, 247, 247) 70%,rgb(240, 240, 240) 71%,rgb(240, 240, 240) 100%);
-    /*    
-    background: rgb(240, 240, 240);
-    */
+    /*background: linear-gradient(105deg, rgb(247, 247, 247) 0%,rgb(247, 247, 247) 70%,rgb(240, 240, 240) 71%,rgb(240, 240, 240) 100%);*/
+    background-color: rgb(247, 247, 247);
+    background-image: linear-gradient(103deg, transparent 68%, rgba(0,0,0,0.025) 32%);
     position: relative;
 }
 .footer{
@@ -245,12 +244,51 @@ input:-webkit-autofill {
 .font_16 {
     font-size: 1.6rem;
 }
+.hr_2 {
+    /*
+    background-color: rgb(170, 170, 170);
+    height: 2px;
+    border: none;
+    */
+    margin-bottom: 1.5rem;
+    margin-left: -.5rem;
+    margin-right: -.5rem;
+    /*
+    border-top: 2px double rgb(170, 170, 170);
+    */
+    border-top: 2px solid rgb(187, 187, 187);
+    
+}
 .width_170 {
     width: 170px;
 }
 .align_center {
     display: flex;
     align-items: center;
+}
+
+.section_title {
+    height: 3.3rem;
+    border-bottom: solid 2px rgb(207, 207, 207);
+    position: relative;
+    width: 100%;
+    margin-top: 3.5rem;
+    margin-bottom: 2.5rem;
+}
+.section_title:before {
+    content: ' ';
+    margin-left: .5rem;
+}
+.section_title:after {
+    position: absolute;
+    content: ' ';
+    display: block;
+    /*
+    border-bottom: solid 2px rgb(255, 199, 120);
+    */
+    border-bottom: solid 2px rgb(150, 150, 150);
+    bottom: -2px;
+    width: 8.5rem;
 }
 /* ------------------------------------------- */
 /* 一覧部 */
@@ -296,6 +334,25 @@ input:-webkit-autofill {
 .row_circle_btn:first-child {
 	margin-right: 1.3ex !important;
 }
+.row_circle_btn_small {
+    display: block;
+    width: 4.3ex;
+    height: 4.3ex;
+    line-height: 4.3ex;
+    border-radius: 50%;
+    text-decoration: none;
+    text-align: center;
+    color: rgb(81, 81, 71);
+    transition: all 170ms 0s ease;
+    font-size: 1.5rem;
+}
+.row_circle_btn_small:hover {
+    color: white !important;
+    background-color: rgb(115, 207, 207);
+}
+.row_circle_btn_small:first-child {
+	margin-left: 1.5ex !important;
+}
 .circle_btn {
     position: fixed;
     display: block;
@@ -315,6 +372,8 @@ input:-webkit-autofill {
     background-color: rgb(115, 207, 207);
 }
 .circle_btn_small {
+    display: block;
+    margin-left: auto;
     width: 5.7ex;
     height: 5.7ex;
     line-height: 5.7ex;
@@ -333,7 +392,8 @@ input:-webkit-autofill {
 /* モーダル */
 /* ------------------------------------------- */
 .modal_global {
-    background: linear-gradient(105deg, rgb(239, 239, 239) 0%,rgb(239, 239, 239) 60%,rgb(227, 227, 227) 61%,rgb(227, 227, 227) 100%);
+    background-color: rgb(232, 232, 232);
+    background-image: linear-gradient(103deg, transparent 70%, rgba(0,0,0,0.025) 30%);
 }
 .modal_header_global {
     background-color: rgba(255, 255, 255, .5);
