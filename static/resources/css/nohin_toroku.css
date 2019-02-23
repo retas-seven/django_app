@@ -1,0 +1,104 @@
+@charset "utf-8";
+
+/* ------------------------------------------- */
+/* 納品登録画面 */
+/* ------------------------------------------- */
+.date_width {
+    width: 16%;
+}
+.torihikisaki_width {
+    width: 49%;
+}
+.kingaku_width {
+    width: 22%;
+}
+.func_icon_width {
+    width: 13%;
+}
+.func_icon_head {
+}
+.date_row {
+    font-size: 2.0rem;
+    font-family: 'Merriweather', serif;
+    font-weight: 100;
+    text-align: center;
+    overflow: hidden;
+}
+.torihikisaki_row {
+    font-size: 2.2rem;
+    font-weight: 400;
+}
+.kingaku_row {
+    font-size: 2.2rem;
+    font-family: 'Merriweather', serif;
+    font-weight: 100;
+    text-align: right;
+    overflow: hidden;
+}
+.func_icon_row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* ------------------------------------------- */
+/* 納品登録画面‐モーダル */
+/* ------------------------------------------- */
+.modal_thead_tr {
+    color: rgb(80, 80, 80);
+    padding-bottom: .5rem;
+}
+.modal_thead_tr td {
+    text-align: center;
+}
+.modal_thead_tr hr {
+    background-color: rgb(181, 181, 181);
+    margin-bottom: 0;
+}
+.nohin_shohin_width {
+    width: 55%;
+}
+.nohin_tanka_width {
+    width: 14%;
+}
+.nohin_suryo_width {
+    width: 24%;
+}
+.nohin_func_icon_width {
+    width: 7%;
+}
+.nohin_suryo_row {
+    width: 100%;
+}
+.nohin_suryo_row > input {
+    width: 50% !important;
+}
+.nohin_suryo_row > span:before {
+    content: '/ '
+}
+.nohin_suryo_row > span {
+    font-family: 'Merriweather', serif;
+    width: 46%;
+    text-align: right;
+}
+.nohin_func_icon_head {
+}
+.modal-lg {
+    max-width: 1140px;
+}
+
+.label_name {
+    text-align: right;
+}
+.shohin_ithiran_hr {
+    margin: 3.0rem 0px 2.0rem 0px;
+}
+/* ------------------------------------------- */
+/* モバイル用設定 */
+/* ------------------------------------------- */
+@media all and (max-width: 992px) {
+    .modal-lg {
+        min-width: 100vw;
+    }
+}
