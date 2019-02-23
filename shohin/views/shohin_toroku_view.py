@@ -4,13 +4,14 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib import messages
 from shohin.services.shohin_toroku_service import ShohinTorokuService
-from shohin.forms.shohin_toroku_form import ShohinTorokuForm
+from shohin.forms.shohin_toroku_form import RegistShohinForm
+from shohin.forms.shohin_toroku_form import UpdateShohinForm
 
 class ShohinTorokuView(View):
-    def __initParams(self, form=ShohinTorokuForm(), koshinForm=ShohinTorokuForm()):
+    def __initParams(self, registForm=RegistShohinForm(), updateForm=UpdateShohinForm()):
         params = ShohinTorokuService().retrieveShohin()
-        params['form'] = form
-        params['koshin_form'] = koshinForm
+        params['reg'] = registForm
+        params['upd'] = updateForm
         return params
 
     def get(self, request, *args, **kwargs):
@@ -24,15 +25,15 @@ class ShohinTorokuView(View):
         '''
         商品登録画面-登録処理
         '''
-        form = ShohinTorokuForm(request.POST)
-        if not form.is_valid('regist'):
-            params = self.__initParams(form)
+        registForm = RegistShohinForm(request.POST)
+        if not registForm.is_valid():
+            params = self.__initParams(registForm=registForm)
             # 商品登録画面へ戻った際に自動でダイアログを開くためのパラメータを設定
-            params['open_dialog'] = True
+            params['openRegistModal'] = True
             return render(request, 'shohin/shohin_toroku.html', params)
     
         # 商品を登録する
-        ShohinTorokuService().registShohin(form)
+        ShohinTorokuService().registShohin(registForm)
         messages.success(request, '商品を登録しました。')
 
         # 商品登録画面初期表示処理へリダイレクト
@@ -55,13 +56,14 @@ class ShohinKoshinView(View):
         '''
         商品登録画面-更新処理
         '''
-        form = ShohinTorokuForm(request.POST)
-        if not form.is_valid('update'):
-            params = self.__initParams(form)
+        updateForm = UpdateShohinForm(request.POST)
+        if not updateForm.is_valid():
+            params = ShohinTorokuView().__initParams(updateForm=updateForm)
+            params['openUpdateModal'] = True
             return render(request, 'shohin/shohin_toroku.html', params)
 
         # 商品を更新する
-        ShohinTorokuService().updateShohin(form)
+        ShohinTorokuService().updateShohin(updateForm)
         messages.success(request, '商品を更新しました。')
 
         # 商品登録画面初期表示処理へリダイレクト

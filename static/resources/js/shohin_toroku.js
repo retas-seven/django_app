@@ -18,10 +18,12 @@ $(function(){
 		fixedBackground: true
 	});
 
-	// 商品登録モーダルを開くか判別
-	if ($('.js_open_dialog').val() == "True") {
-		$('.js_btn_update').addClass('is_hide');
-		$('#shohin_toroku_modal').modal();
+	// モーダルを開くか判別
+	if ($('.js_open_regist_shohin_modal').val() == "True") {
+		$('#regist_shohin_modal').modal();
+	}
+	if ($('.js_open_update_shohin_modal').val() == "True") {
+		$('#update_shohin_modal').modal();
 	}
 
 	/**
@@ -33,7 +35,7 @@ $(function(){
         }
 		
 		kataban = $(this).parents('td').data('kataban');
-		form = $('[name=shohins_sakujo_form]');
+		form = $('[name=shohin_sakujo_form]');
 		$('.js_shohin_sakujo_key_kataban').val(kataban);
 		form.submit();
 	});
@@ -41,51 +43,51 @@ $(function(){
 	/**
 	 * ダイアログ（登録）表示ボタン押下時の処理
 	 */
-    $('.js_toroku_btn').click(function(e) {
-		$('#id_kataban').val('');
-		$('#id_shohinName').val('');
-		$('#id_price').val('');
-		$('#id_zaikosu').val('');
-		$('#id_memo').val('');
+    $('.js_regist_btn').click(function(e) {
+		// $('#id_kataban').val('');
+		// $('#id_shohinName').val('');
+		// $('#id_price').val('');
+		// $('#id_zaikosu').val('');
+		// $('#id_memo').val('');
 		
-		$('#id_kataban').attr('readonly', false);
-		$('#id_kataban').removeClass('form-control-plaintext');
+		// $('#id_kataban').attr('readonly', false);
+		// $('#id_kataban').removeClass('form-control-plaintext');
 
 		// 更新、登録ボタンの表示切り替え
-		$('.js_btn_update').addClass('is_hide');
-		$('.js_btn_regist').removeClass('is_hide');
+		// $('.js_btn_update').addClass('is_hide');
+		// $('.js_btn_regist').removeClass('is_hide');
 
 		// formのアクション設定
-		form = $('[name=shohins_toroku_form]');
-		form.attr('action', getShohinTorokuUrl());
+		// form = $('[name=shohins_toroku_form]');
+		// form.attr('action', getShohinTorokuUrl());
 
-		$('#shohin_toroku_modal').modal();
+		$('#regist_shohin_modal').modal();
 	});
 	
 	/**
 	 * ダイアログ（更新）表示ボタン押下時の処理
 	 */
-    $('.js_koshin_btn').click(function(e) {
+    $('.js_update_btn').click(function(e) {
 		let datas = $(this).parents('td');
 
-		$('#id_kataban').val(datas.data('kataban'));
-		$('#id_shohinName').val(datas.data('shohin_name'));
-		$('#id_price').val(datas.data('price'));
-		$('#id_zaikosu').val(datas.data('zaikosu'));
-		$('#id_memo').val(datas.data('memo'));
+		$('#id_updateKataban').val(datas.data('kataban'));
+		$('#id_updateShohinName').val(datas.data('shohin_name'));
+		$('#id_updatePrice').val(datas.data('price'));
+		$('#id_updateZaikosu').val(datas.data('zaikosu'));
+		$('#id_updateMemo').val(datas.data('memo'));
 		
 		// 型番は読み取りのみとし、更新させない
-		$('#id_kataban').attr('readonly', true);
-		$('#id_kataban').addClass('form-control-plaintext');
+		$('#id_updateKataban').attr('readonly', true);
+		$('#id_updateKataban').addClass('form-control-plaintext');
 
 		// 更新、登録ボタンの表示切り替え
-		$('.js_btn_regist').addClass('is_hide');
-		$('.js_btn_update').removeClass('is_hide');
+		// $('.js_btn_regist').addClass('is_hide');
+		// $('.js_btn_update').removeClass('is_hide');
 
 		// formのアクション設定
-		form = $('[name=shohins_toroku_form]');
-		form.attr('action', getShohinKoshinUrl());
+		// form = $('[name=shohins_toroku_form]');
+		// form.attr('action', getShohinKoshinUrl());
 
-		$('#shohin_toroku_modal').modal();
+		$('#update_shohin_modal').modal();
 	});
 });

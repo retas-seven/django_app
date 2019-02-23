@@ -15,6 +15,18 @@
 .alert-success {
     color: rgb(67, 124, 80);
 }
+.alert-success > span:before {
+    content: '\f05a';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: bold;
+    padding-right: .5rem;
+}
+.alert-danger > span:before {
+    content: '\f057';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: bold;
+    padding-right: .5rem;
+}
 .form-control:disabled, .form-control[readonly] {
     background-color: rgba(0, 0, 0, 0);
 }

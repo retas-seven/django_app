@@ -13,7 +13,8 @@
         <title>在庫管理</title>
     </head>
     <body>
-        <input type="hidden" value="{{open_dialog}}" class="js_open_dialog">
+        <input type="hidden" value="{{openRegistModal}}" class="js_open_regist_shohin_modal">
+        <input type="hidden" value="{{openUpdateModal}}" class="js_open_regist_shohin_modal">
         <!-- HEADER -->
         <div class="header">
             <div class="container-fluid">
@@ -86,7 +87,7 @@
                                                 data-price="{{shohin.price}}"
                                                 data-zaikosu="{{shohin.zaikosu}}"
                                                 data-memo="{{shohin.memo}}">
-                                            <a class="row_circle_btn js_koshin_btn"><i class="fa-lg far fa-list-alt"></i></a>
+                                            <a class="row_circle_btn js_update_btn"><i class="fa-lg far fa-list-alt"></i></a>
                                             <a class="row_circle_btn js_delete_btn"><i class="fas fa-times"></i></a>
                                         </td>
                                     </tr>
@@ -98,7 +99,7 @@
             </div>
 
             <!-- 商品削除用のForm-->
-            <form action={% url 'shohin_sakujo' %} method="post" name="shohins_sakujo_form">
+            <form action={% url 'shohin_sakujo' %} method="post" name="shohin_sakujo_form">
                 {% csrf_token %}
                 <input type="hidden" value="" class="js_shohin_sakujo_key_kataban" name="kataban">
             </form>
@@ -116,10 +117,10 @@
         </footer>
 
         <!-- 画面右下のボタン -->
-        <a class="circle_btn animated fadeInRightBig js_toroku_btn"><i class="fa-lg fas fa-plus pl-1 color_white"></i></a>
+        <a class="circle_btn animated fadeInRightBig js_regist_btn"><i class="fa-lg fas fa-plus pl-1 color_white"></i></a>
 
-        <!-- MODAL -->
-        <div class="modal fade" id="shohin_toroku_modal" tabindex="-1">
+        <!-- 商品登録用モーダル -->
+        <div class="modal fade" id="regist_shohin_modal" tabindex="-1">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content modal_global">
                     <!-- MODAL HEADER -->
@@ -131,54 +132,54 @@
                         <button type="button" class="close" data-dismiss="modal"><i class="fas fa-lg fa-times"></i></button>
                     </div>
 
-                    <form action="" method="post" autocomplete="off" name="shohins_toroku_form">
+                    <form action="{% url 'shohin_toroku' %}" method="post" autocomplete="off">
                         {% csrf_token %}
                         <div class="container-fluid">
                             <div class="row">
                                 <!-- MODAL BODY -->
                                 <div class="modal-body modal_boddy_global">
                                     <div class="form-group row">
-                                        <label for="kataban" class="col-2 col-form-label label_name">型番</label>
+                                        <label for="registKataban" class="col-2 col-form-label label_name">型番</label>
                                         <div class="col-10">
-                                            {{ koshin_form.kataban }}
-                                            {% if koshin_form.kataban.errors %}
-                                                <p class="error_msg">{{ koshin_form.kataban.errors.0 }}</p>
+                                            {{ reg.registKataban }}
+                                            {% if reg.registKataban.errors %}
+                                                <p class="error_msg">{{ reg.registKataban.errors.0 }}</p>
                                             {% endif %}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="shohin_name" class="col-2 col-form-label label_name">商品名</label>
+                                        <label for="registShohinName" class="col-2 col-form-label label_name">商品名</label>
                                         <div class="col-10">
-                                            {{ koshin_form.shohinName }}
-                                            {% if koshin_form.shohinName.errors %}
-                                                <p class="error_msg">{{ koshin_form.shohinName.errors.0 }}</p>
+                                            {{ reg.registShohinName }}
+                                            {% if reg.registShohinName.errors %}
+                                                <p class="error_msg">{{ reg.registShohinName.errors.0 }}</p>
                                             {% endif %}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="price" class="col-2 col-form-label label_name">単価</label>
+                                        <label for="registPrice" class="col-2 col-form-label label_name">単価</label>
                                         <div class="col-10">
-                                            {{ koshin_form.price }}
-                                            {% if koshin_form.shohinName.price %}
-                                                <p class="error_msg">{{ koshin_form.shohinName.price.0 }}</p>
+                                            {{ reg.registPrice }}
+                                            {% if reg.registPrice.price %}
+                                                <p class="error_msg">{{ reg.registPrice.errors.0 }}</p>
                                             {% endif %}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="zaikosu" class="col-2 col-form-label label_name">在庫数</label>
+                                        <label for="registZaikosu" class="col-2 col-form-label label_name">在庫数</label>
                                         <div class="col-10">
-                                            {{ koshin_form.zaikosu }}
-                                            {% if koshin_form.shohinName.zaikosu %}
-                                                <p class="error_msg">{{ koshin_form.shohinName.zaikosu.0 }}</p>
+                                            {{ reg.registZaikosu }}
+                                            {% if reg.registZaikosu.zaikosu %}
+                                                <p class="error_msg">{{ reg.registZaikosu.errors.0 }}</p>
                                             {% endif %}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="memo" class="col-2 col-form-label label_name">メモ</label>
+                                        <label for="registMemo" class="col-2 col-form-label label_name">メモ</label>
                                         <div class="col-10">
-                                            {{ koshin_form.memo }}
-                                            {% if koshin_form.shohinName.memo %}
-                                                <p class="error_msg">{{ koshin_form.shohinName.memo.0 }}</p>
+                                            {{ reg.registMemo }}
+                                            {% if reg.registMemo.memo %}
+                                                <p class="error_msg">{{ reg.registMemo.errors.0 }}</p>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -189,20 +190,89 @@
                         <!-- MODAL FOOTER -->
                         <div class="modal-footer modal_footer_global">
                             <button type="submit" onfocus="this.blur();" class="common_btn js_btn_regist"><i class="fas fa-plus"></i> 登録</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 商品更新用モーダル -->
+        <div class="modal fade" id="update_shohin_modal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content modal_global">
+                    <!-- MODAL HEADER -->
+                    <div class="modal-header modal_header_global">
+                        <div class="modal-title modal_title">
+                            <span>商品情報</span>
+                        </div>
+                        <!-- 閉じるボタン -->
+                        <button type="button" class="close" data-dismiss="modal"><i class="fas fa-lg fa-times"></i></button>
+                    </div>
+
+                    <form action="{% url 'shohin_koshin' %}" method="post" autocomplete="off">
+                        {% csrf_token %}
+                        <div class="container-fluid">
+                            <div class="row">
+                                <!-- MODAL BODY -->
+                                <div class="modal-body modal_boddy_global">
+                                    <div class="form-group row">
+                                        <label for="updateKataban" class="col-2 col-form-label label_name">型番</label>
+                                        <div class="col-10">
+                                            {{ upd.updateKataban }}
+                                            {% if upd.updateKataban.errors %}
+                                                <p class="error_msg">{{ upd.updateKataban.errors.0 }}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="updateShohinName" class="col-2 col-form-label label_name">商品名</label>
+                                        <div class="col-10">
+                                            {{ upd.updateShohinName }}
+                                            {% if upd.updateShohinName.errors %}
+                                                <p class="error_msg">{{ upd.updateShohinName.errors.0 }}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="updatePrice" class="col-2 col-form-label label_name">単価</label>
+                                        <div class="col-10">
+                                            {{ upd.updatePrice }}
+                                            {% if upd.updatePrice.errors %}
+                                                <p class="error_msg">{{ upd.updatePrice.errors.0 }}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="updateZaikosu" class="col-2 col-form-label label_name">在庫数</label>
+                                        <div class="col-10">
+                                            {{ upd.updateZaikosu }}
+                                            {% if upd.updateZaikosu.errors %}
+                                                <p class="error_msg">{{ upd.updateZaikosu.errors.0 }}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="memo" class="col-2 col-form-label label_name">メモ</label>
+                                        <div class="col-10">
+                                            {{ upd.updateMemo }}
+                                            {% if upd.updateMemo.errors %}
+                                                <p class="error_msg">{{ upd.updateMemo.errors.0 }}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- MODAL FOOTER -->
+                        <div class="modal-footer modal_footer_global">
                             <button type="submit" onfocus="this.blur();" class="common_btn js_btn_update"><i class="fas fa-edit"></i> 更新</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <script>
-            function getShohinTorokuUrl() {
-                return '{% url 'shohin_toroku' %}';
-            }
-            function getShohinKoshinUrl() {
-                return '{% url 'shohin_koshin' %}';
-            }
-        </script>
+
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

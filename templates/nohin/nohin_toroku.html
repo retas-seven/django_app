@@ -31,6 +31,19 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
+
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="{{ message.tags }}" role="alert" style="padding: 1.0ex 2.0ex;">
+                                    <span>{{ message }}</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+                                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                            <br>
+                        {% endif %}
+
                         <table class="table table-striped animated fadeInUpSmall">
                             <thead>
                                 <tr class="thead_tr">
@@ -65,11 +78,12 @@
                                         <span>1,210,500</span>
                                     </td>
                                     <td class="func_icon_width func_icon_row">
-                                        <a class="row_circle_btn" href="#"><i class="fa-lg far fa-list-alt pl-1"></i></a>
-                                        <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
+                                        <a class="row_circle_btn" href="#"><i class="fa-lg far fa-list-alt"></i></a>
+                                        <a class="row_circle_btn" href="#"><i class="fas fa-times"></i></a>
                                     </td>
                                 </tr>
                                 <!-- 行サンプル -->
+                                <!--
                                 <tr class="align_center">
                                     <td class="date_width date_row">
                                         <span>2018/10/20</span>
@@ -86,7 +100,6 @@
                                         <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
                                     </td>
                                 </tr>
-                                <!-- 行サンプル -->
                                 <tr class="align_center">
                                     <td class="date_width date_row">
                                         <span>2018/07/26</span>
@@ -103,6 +116,7 @@
                                         <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
                                     </td>
                                 </tr>
+                                -->
                             </tbody>
                         </table>
                     </div>

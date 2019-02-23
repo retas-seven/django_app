@@ -34,17 +34,21 @@ class ShohinTorokuService:
         )
         return ret
 
-    def registShohin(self, form):
+    def registShohin(self, registForm):
         '''
         商品情報を登録する
         '''
+        print('----------------')
+        print(registForm.cleaned_data['registKataban'])
+        print('----------------')
+
         shohin = Shohin()
         shohin.belong_user = 'testuser'
-        shohin.kataban = form.cleaned_data['kataban']
-        shohin.shohin_name = form.cleaned_data['shohinName']
-        shohin.price = form.cleaned_data['price']
-        shohin.zaikosu = form.cleaned_data['zaikosu']
-        shohin.memo = form.cleaned_data['memo']
+        shohin.kataban = registForm.cleaned_data['registKataban']
+        shohin.shohin_name = registForm.cleaned_data['registShohinName']
+        shohin.price = registForm.cleaned_data['registPrice']
+        shohin.zaikosu = registForm.cleaned_data['registZaikosu']
+        shohin.memo = registForm.cleaned_data['registMemo']
         shohin.regist_user = 'testuser'
         shohin.regist_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
         shohin.save()
@@ -56,19 +60,19 @@ class ShohinTorokuService:
         shohin = Shohin.objects.get(belong_user='testuser', kataban=kataban)
         shohin.delete()
 
-    def updateShohin(self, form):
+    def updateShohin(self, updateForm):
         '''
         商品情報を更新する
         '''
         shohin = Shohin.objects.get(
             belong_user='testuser',
-            kataban=form.cleaned_data['kataban'],
+            kataban=updateForm.cleaned_data['updateKataban'],
         )
 
-        shohin.shohin_name = form.cleaned_data['shohinName']
-        shohin.price = form.cleaned_data['price']
-        shohin.zaikosu = form.cleaned_data['zaikosu']
-        shohin.memo = form.cleaned_data['memo']
+        shohin.shohin_name = updateForm.cleaned_data['updateShohinName']
+        shohin.price = updateForm.cleaned_data['updatePrice']
+        shohin.zaikosu = updateForm.cleaned_data['updateZaikosu']
+        shohin.memo = updateForm.cleaned_data['updateMemo']
         shohin.update_user = 'testuser'
         shohin.update_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
         shohin.save()

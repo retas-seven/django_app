@@ -1,7 +1,7 @@
 from django import forms
 from shohin.services.shohin_toroku_service import ShohinTorokuService
 
-class ShohinTorokuForm(forms.Form):
+class RegistShohinForm(forms.Form):
     '''
     商品登録用フォーム
     '''
@@ -11,44 +11,77 @@ class ShohinTorokuForm(forms.Form):
             # 各入力項目に「form-control form-control-lg」のCSSを適用
             field.widget.attrs['class'] = 'form-control form-control-lg'
         # 単価、在庫数の入力項目の横幅を設定
-        self.fields.get('price').widget.attrs['style'] = "width: 170px;"
-        self.fields.get('zaikosu').widget.attrs['style'] = "width: 170px;"
+        self.fields.get('registPrice').widget.attrs['style'] = "width: 17rem;"
+        self.fields.get('registZaikosu').widget.attrs['style'] = "width: 17rem;"
 
-    kataban = forms.CharField(
+    registKataban = forms.CharField(
         label='型番',
         max_length=50,
     )
-    shohinName = forms.CharField(
+    registShohinName = forms.CharField(
         label='商品名',
         max_length=50,
     )
-    price = forms.IntegerField(
+    registPrice = forms.IntegerField(
         label='単価',
         min_value=0,
     )
-    zaikosu = forms.IntegerField(
+    registZaikosu = forms.IntegerField(
         label='在庫数',
         min_value=0,
     )
-    memo = forms.CharField(
+    registMemo = forms.CharField(
         label='メモ',
         max_length=1000,
         widget=forms.Textarea,
         required=False,
     )
 
-    def is_valid(self, checkMode):
-        self.checkMode = checkMode
-        return super().is_valid()
+    def clean_registKataban(self):
+        registKataban = self.cleaned_data['registKataban']
+        if  ShohinTorokuService().existShohin(registKataban):
+            raise forms.ValidationError('既に登録済みの型番です。未登録の型番を入力し、再度登録を行ってください。')
+        return registKataban
 
-    def clean_kataban(self):
-        kataban = self.cleaned_data['kataban']
-        existShohin = ShohinTorokuService().existShohin(kataban)
-            
-        if self.checkMode == 'regist':
-            if existShohin:
-                raise forms.ValidationError('既に登録済みの型番です。未登録の型番を入力し、再度登録を行ってください。')
-        elif self.checkMode == 'update':
-            # TODO: 排他チェック
-            pass
-        return kataban
+class UpdateShohinForm(forms.Form):
+    '''
+    商品更新用フォーム
+    '''
+    def __init__(self, request=None, *args, **kwargs):
+        super().__init__(request, *args, **kwargs)
+        for field in self.fields.values():
+            # 各入力項目に「form-control form-control-lg」のCSSを適用
+            field.widget.attrs['class'] = 'form-control form-control-lg'
+        # 単価、在庫数の入力項目の横幅を設定
+        self.fields.get('updatePrice').widget.attrs['style'] = "width: 17rem;"
+        self.fields.get('updateZaikosu').widget.attrs['style'] = "width: 17rem;"
+
+    updateKataban = forms.CharField(
+        label='型番',
+        max_length=50,
+    )
+    updateShohinName = forms.CharField(
+        label='商品名',
+        max_length=50,
+    )
+    updatePrice = forms.IntegerField(
+        label='単価',
+        min_value=0,
+    )
+    updateZaikosu = forms.IntegerField(
+        label='在庫数',
+        min_value=0,
+    )
+    updateMemo = forms.CharField(
+        label='メモ',
+        max_length=1000,
+        widget=forms.Textarea,
+        required=False,
+    )
+
+    def clean_updateKataban(self):
+        updateKataban = self.cleaned_data['updateKataban']
+
+        # TODO: 排他チェック
+
+        return updateKataban
