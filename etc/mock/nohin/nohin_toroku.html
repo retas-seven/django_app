@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+        <link rel="stylesheet" href="../resources/css/lib/hierarchy-select.min.css">
         <link rel="stylesheet" href="../resources/css/main.css">
         <link rel="stylesheet" href="../resources/css/nohin_toroku.css">
         <title>納品登録</title>
@@ -138,139 +139,163 @@
                         <button type="button" class="close" data-dismiss="modal"><i class="fas fa-lg fa-times"></i></button>
                     </div>
 
-                    <div class="container-fluid">
-                        <div class="row">
-                            <!-- MODAL BODY -->
-                            <div class="modal-body modal_boddy_global">
-                                <div class="form-group row">
-                                    <label for="kataban" class="col-2 col-form-label label_name">納品日</label>
-                                    <div class="col-10">
-                                        <input type="date" class="form-control form-control-lg width_170" id="kataban" name="kataban" autocomplete="off"/>
+                    <form action="" method="post" autocomplete="off">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <!-- MODAL BODY -->
+                                <div class="modal-body modal_boddy_global">
+                                    <div class="form-group row">
+                                        <label for="kataban" class="col-2 col-form-label label_name">納品日</label>
+                                        <div class="col-10">
+                                            <input type="date" class="form-control form-control-lg width_170" id="kataban" name="kataban" autocomplete="off"/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="shohin_name" class="col-2 col-form-label label_name">納品先</label>
-                                    <div class="col-10">
-                                        <input type="search" class="form-control form-control-lg" name="q" autocomplete="off" list="keywords">
-                                        <datalist id="keywords">
-                                            <option value="株式会社Micro-Star International">
-                                            <option value="株式会社アクティブ・ディベロップ">
-                                            <option value="株式会社アドバンスドマイクロデバイセズ">
-                                            <option value="株式会社エイスース">
-                                            <option value="株式会社平成システム">
-                                        </datalist>
+                                    <div class="form-group row">
+                                        <label for="shohin_name" class="col-2 col-form-label label_name">納品先</label>
+                                        <div class="col-10">
+                                            <input type="search" class="form-control form-control-lg" name="q" autocomplete="off" list="keywords">
+                                            <datalist id="keywords">
+                                                <option value="株式会社Micro-Star International">
+                                                <option value="株式会社アクティブ・ディベロップ">
+                                                <option value="株式会社アドバンスドマイクロデバイセズ">
+                                                <option value="株式会社エイスース">
+                                                <option value="株式会社平成システム">
+                                            </datalist>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="memo" class="col-2 col-form-label label_name">メモ</label>
-                                    <div class="col-10">
-                                        <textarea name="memo" cols="40" rows="3" maxlength="1000" class="form-control form-control-lg" id="memo"></textarea>
+                                    <div class="form-group row">
+                                        <label for="memo" class="col-2 col-form-label label_name">メモ</label>
+                                        <div class="col-10">
+                                            <textarea name="memo" cols="40" rows="3" maxlength="1000" class="form-control form-control-lg" id="memo"></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="section_title">取引商品</div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="section_title">取引商品</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-12">
-                                        <datalist id="shohin_list">
-                                            <option value="R105HA-GR060T ／ ASUS TransBook R105HA-GR060T">
-                                            <option value="HDR-CX430V/T ／ SONY ビデオカメラ HANDYCAM CX430V">
-                                            <option value="VJS1111AZL5S11 ／ SIMフリー VAIO ビジネス VAIO S11">
-                                            <option value="VJS1112AZL5S12 ／ SIMフリー VAIO ビジネス VAIO S12">
-                                            <option value="VJS1113AZL5S13 ／ SIMフリー VAIO ビジネス VAIO S13">
-                                        </datalist>
-                                        <table id="modal_table" class="table table-striped">
-                                            <thead>
-                                                <tr class="modal_thead_tr">
-                                                    <td class="nohin_shohin_width">
-                                                        <span>型番・商品名</span>
-                                                        <hr>
-                                                    </td>
-                                                    <td class="nohin_tanka_width">
-                                                        <span>単価</span>
-                                                        <hr>
-                                                    </td>
-                                                    <td class="nohin_suryo_width">
-                                                        <span>数量</span>
-                                                        <hr>
-                                                    </td>
-                                                    <td class="nohin_func_icon_width nohin_func_icon_head">
-                                                        <a id="row_add_btn" class="circle_btn_small"><i class="fas fa-plus"></i></a>
-                                                    </td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <!-- 行サンプル -->
-                                                <tr>
-                                                    <td class="nohin_shohin_width">
-                                                        <select class="form-control form-control-lg" name="shohin">
-                                                            <option value="" selected></option>
-                                                            <option value="R105HA-GR060T">R105HA-GR060T ／ ASUS TransBook R105HA-GR060T</option>
-                                                            <option value="HDR-CX430V/T">HDR-CX430V/T ／ SONY ビデオカメラ HANDYCAM CX430V</option>
-                                                            <option value="VJS1111AZL5S11">VJS1111AZL5S11 ／ SIMフリー VAIO ビジネス VAIO S11</option>
-                                                            <option value="VJS1112AZL5S12">VJS1112AZL5S12 ／ SIMフリー VAIO ビジネス VAIO S12</option>
-                                                            <option value="VJS1113AZL5S13">VJS1113AZL5S13 ／ SIMフリー VAIO ビジネス VAIO S13</option>
-                                                        </select>
-                                                    </td>
-                                                    <td class="nohin_tanka_width">
-                                                        <input type="number" min="0" step="1000" class="form-control form-control-lg" name="nohin_tanka" autocomplete="off"/>
-                                                    </td>
-                                                    <td class="nohin_suryo_width nohin_suryo_row form-inline">
-                                                        <input type="number" min="0" class="form-control form-control-lg" name="nohin_suryo" autocomplete="off"/>
-                                                        <span>99,999</span>
-                                                    </td>
-                                                    <td class="nohin_func_icon_width nohin_func_icon_row">
-                                                        <a class="row_circle_btn_small js_row_delete_btn" href="#"><i class="fas fa-times"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <!--
-                                                <tr>
-                                                    <td class="nohin_shohin_width">
-                                                        <input type="search" class="form-control form-control-lg" name="shohin" autocomplete="off" list="shohin_list">
-                                                    </td>
-                                                    <td class="nohin_tanka_width">
-                                                        <input type="number" min="0" step="1000" class="form-control form-control-lg" id="nohin_tanka" name="nohin_tanka" autocomplete="off"/>
-                                                    </td>
-                                                    <td class="nohin_suryo_width nohin_suryo_row form-inline">
-                                                        <input type="number" min="0" class="form-control form-control-lg" id="nohin_suryo" name="nohin_suryo" autocomplete="off"/>
-                                                        <span>51,000</span>
-                                                    </td>
-                                                    <td class="nohin_func_icon_width nohin_func_icon_row">
-                                                        <a class="row_circle_btn_small" href="#"><i class="fas fa-times"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="nohin_shohin_width">
-                                                        <input type="search" class="form-control form-control-lg" name="shohin" autocomplete="off" list="shohin_list">
-                                                    </td>
-                                                    <td class="nohin_tanka_width">
-                                                        <input type="number" min="0" step="1000" class="form-control form-control-lg" id="nohin_tanka" name="nohin_tanka" autocomplete="off"/>
-                                                    </td>
-                                                    <td class="nohin_suryo_width nohin_suryo_row">
-                                                        <input type="number" min="0" class="form-control form-control-lg" id="nohin_suryo" name="nohin_suryo" autocomplete="off"/>
-                                                        <span>51,000</span>
-                                                    </td>
-                                                    <td class="nohin_func_icon_width nohin_func_icon_row">
-                                                        <a class="row_circle_btn_small" href="#"><i class="fas fa-times"></i></a>
-                                                    </td>
-                                                </tr>
-                                                -->
-                                            </tbody>
-                                        </table>
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <datalist id="shohin_list">
+                                                <option value="R105HA-GR060T ／ ASUS TransBook R105HA-GR060T">
+                                                <option value="HDR-CX430V/T ／ SONY ビデオカメラ HANDYCAM CX430V">
+                                                <option value="VJS1111AZL5S11 ／ SIMフリー VAIO ビジネス VAIO S11">
+                                                <option value="VJS1112AZL5S12 ／ SIMフリー VAIO ビジネス VAIO S12">
+                                                <option value="VJS1113AZL5S13 ／ SIMフリー VAIO ビジネス VAIO S13">
+                                            </datalist>
+                                            <table id="modal_table" class="table table-striped">
+                                                <thead>
+                                                    <tr class="modal_thead_tr">
+                                                        <td class="nohin_shohin_width">
+                                                            <span>型番・商品名</span>
+                                                            <hr>
+                                                        </td>
+                                                        <td class="nohin_tanka_width">
+                                                            <span>単価</span>
+                                                            <hr>
+                                                        </td>
+                                                        <td class="nohin_suryo_width">
+                                                            <span>数量</span>
+                                                            <hr>
+                                                        </td>
+                                                        <td class="nohin_func_icon_width nohin_func_icon_head">
+                                                            <a id="row_add_btn" class="circle_btn_small"><i class="fas fa-plus"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- 行サンプル -->
+                                                    <tr>
+                                                        <td class="nohin_shohin_width">
+                                                            <!--
+                                                            <select class="form-control form-control-lg" name="shohin">
+                                                                <option value="" selected></option>
+                                                                <option value="R105HA-GR060T">R105HA-GR060T ／ ASUS TransBook R105HA-GR060T</option>
+                                                                <option value="HDR-CX430V/T">HDR-CX430V/T ／ SONY ビデオカメラ HANDYCAM CX430V</option>
+                                                                <option value="VJS1111AZL5S11">VJS1111AZL5S11 ／ SIMフリー VAIO ビジネス VAIO S11</option>
+                                                                <option value="VJS1112AZL5S12">VJS1112AZL5S12 ／ SIMフリー VAIO ビジネス VAIO S12</option>
+                                                                <option value="VJS1113AZL5S13">VJS1113AZL5S13 ／ SIMフリー VAIO ビジネス VAIO S13</option>
+                                                            </select>
+                                                            -->
 
 
+                                                            <div class="dropdown hierarchy-select" id="example-two">
+                                                                <button type="button" class="btn page-link text-dark dropdown-toggle btn-lg shohin_select" id="example-two-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                                                <div class="dropdown-menu" aria-labelledby="example-two-button">
+                                                                    <div class="hs-searchbox">
+                                                                        <input type="text" class="form-control" autocomplete="off">
+                                                                    </div>
+                                                                    <div class="hs-menu-inner">
+                                                                        <a class="dropdown-item" data-value="" data-default-selected="" href="#"></a>
+                                                                        <a class="dropdown-item" data-value="R105HA-GR060T" href="#">R105HA-GR060T ／ ASUS TransBook R105HA-GR060T</a>
+                                                                        <a class="dropdown-item" data-value="HDR-CX430V/T" href="#">HDR-CX430V/T ／ SONY ビデオカメラ HANDYCAM CX430V</a>
+                                                                        <a class="dropdown-item" data-value="VJS1111AZL5S11" href="#">VJS1111AZL5S11 ／ SIMフリー VAIO ビジネス VAIO S11</a>
+                                                                        <a class="dropdown-item" data-value="VJS1112AZL5S12" href="#">VJS1112AZL5S12 ／ SIMフリー VAIO ビジネス VAIO S12</a>
+                                                                        <a class="dropdown-item" data-value="VJS1113AZL5S13" href="#">VJS1113AZL5S13 ／ SIMフリー VAIO ビジネス VAIO S13</a>
+                                                                    </div>
+                                                                </div>
+                                                                <input required class="d-none" name="example_two" aria-hidden="true" type="text"/>
+                                                            </div>
+                                                    
+                                                        </td>
+                                                        <td class="nohin_tanka_width">
+                                                            <input type="number" min="0" step="1000" class="form-control form-control-lg" name="nohin_tanka" autocomplete="off"/>
+                                                        </td>
+                                                        <td class="nohin_suryo_width nohin_suryo_row form-inline">
+                                                            <input type="number" min="0" class="form-control form-control-lg" name="nohin_suryo" autocomplete="off"/>
+                                                            <span>99,999</span>
+                                                        </td>
+                                                        <td class="nohin_func_icon_width nohin_func_icon_row">
+                                                            <a class="row_circle_btn_small js_row_delete_btn" href="#"><i class="fas fa-times"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <!--
+                                                    <tr>
+                                                        <td class="nohin_shohin_width">
+                                                            <input type="search" class="form-control form-control-lg" name="shohin" autocomplete="off" list="shohin_list">
+                                                        </td>
+                                                        <td class="nohin_tanka_width">
+                                                            <input type="number" min="0" step="1000" class="form-control form-control-lg" id="nohin_tanka" name="nohin_tanka" autocomplete="off"/>
+                                                        </td>
+                                                        <td class="nohin_suryo_width nohin_suryo_row form-inline">
+                                                            <input type="number" min="0" class="form-control form-control-lg" id="nohin_suryo" name="nohin_suryo" autocomplete="off"/>
+                                                            <span>51,000</span>
+                                                        </td>
+                                                        <td class="nohin_func_icon_width nohin_func_icon_row">
+                                                            <a class="row_circle_btn_small" href="#"><i class="fas fa-times"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="nohin_shohin_width">
+                                                            <input type="search" class="form-control form-control-lg" name="shohin" autocomplete="off" list="shohin_list">
+                                                        </td>
+                                                        <td class="nohin_tanka_width">
+                                                            <input type="number" min="0" step="1000" class="form-control form-control-lg" id="nohin_tanka" name="nohin_tanka" autocomplete="off"/>
+                                                        </td>
+                                                        <td class="nohin_suryo_width nohin_suryo_row">
+                                                            <input type="number" min="0" class="form-control form-control-lg" id="nohin_suryo" name="nohin_suryo" autocomplete="off"/>
+                                                            <span>51,000</span>
+                                                        </td>
+                                                        <td class="nohin_func_icon_width nohin_func_icon_row">
+                                                            <a class="row_circle_btn_small" href="#"><i class="fas fa-times"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    -->
+                                                </tbody>
+                                            </table>
+
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- MODAL FOOTER -->
-                    <div class="modal-footer modal_footer_global">
-                        <button type="submit" onfocus="this.blur();" class="common_btn"><i class="fas fa-plus"></i> 登録</button>
-                    </div>
+                        
+                        <!-- MODAL FOOTER -->
+                        <div class="modal-footer modal_footer_global">
+                            <button type="submit" onfocus="this.blur();" class="common_btn"><i class="fas fa-plus"></i> 登録</button>
+                        </div>
+                    </form>
                         
                 </div>
             </div>
@@ -281,6 +306,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         <script src="../resources/js/lib/wow.min.js"></script>
         <script src="../resources/js/lib/easeScroll.js"></script>
+        <script src="../resources/js/lib/hierarchy-select.min.js"></script>
         <script src="../resources/js/nohin_toroku.js"></script>
     </body>
 </html>

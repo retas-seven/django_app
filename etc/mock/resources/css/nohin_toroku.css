@@ -94,6 +94,35 @@
 .shohin_ithiran_hr {
     margin: 3.0rem 0px 2.0rem 0px;
 }
+
+.shohin_select {
+    border: 1px solid #ced4da;
+    text-align: left;
+    line-height: 1.5;
+    /*
+    width: 100%;
+    font-size: 1.25rem;
+    color: #495057;
+    background-color: #fff;
+    */
+}
+.shohin_select:hover {
+    background-color: #fff;
+}
+.hierarchy-select > .dropdown-toggle::after {
+    /*
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: .555em;
+    vertical-align: .255em;
+    content: "";
+    */
+    border-top: .0em solid;
+    border-right: .0em solid transparent;
+    border-bottom: 0;
+    border-left: .0em solid transparent;
+}
 /* ------------------------------------------- */
 /* モバイル用設定 */
 /* ------------------------------------------- */
