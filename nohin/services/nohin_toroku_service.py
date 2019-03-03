@@ -13,7 +13,7 @@ class NohinTorokuService:
         '''
         nohinList = (Nohin.objects
             .filter(belong_user='testuser')
-            .values('id', 'nohin_date', 'total_price', 'memo')
+            .values('id', 'nohin_date', 'nohinsaki', 'total_price', 'memo')
             .order_by('-nohin_date') # 降順
         )
         
