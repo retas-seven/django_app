@@ -65,23 +65,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- 行サンプル -->
-                                <tr class="align_center">
-                                    <td class="date_width date_row">
-                                        <span>2018/12/02</span>
-                                    </td>
-                                    <td class="torihikisaki_width torihikisaki_row">
-                                        <span>株式会社平成システム</span>
-                                    </td>
-                                    <td class="kingaku_width kingaku_row">
-                                        <i class="fas fa-yen-sign font_16"></i>
-                                        <span>1,210,500</span>
-                                    </td>
-                                    <td class="func_icon_width func_icon_row">
-                                        <a class="row_circle_btn" href="#"><i class="fa-lg far fa-list-alt"></i></a>
-                                        <a class="row_circle_btn" href="#"><i class="fas fa-times"></i></a>
-                                    </td>
-                                </tr>
+                                {% for nohin in nohinList %}
+                                    <tr class="align_center">
+                                        <td class="date_width date_row">
+                                            <span>{{nohin.nohin_date|date:'Y/m/d'}}</span>
+                                        </td>
+                                        <td class="torihikisaki_width torihikisaki_row">
+                                            <span>{{nohin.nohinsaki}}</span>
+                                        </td>
+                                        <td class="kingaku_width kingaku_row">
+                                            <i class="fas fa-yen-sign font_16"></i>
+                                            <span>{{nohin.total_price|intcomma}}</span>
+                                        </td>
+                                        <td class="func_icon_width func_icon_row" data-memo="{{shohin.memo}}">
+                                            <a class="row_circle_btn" href="#"><i class="fa-lg far fa-list-alt"></i></a>
+                                            <a class="row_circle_btn" href="#"><i class="fas fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
                                 <!-- 行サンプル -->
                                 <!--
                                 <tr class="align_center">
