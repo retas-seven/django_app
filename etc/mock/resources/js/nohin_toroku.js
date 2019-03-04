@@ -32,11 +32,4 @@ $(function(){
 			$(this).parent().parent().remove();
 		}
 	});
-	
-	// モーダルの商品選択リスト
-	$('#example-two').hierarchySelect({
-		hierarchy: false,
-		// width: 'auto'
-		width: '100%'
-	});
 });
