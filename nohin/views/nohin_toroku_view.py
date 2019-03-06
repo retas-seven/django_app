@@ -15,7 +15,9 @@ class NohinTorokuView(View):
         return render(request, 'nohin/nohin_toroku.html', params)
 
     def __initParams(self):
-        params = NohinTorokuService().retrieveNohin()
-        # params['form'] = form
-        # params['koshin_form'] = koshinForm
+        service = NohinTorokuService()
+        params = {
+            'nohinList': service.retrieveNohin(),
+            'shohinJson': service.retrieveShohin()
+        }
         return params

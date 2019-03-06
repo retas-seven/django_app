@@ -264,5 +264,8 @@
         <script src="{% static 'resources/js/lib/wow.min.js' %}"></script>
         <script src="{% static 'resources/js/lib/easeScroll.js' %}"></script>
         <script src="{% static 'resources/js/nohin_toroku.js' %}"></script>
+        <script>
+            var shohinJson = JSON.parse( '{{ shohinJson }}'.replace(/&quot;/g,'"') );
+        </script>
     </body>
 </html>

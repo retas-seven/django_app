@@ -21,15 +21,25 @@ $(function(){
 	});
 
 	// モーダルの行追加ボタン押下時の処理
-	$("#row_add_btn").on("click", function() {
-		$("#modal_table tbody tr:last-child").clone(true).appendTo("#modal_table tbody");
-		$("#modal_table tbody tr:last-child input").val("");
-	});
-
+	$("#row_add_btn").on("click", registModalAddRow);
 	// モーダルの行削除ボタン押下時の処理
-	$(".js_row_delete_btn").on("click", function() {
-		if($(".js_row_delete_btn").length != 1) {
-			$(this).parent().parent().remove();
-		}
-	});
+	$(".js_row_delete_btn").on("click", registModalDeleteRow);
 });
+
+/**
+ * モーダルの行追加ボタン押下時の処理
+ */
+function registModalAddRow() {
+	$("#modal_table tbody tr:last-child").clone(true).appendTo("#modal_table tbody");
+	$("#modal_table tbody tr:last-child input").val("");
+}
+
+/**
+ * モーダルの行削除ボタン押下時の処理
+ */
+function registModalDeleteRow() {
+	if($(".js_row_delete_btn").length != 1) {
+		$(this).parent().parent().remove();
+	}
+}
+

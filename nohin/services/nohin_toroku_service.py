@@ -1,6 +1,8 @@
 from app_table.models import Nohin
 from app_table.models import NohinDetail
+from app_table.models import Shohin
 import datetime
+import json
 
 class NohinTorokuService:
     '''
@@ -16,13 +18,25 @@ class NohinTorokuService:
             .values('id', 'nohin_date', 'nohinsaki', 'total_price', 'memo')
             .order_by('-nohin_date') # 降順
         )
-        
-        ret = {
-            'nohinList': nohinList,
-        }
-        return ret
+
+        # ret = {
+        #     'nohinList': nohinList,
+        #     'shohinJson': shohinJson,
+        # }
+        # return ret
+        return nohinList
     
-    
+    def retrieveShohin(self):
+        shohinJson = json.dumps(
+            list(Shohin.objects
+                .filter(belong_user='testuser')
+                .values('id', 'kataban', 'shohin_name', 'zaikosu', 'price')
+                .order_by('kataban')
+            )
+        )
+
+        return shohinJson
+
     def existNohin(self, id):
         '''
         納品の存在有無を確認する
