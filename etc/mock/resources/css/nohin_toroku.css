@@ -69,17 +69,20 @@
     width: 7%;
 }
 .nohin_suryo_row {
-    width: 100%;
+    width: auto;
+    white-space: nowrap;
 }
 .nohin_suryo_row > input {
-    width: 50% !important;
+    width: 45% !important;
 }
-.nohin_suryo_row > span:before {
-    content: '/ '
-}
-.nohin_suryo_row > span {
+.nohin_suryo_row > .slash {
     font-family: 'Merriweather', serif;
-    width: 46%;
+    width: 8%;
+    text-align: right;
+}
+.nohin_suryo_row > .zaikosu {
+    font-family: 'Merriweather', serif;
+    width: 47%;
     text-align: right;
 }
 .nohin_func_icon_head {

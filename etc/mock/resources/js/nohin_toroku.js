@@ -34,6 +34,7 @@ $(function(){
 function registModalAddRow() {
 	$("#modal_table tbody tr:last-child").clone(true).appendTo("#modal_table tbody");
 	$("#modal_table tbody tr:last-child input").val("");
+	$("#modal_table tbody tr:last-child .zaikosu").text("");
 }
 
 /**
@@ -49,4 +50,31 @@ function registModalDeleteRow() {
  * モーダルの商品選択時の処理
  */
 function registModalChangeShohin() {
+	let val = $(this).val();
+	let kataban ;
+	let targetShohin = null;
+
+	// 商品の型番を取得
+	if (val.indexOf('／') == -1) {
+		kataban = val.trim();
+	} else {
+		kataban = val.substr(0, val.indexOf('／')).trim();
+	}
+
+	// 型番に対応する商品情報（JSON）を取得
+	for (let shohin of shohinJson) {
+		if (shohin.kataban == kataban) {
+			targetShohin = shohin;
+			break;
+		}
+	}
+
+	if (targetShohin == null) {
+		$(this).val('');
+		return;
+	}
+
+	// 単価、在庫数に商品情報の値を設定する
+	$(this).closest("tr").find("[name=registNohinTanka]").val(targetShohin.price);
+	$(this).closest("tr").find(".zaikosu").text(targetShohin.zaikosu.toLocaleString());
 }
