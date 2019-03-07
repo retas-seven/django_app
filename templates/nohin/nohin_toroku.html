@@ -160,21 +160,17 @@
                             <!-- MODAL BODY -->
                             <div class="modal-body modal_boddy_global">
                                 <div class="form-group row">
-                                    <label for="kataban" class="col-2 col-form-label label_name">納品日</label>
+                                    <label for="nohin_date" class="col-2 col-form-label label_name">納品日</label>
                                     <div class="col-10">
-                                        <input type="date" class="form-control form-control-lg width_170" id="kataban" name="kataban" autocomplete="off"/>
+                                        <input type="date" class="form-control form-control-lg width_170" id="nohin_date" name="nohin_date" autocomplete="off"/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="shohin_name" class="col-2 col-form-label label_name">納品先</label>
+                                    <label for="nohinsaki" class="col-2 col-form-label label_name">納品先</label>
                                     <div class="col-10">
-                                        <input type="search" class="form-control form-control-lg" name="q" autocomplete="off" list="keywords">
-                                        <datalist id="keywords">
-                                            <option value="株式会社Micro-Star International">
-                                            <option value="株式会社アクティブ・ディベロップ">
-                                            <option value="株式会社アドバンスドマイクロデバイセズ">
-                                            <option value="株式会社エイスース">
-                                            <option value="株式会社平成システム">
+                                        <input type="search" class="form-control form-control-lg" name="nohinsaki" autocomplete="off" list="modal_company_list">
+                                        <datalist id="modal_company_list">
+                                            <!-- jsの初期処理でoptionを追加する -->
                                         </datalist>
                                     </div>
                                 </div>
@@ -256,6 +252,7 @@
         <script src="{% static 'resources/js/nohin_toroku.js' %}"></script>
         <script>
             var shohinJson = JSON.parse( '{{ shohinJson }}'.replace(/&quot;/g,'"') );
+            var companyJson = JSON.parse( '{{ companyJson }}'.replace(/&quot;/g,'"') );
         </script>
     </body>
 </html>

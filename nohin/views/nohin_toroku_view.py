@@ -18,6 +18,7 @@ class NohinTorokuView(View):
         service = NohinTorokuService()
         params = {
             'nohinList': service.retrieveNohin(),
-            'shohinJson': service.retrieveShohin()
+            'shohinJson': service.retrieveShohin(),
+            'companyJson': service.retrieveCompany(),
         }
         return params

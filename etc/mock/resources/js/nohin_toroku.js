@@ -18,6 +18,8 @@ $(function(){
 		fixedBackground: true
 	});
 
+	// モーダルの納品先候補を作成
+	createModalCompanyList();
 	// モーダルの一覧部の商品選択候補を作成
 	createModalShohinList();
 	// モーダルの行追加ボタン押下時の処理
@@ -27,6 +29,19 @@ $(function(){
 	// モーダルの商品選択時の処理
 	$("[name=registShohin]").on("change", registModalChangeShohin);
 });
+
+/**
+ * モーダルの納品先選択候補を作成
+ */
+function createModalCompanyList() {
+	let modalCompanyList = $('#modal_company_list');
+	let optionList = [];
+	for (let company of companyJson) {
+		option = $('<option>', { value: company.company_name });
+		optionList.push(option);
+	}
+	modalCompanyList.append(optionList);
+}
 
 /**
  * モーダルの一覧部の商品選択候補を作成
