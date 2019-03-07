@@ -18,6 +18,8 @@ $(function(){
 		fixedBackground: true
 	});
 
+	// モーダルの一覧部の商品選択候補を作成
+	createModalShohinList();
 	// モーダルの行追加ボタン押下時の処理
 	$("#row_add_btn").on("click", registModalAddRow);
 	// モーダルの行削除ボタン押下時の処理
@@ -25,6 +27,20 @@ $(function(){
 	// モーダルの商品選択時の処理
 	$("[name=registShohin]").on("change", registModalChangeShohin);
 });
+
+/**
+ * モーダルの一覧部の商品選択候補を作成
+ */
+function createModalShohinList() {
+	let modalShohinList = $('#modal_shohin_list');
+	let optionList = [];
+	for (let shohin of shohinJson) {
+		let content = shohin.kataban + ' ／ ' + shohin.shohin_name
+		option = $('<option>', { value: content });
+		optionList.push(option);
+	}
+	modalShohinList.append(optionList);
+}
 
 /**
  * モーダルの行追加ボタン押下時の処理

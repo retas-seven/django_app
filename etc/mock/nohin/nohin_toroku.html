@@ -174,11 +174,8 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-12">
-                                            <datalist id="shohin_list">
-                                                <option value="R105HA-GR060T ／ ASUS TransBook R105HA-GR060T">
-                                                <option value="VJS1112AZL5B13 ／ SIMフリー VAIO ビジネス VAIO S11">
-                                                <option value="VJS1112AZL5B12 ／ SIMフリー VAIO ビジネス VAIO S12">
-                                                <option value="VJS1113AZL5B13 ／ SIMフリー VAIO ビジネス VAIO S13">
+                                            <datalist id="modal_shohin_list">
+                                                <!-- jsの初期処理でoptionを追加する -->
                                             </datalist>
                                             <table id="modal_table" class="table table-striped">
                                                 <thead>
@@ -204,7 +201,7 @@
                                                     <!-- 商品行 -->
                                                     <tr>
                                                         <td class="nohin_shohin_width">
-                                                            <input type="search" class="form-control form-control-lg" name="registShohin" autocomplete="off" list="shohin_list">
+                                                            <input type="search" class="form-control form-control-lg" name="registShohin" autocomplete="off" list="modal_shohin_list">
                                                         </td>
                                                         <td class="nohin_tanka_width">
                                                             <input type="number" min="0" step="1000" class="form-control form-control-lg" name="registNohinTanka" autocomplete="off"/>
