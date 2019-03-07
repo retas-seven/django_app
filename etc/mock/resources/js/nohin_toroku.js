@@ -1,5 +1,3 @@
-var tmpRow;
-
 $(function(){
 	// wow
 	new WOW().init();
