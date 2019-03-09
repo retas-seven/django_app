@@ -51,7 +51,7 @@ class Nohin(BaseModel):
     nohin_date = models.DateField(verbose_name='納品日')
     nohinsaki = models.CharField(verbose_name='納品先', max_length=50)
     total_price = models.IntegerField(verbose_name='合計金額')
-    memo = models.TextField(verbose_name='メモ', max_length=1000, null=True)
+    memo = models.TextField(verbose_name='メモ', max_length=1000, null=True, blank=True)
 
     def __str__(self):
         return '{}, {}, {}'.format(self.belong_user, self.nohin_date, self.nohinsaki)

@@ -38,10 +38,6 @@ class ShohinTorokuService:
         '''
         商品情報を登録する
         '''
-        print('----------------')
-        print(registForm.cleaned_data['registKataban'])
-        print('----------------')
-
         shohin = Shohin()
         shohin.belong_user = 'testuser'
         shohin.kataban = registForm.cleaned_data['registKataban']

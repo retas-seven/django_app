@@ -23,21 +23,21 @@ $(function(){
 	// モーダルの一覧部の商品選択候補を作成
 	createModalShohinList();
 	// モーダルの行追加ボタン押下時の処理
-	$("#row_add_btn").on("click", registModalAddRow);
+	$("#row_add_btn").on("click", modalAddRow);
 	// モーダルの行削除ボタン押下時の処理
-	$(".js_row_delete_btn").on("click", registModalDeleteRow);
+	$(".js_row_delete_btn").on("click", modalDeleteRow);
 	// モーダルの商品選択時の処理
-	$("[name=registShohin]").on("change", registModalChangeShohin);
+	$("[name=registShohin]").on("change", modalChangeShohin);
 });
 
 /**
  * モーダルの納品先選択候補を作成
  */
 function createModalCompanyList() {
-	let modalCompanyList = $('#modal_company_list');
+	let modalCompanyList = $("#modal_company_list");
 	let optionList = [];
 	for (let company of companyJson) {
-		option = $('<option>', { value: company.company_name });
+		option = $("<option>", { value: company.company_name });
 		optionList.push(option);
 	}
 	modalCompanyList.append(optionList);
@@ -47,11 +47,11 @@ function createModalCompanyList() {
  * モーダルの一覧部の商品選択候補を作成
  */
 function createModalShohinList() {
-	let modalShohinList = $('#modal_shohin_list');
+	let modalShohinList = $("#modal_shohin_list");
 	let optionList = [];
+	let option;
 	for (let shohin of shohinJson) {
-		let content = shohin.kataban + ' ／ ' + shohin.shohin_name
-		option = $('<option>', { value: content });
+		option = $("<option>", { value: shohin.kataban + " ／ " + shohin.shohin_name });
 		optionList.push(option);
 	}
 	modalShohinList.append(optionList);
@@ -60,7 +60,7 @@ function createModalShohinList() {
 /**
  * モーダルの行追加ボタン押下時の処理
  */
-function registModalAddRow() {
+function modalAddRow() {
 	$("#modal_table tbody tr:last-child").clone(true).appendTo("#modal_table tbody");
 	$("#modal_table tbody tr:last-child input").val("");
 	$("#modal_table tbody tr:last-child .zaikosu").text("");
@@ -69,7 +69,7 @@ function registModalAddRow() {
 /**
  * モーダルの行削除ボタン押下時の処理
  */
-function registModalDeleteRow() {
+function modalDeleteRow() {
 	if($(".js_row_delete_btn").length != 1) {
 		$(this).parent().parent().remove();
 	}
@@ -78,16 +78,16 @@ function registModalDeleteRow() {
 /**
  * モーダルの商品選択時の処理
  */
-function registModalChangeShohin() {
+function modalChangeShohin() {
 	let val = $(this).val();
 	let kataban ;
 	let targetShohin = null;
 
 	// 商品の型番を取得
-	if (val.indexOf('／') == -1) {
+	if (val.indexOf("／") == -1) {
 		kataban = val.trim();
 	} else {
-		kataban = val.substr(0, val.indexOf('／')).trim();
+		kataban = val.substr(0, val.indexOf("／")).trim();
 	}
 
 	// 型番に対応する商品情報（JSON）を取得
@@ -99,7 +99,8 @@ function registModalChangeShohin() {
 	}
 
 	if (targetShohin == null) {
-		$(this).val('');
+		$(this).val("");
+		$(this).closest("tr").find(".zaikosu").text("");
 		return;
 	}
 

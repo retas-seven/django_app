@@ -137,7 +137,7 @@
                         <button type="button" class="close" data-dismiss="modal"><i class="fas fa-lg fa-times"></i></button>
                     </div>
 
-                    <form action="" method="post" autocomplete="off">
+                    <form action="nohin_toroku.html" method="post" autocomplete="off">
                         <div class="container-fluid">
                             <div class="row">
                                 <!-- MODAL BODY -->
@@ -145,16 +145,13 @@
                                     <div class="form-group row">
                                         <label for="nohin_date" class="col-2 col-form-label label_name">納品日</label>
                                         <div class="col-10">
-                                            <input type="date" class="form-control form-control-lg width_170" id="nohin_date" name="nohin_date" autocomplete="off"/>
+                                            <input required type="date" class="form-control form-control-lg width_170" id="nohin_date" name="nohin_date" autocomplete="off"/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="nohinsaki" class="col-2 col-form-label label_name">納品先</label>
                                         <div class="col-10">
-                                            <input type="search" class="form-control form-control-lg" name="nohinsaki" autocomplete="off" list="modal_company_list">
-                                            <datalist id="modal_company_list">
-                                                <!-- jsの初期処理でoptionを追加する -->
-                                            </datalist>
+                                            <input required type="search" class="form-control form-control-lg" name="nohinsaki" autocomplete="off" list="modal_company_list">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -170,9 +167,6 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-12">
-                                            <datalist id="modal_shohin_list">
-                                                <!-- jsの初期処理でoptionを追加する -->
-                                            </datalist>
                                             <table id="modal_table" class="table table-striped">
                                                 <thead>
                                                     <tr class="modal_thead_tr">
@@ -197,13 +191,13 @@
                                                     <!-- 商品行 -->
                                                     <tr>
                                                         <td class="nohin_shohin_width">
-                                                            <input type="search" class="form-control form-control-lg" name="registShohin" autocomplete="off" list="modal_shohin_list">
+                                                            <input required type="search" class="form-control form-control-lg" name="registShohin" autocomplete="off" list="modal_shohin_list">
                                                         </td>
                                                         <td class="nohin_tanka_width">
-                                                            <input type="number" min="0" step="1000" class="form-control form-control-lg" name="registNohinTanka" autocomplete="off"/>
+                                                            <input required type="number" min="0" step="1000" class="form-control form-control-lg" name="registNohinTanka" autocomplete="off"/>
                                                         </td>
                                                         <td class="nohin_suryo_width nohin_suryo_row form-inline">
-                                                            <input type="number" min="0" class="form-control form-control-lg" name="registNohinSuryo" autocomplete="off"/>
+                                                            <input required type="number" min="0" class="form-control form-control-lg" name="registNohinSuryo" autocomplete="off"/>
                                                             <span class="slash">/</span>
                                                             <span class="zaikosu"></span>
                                                         </td>
@@ -213,7 +207,6 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-
                                         </div>
                                     </div>
                                 </div>
@@ -225,9 +218,14 @@
                             <button type="submit" onfocus="this.blur();" class="common_btn"><i class="fas fa-plus"></i> 登録</button>
                         </div>
                     </form>
-                        
                 </div>
             </div>
+
+            <!-- jsの初期処理でoptionを追加するdatalist -->
+            <datalist id="modal_company_list">
+            </datalist>
+            <datalist id="modal_shohin_list">
+            </datalist>
         </div>
             
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

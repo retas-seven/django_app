@@ -40,7 +40,7 @@ class RegistShohinForm(forms.Form):
     def clean_registKataban(self):
         registKataban = self.cleaned_data['registKataban']
         if  ShohinTorokuService().existShohin(registKataban):
-            raise forms.ValidationError('既に登録済みの型番です。未登録の型番を入力し、再度登録を行ってください。')
+            raise forms.ValidationError('既に登録されている型番です。未登録の型番を入力し、再度登録を行ってください。')
         return registKataban
 
 class UpdateShohinForm(forms.Form):
