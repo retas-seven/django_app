@@ -7,5 +7,13 @@ from .models import NohinDetail
 # Register your models here.
 admin.site.register(Shohin)
 admin.site.register(Company)
-admin.site.register(Nohin)
+
+class NohinDetailInline(admin.StackedInline):
+    model = NohinDetail
+    extra = 3
+
+class NohinAdmin(admin.ModelAdmin):
+    inlines = [NohinDetailInline]
+
+admin.site.register(Nohin, NohinAdmin)
 admin.site.register(NohinDetail)
