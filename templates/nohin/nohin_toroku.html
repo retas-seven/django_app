@@ -191,6 +191,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <!-- 商品行 -->
+                                                    <!--
                                                     <tr>
                                                         <td class="nohin_shohin_width">
                                                             <input type="search" class="form-control form-control-lg" name="registShohin" autocomplete="off" list="modal_shohin_list">
@@ -207,6 +208,26 @@
                                                             <a class="row_circle_btn_small js_row_delete_btn" href="#"><i class="fas fa-times"></i></a>
                                                         </td>
                                                     </tr>
+                                                    -->
+                                                    {{ reglist.management_form }}
+                                                    {% for form in reglist %}
+                                                        <tr>
+                                                            <td class="nohin_shohin_width">
+                                                                {{ form.kataban }}
+                                                            </td>
+                                                            <td class="nohin_tanka_width">
+                                                                {{ form.price }}
+                                                            </td>
+                                                            <td class="nohin_suryo_width nohin_suryo_row form-inline">
+                                                                {{ form.amount }}
+                                                                <span class="slash">/</span>
+                                                                <span class="zaikosu"></span>
+                                                            </td>
+                                                            <td class="nohin_func_icon_width nohin_func_icon_row">
+                                                                <a class="row_circle_btn_small js_row_delete_btn" href="#"><i class="fas fa-times"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
                                                 </tbody>
                                             </table>
                                         </div>

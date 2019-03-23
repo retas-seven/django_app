@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import modelformset_factory
+from django.forms.models import inlineformset_factory
 from app_table.models import Nohin
 from app_table.models import NohinDetail
 
@@ -36,6 +38,43 @@ class NohinForm(forms.ModelForm):
             ),
         }
 
+class NohinDetailForm(forms.ModelForm):
+    '''
+    納品詳細情報登録用フォーム
+    '''
+    class Meta:
+        model = NohinDetail
+        fields = {'kataban', 'price', 'amount'}
+        widgets = {
+            'kataban': forms.TextInput(
+                attrs = {
+                    'type': 'search',
+                    'list': 'modal_shohin_list',
+                    'class' : 'form-control form-control-lg js_modal_change_shohin',
+                }
+            ),
+            'price': forms.TextInput(
+                attrs = {
+                    'type': 'number',
+                    'min': '0',
+                    'step': '1000',
+                    'class' : 'form-control form-control-lg js_modal_price',
+                }
+            ),
+            'amount': forms.TextInput(
+                attrs = {
+                    'type': 'number',
+                    'class' : 'form-control form-control-lg',
+                }
+            ),
+        }
+
+NohinDetailFormset = modelformset_factory(
+    NohinDetail,
+    form = NohinDetailForm,
+    extra = 1,
+)
+
     # def __init__(self, request=None, *args, **kwargs):
     #     super().__init__(request, *args, **kwargs)
     #     for field in self.fields.values():
@@ -69,4 +108,3 @@ class NohinForm(forms.ModelForm):
 #         for field in self.fields.values():
 #             # 各入力項目に「form-control form-control-lg」のCSSを適用
 #             field.widget.attrs['class'] = 'form-control form-control-lg'
-

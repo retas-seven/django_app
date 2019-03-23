@@ -27,7 +27,8 @@ $(function(){
 	// モーダルの行削除ボタン押下時の処理
 	$(".js_row_delete_btn").on("click", modalDeleteRow);
 	// モーダルの商品選択時の処理
-	$("[name=registShohin]").on("change", modalChangeShohin);
+	// $("[name=registShohin]").on("change", modalChangeShohin);
+	$(".js_modal_change_shohin").on("change", modalChangeShohin);
 
 	// モーダルを開くか判別
 	if (openRegistModal == 'True') {
@@ -111,6 +112,7 @@ function modalChangeShohin() {
 	}
 
 	// 単価、在庫数に商品情報の値を設定する
-	$(this).closest("tr").find("[name=registNohinTanka]").val(targetShohin.price);
+	// $(this).closest("tr").find("[name=registNohinTanka]").val(targetShohin.price);
+	$(this).closest("tr").find(".js_modal_price").val(targetShohin.price);
 	$(this).closest("tr").find(".zaikosu").text(targetShohin.zaikosu.toLocaleString());
 }
