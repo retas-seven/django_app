@@ -21,20 +21,25 @@ class NohinTorokuView(View):
         納品登録画面-登録処理
         '''
         registForm = NohinForm(request.POST)
-        if not registForm.is_valid():
-            params = self.__initParams(registForm=registForm)
+        registDetailFormset = NohinDetailFormset(request.POST)
+
+        if (not registForm.is_valid()) or (not registDetailFormset.is_valid()):
+            params = self.__initParams(
+                registForm=registForm,
+                registDetailFormset=registDetailFormset,
+            )
             # 納品登録画面へ戻った際の初期処理でダイアログを開く
             params['openRegistModal'] = True
             return render(request, 'nohin/nohin_toroku.html', params)
     
         # 納品を登録する
-        NohinTorokuService().registNohin(registForm)
+        NohinTorokuService().registNohin(registForm, registDetailFormset)
         messages.success(request, '納品情報を登録しました。')
 
         # 納品登録画面初期表示処理へリダイレクト
         return redirect(reverse('nohin_toroku'))
 
-    def __initParams(self,  registForm=NohinForm(), registDetailForm=NohinDetailFormset(None, queryset=NohinDetail.objects.none())):
+    def __initParams(self, registForm=NohinForm(), registDetailFormset=NohinDetailFormset(None, queryset=NohinDetail.objects.none())):
     # def __initParams(self,  registFormSet=NohinFormset()):
         service = NohinTorokuService()
         params = {
@@ -42,7 +47,7 @@ class NohinTorokuView(View):
             'shohinJson': service.retrieveShohin(),
             'companyJson': service.retrieveCompany(),
             'reg': registForm,
-            'reglist': registDetailForm,
+            'reglist': registDetailFormset,
         }
 
         return params

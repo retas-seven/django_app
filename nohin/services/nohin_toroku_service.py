@@ -59,12 +59,15 @@ class NohinTorokuService:
         )
         return ret
 
-    def registNohin(self, form):
+    def registNohin(self, registForm, registDetailFormset):
         '''
         商品情報を登録する
         '''
+        # ------------------------
+        # 納品を登録
+        # ------------------------
         # 保存対象の納品オブジェクトを取得する（この時点ではコミットしない）
-        nohin = form.save(commit=False)
+        nohin = registForm.save(commit=False)
         # 画面からPOSTされたデータの他に必須のデータをセットして保存する
         nohin.belong_user = 'testuser'
         nohin.total_price = 1000
@@ -72,15 +75,15 @@ class NohinTorokuService:
         nohin.regist_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
         nohin.save()
 
-        # nohin = Nohin()
-        # nohin.belong_user = 'testuser'
-        # nohin.nohin_date = registForm.cleaned_data['registNohinDate']
-        # nohin.nohinsaki = registForm.cleaned_data['registNohinsaki']
-        # nohin.total_price = 1000
-        # nohin.memo = registForm.cleaned_data['registMemo']
-        # nohin.regist_user = 'testuser'
-        # nohin.regist_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-        # nohin.save()
+        # ------------------------
+        # 納品詳細を登録
+        # ------------------------
+        for detail in registDetailFormset.save(commit=False):
+            detail.belong_user = 'testuser'
+            detail.regist_user = 'testuser'
+            detail.regist_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+            detail.nohin = nohin
+        registDetailFormset.save()
 
     def deleteNohin(self, id):
         '''

@@ -72,7 +72,8 @@ class NohinDetailForm(forms.ModelForm):
 NohinDetailFormset = modelformset_factory(
     NohinDetail,
     form = NohinDetailForm,
-    extra = 1,
+    extra = 10,
+    max_num=10,
 )
 
     # def __init__(self, request=None, *args, **kwargs):

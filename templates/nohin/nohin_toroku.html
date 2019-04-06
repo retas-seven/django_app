@@ -214,14 +214,23 @@
                                                         <tr>
                                                             <td class="nohin_shohin_width">
                                                                 {{ form.kataban }}
+                                                                {% if form.kataban.errors %}
+                                                                    <p class="error_msg">{{ form.kataban.errors.0 }}</p>
+                                                                {% endif %}
                                                             </td>
                                                             <td class="nohin_tanka_width">
                                                                 {{ form.price }}
+                                                                {% if form.price.errors %}
+                                                                    <p class="error_msg">{{ form.price.errors.0 }}</p>
+                                                                {% endif %}
                                                             </td>
                                                             <td class="nohin_suryo_width nohin_suryo_row form-inline">
                                                                 {{ form.amount }}
                                                                 <span class="slash">/</span>
                                                                 <span class="zaikosu"></span>
+                                                                {% if form.amount.errors %}
+                                                                    <p class="error_msg">{{ form.amount.errors.0 }}</p>
+                                                                {% endif %}
                                                             </td>
                                                             <td class="nohin_func_icon_width nohin_func_icon_row">
                                                                 <a class="row_circle_btn_small js_row_delete_btn" href="#"><i class="fas fa-times"></i></a>
@@ -230,6 +239,11 @@
                                                     {% endfor %}
                                                 </tbody>
                                             </table>
+                                            {% for form in reglist %}
+                                                {% for field in form.hidden_fields %}
+                                                    {{ field }}
+                                                {% endfor %}
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
