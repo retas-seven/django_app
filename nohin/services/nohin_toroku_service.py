@@ -2,6 +2,7 @@ from app_table.models import Nohin
 from app_table.models import NohinDetail
 from app_table.models import Shohin
 from app_table.models import Company
+from decimal import Decimal
 import datetime
 import json
 
@@ -63,21 +64,21 @@ class NohinTorokuService:
         '''
         商品情報を登録する
         '''
-        # ------------------------
-        # 納品を登録
-        # ------------------------
         # 保存対象の納品オブジェクトを取得する（この時点ではコミットしない）
         nohin = registForm.save(commit=False)
+        detailList = registDetailFormset.save(commit=False)
+
+        totalPrice = 0
+        for detail in detailList:
+            totalPrice += Decimal(detail.price) * Decimal(detail.amount)
+
         # 画面からPOSTされたデータの他に必須のデータをセットして保存する
         nohin.belong_user = 'testuser'
-        nohin.total_price = 1000
+        nohin.total_price = totalPrice
         nohin.regist_user = 'testuser'
         nohin.regist_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
         nohin.save()
 
-        # ------------------------
-        # 納品詳細を登録
-        # ------------------------
         for detail in registDetailFormset.save(commit=False):
             detail.belong_user = 'testuser'
             detail.regist_user = 'testuser'
