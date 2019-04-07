@@ -50,21 +50,21 @@ class NohinDetailForm(forms.ModelForm):
                 attrs = {
                     'type': 'search',
                     'list': 'modal_shohin_list',
-                    'class' : 'form-control form-control-lg js_modal_change_shohin',
+                    'class' : 'form-control form-control-lg js_modal_shohin',
                 }
             ),
             'price': forms.TextInput(
                 attrs = {
                     'type': 'number',
                     'min': '0',
-                    'step': '1000',
                     'class' : 'form-control form-control-lg js_modal_price',
                 }
             ),
             'amount': forms.TextInput(
                 attrs = {
                     'type': 'number',
-                    'class' : 'form-control form-control-lg',
+                    'min': '0',
+                    'class' : 'form-control form-control-lg js_modal_amount',
                 }
             ),
         }
@@ -73,7 +73,6 @@ NohinDetailFormset = modelformset_factory(
     NohinDetail,
     form = NohinDetailForm,
     extra = 10,
-    max_num=10,
 )
 
     # def __init__(self, request=None, *args, **kwargs):

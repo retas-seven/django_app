@@ -98,6 +98,51 @@
     margin: 3.0rem 0px 2.0rem 0px;
 }
 
+.total_price_row {
+    width: 100%;
+    height: 4.9ex;
+    /*
+    border: solid 1px;
+    background-color: rgb(220, 220, 220);
+    */
+    display: table;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+.total_price_row_tmp {
+    width: 71%;
+}
+.total_price_row_title {
+    width: 9%;
+    display: table-cell;
+    /*
+    background-color: rgb(220, 220, 220);
+    border: 1px solid rgb(177, 177, 177);
+    background-color: rgb(177, 177, 177);
+    text-align: center;
+    font-size: 1.7rem;
+    */
+    border-bottom: solid 2px rgb(163, 163, 163);
+    padding-left: 1.2rem;
+    vertical-align: middle;
+    font-weight: 500;
+}
+.total_price_row_value {
+    width: 24%;
+    display: table-cell;
+    /*
+    background-color: rgb(220, 220, 220);
+    background-color: white;
+    border: 1px solid rgb(206, 212, 218);
+    */
+    border-bottom: solid 2px rgb(194, 194, 194);
+    font-family: 'Merriweather', serif;
+    text-align: right;
+    vertical-align: middle;
+    padding-right: 3.4rem;
+    font-size: 1.8rem;
+}
+
 /* ------------------------------------------- */
 /* モバイル用設定 */
 /* ------------------------------------------- */

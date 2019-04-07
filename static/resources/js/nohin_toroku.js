@@ -27,8 +27,11 @@ $(function(){
 	// モーダルの行削除ボタン押下時の処理
 	$(".js_row_delete_btn").on("click", modalDeleteRow);
 	// モーダルの商品選択時の処理
-	// $("[name=registShohin]").on("change", modalChangeShohin);
-	$(".js_modal_change_shohin").on("change", modalChangeShohin);
+	$(".js_modal_shohin").on("change", modalChangeShohin);
+	// モーダルの商品選択時の処理
+	$(".js_modal_price").on("input", modalChangePrice);
+	// モーダルの商品選択時の処理
+	$(".js_modal_amount").on("input", modalChangeAmount);
 
 	// モーダルを開くか判別
 	if (openRegistModal == 'True') {
@@ -112,7 +115,43 @@ function modalChangeShohin() {
 	}
 
 	// 単価、在庫数に商品情報の値を設定する
-	// $(this).closest("tr").find("[name=registNohinTanka]").val(targetShohin.price);
 	$(this).closest("tr").find(".js_modal_price").val(targetShohin.price);
 	$(this).closest("tr").find(".zaikosu").text(targetShohin.zaikosu.toLocaleString());
+	calcTotal($(".js_total"));
+}
+
+/**
+ * モーダルの単価変更時の処理
+ */
+function modalChangePrice() {
+	calcTotal($(".js_total"));
+}
+
+/**
+ * モーダルの数量変更時の処理
+ */
+function modalChangeAmount() {
+	calcTotal($(".js_total"));
+}
+
+/**
+ * 合計金額を計算する
+ */
+function calcTotal(target) {
+	let priceList = $(".js_modal_price");
+	let amountList = $(".js_modal_amount");
+	let total = 0;
+	let price;
+	let amount;
+
+	for (let i = 0; i < priceList.length; i++) {
+		price = priceList[i].valueAsNumber;
+		amount = amountList[i].valueAsNumber;
+		if (Number.isNaN(price) || Number.isNaN(amount)) {
+			continue;
+		}
+		total += price * amount;
+	}
+
+	target.text(total.toLocaleString());
 }
