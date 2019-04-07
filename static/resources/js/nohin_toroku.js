@@ -36,6 +36,7 @@ $(function(){
 	// モーダルを開くか判別
 	if (openRegistModal == 'True') {
 		$('#regist_nohin_modal').modal();
+		calcTotal($(".js_total"));
 	}
 });
 
