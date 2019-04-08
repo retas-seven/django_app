@@ -22,6 +22,10 @@ $(function(){
 	createModalCompanyList();
 	// モーダルの一覧部の商品選択候補を作成
 	createModalShohinList();
+	// 画面右下の登録ボタン押下時の処理
+	$(".js_regist_btn").on("click", showRegistModal);
+	// 各行の更新ボタン押下時の処理
+	$(".js_update_btn").on("click", showUpdateModal);
 	// モーダルの行追加ボタン押下時の処理
 	$("#row_add_btn").on("click", modalAddRow);
 	// モーダルの行削除ボタン押下時の処理
@@ -39,6 +43,20 @@ $(function(){
 		calcTotal($(".js_total"));
 	}
 });
+
+/**
+ * 画面右下の登録ボタン押下時の処理
+ */
+function showRegistModal() {
+	$('#regist_nohin_modal').modal();
+}
+
+/**
+ * 各行の更新ボタン押下時の処理
+ */
+function showUpdateModal() {
+	$('#update_nohin_modal').modal();
+}
 
 /**
  * モーダルの納品先選択候補を作成

@@ -22,6 +22,22 @@ class NohinTorokuService:
         )
         return nohinList
     
+    def retrieveNohinDetailList(self):
+        '''
+        納品詳細情報を検索する
+        '''
+        ret = {}
+        nohinDetailList = list(NohinDetail.objects
+            .filter(belong_user='testuser')
+            .values('nohin', 'kataban', 'price', 'amount')
+        )
+        for nohinDetail in nohinDetailList:
+            nohinId = nohinDetail.pop('nohin')
+            listByNohinId = ret.get(nohinId, [])
+            listByNohinId.append(nohinDetail)
+            ret[nohinId] = listByNohinId
+        return json.dumps(ret)
+
     def retrieveShohin(self):
         '''
         画面のモーダルで選択できる商品情報を検索する

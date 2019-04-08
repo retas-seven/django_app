@@ -5,7 +5,9 @@ from django.urls import reverse
 from django.contrib import messages
 from nohin.services.nohin_toroku_service import NohinTorokuService
 from nohin.forms.nohin_toroku_form import NohinForm
+from nohin.forms.nohin_toroku_form import NohinUpdateForm
 from nohin.forms.nohin_toroku_form import NohinDetailFormset
+from nohin.forms.nohin_toroku_form import NohinDetailUpdateFormset
 from app_table.models import NohinDetail
 
 class NohinTorokuView(View):
@@ -39,15 +41,22 @@ class NohinTorokuView(View):
         # 納品登録画面初期表示処理へリダイレクト
         return redirect(reverse('nohin_toroku'))
 
-    def __initParams(self, registForm=NohinForm(), registDetailFormset=NohinDetailFormset(None, queryset=NohinDetail.objects.none())):
-    # def __initParams(self,  registFormSet=NohinFormset()):
+    def __initParams(
+                self, registForm=NohinForm(), 
+                registDetailFormset=NohinDetailFormset(None, queryset=NohinDetail.objects.none()), 
+                updateForm=NohinForm(),
+                updateDetailFormset=NohinDetailUpdateFormset(None, queryset=NohinDetail.objects.none())):
+
         service = NohinTorokuService()
         params = {
             'nohinList': service.retrieveNohin(),
+            'nohinDetailJson': service.retrieveNohinDetailList(),
             'shohinJson': service.retrieveShohin(),
             'companyJson': service.retrieveCompany(),
             'reg': registForm,
             'reglist': registDetailFormset,
+            'upd': updateForm,
+            'updlist': updateDetailFormset,
         }
 
         return params
