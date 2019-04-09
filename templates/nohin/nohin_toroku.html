@@ -77,8 +77,14 @@
                                             <i class="fas fa-yen-sign font_16"></i>
                                             <span>{{nohin.total_price|intcomma}}</span>
                                         </td>
-                                        <td class="func_icon_width func_icon_row" data-memo="{{shohin.memo}}">
-                                            <a class="row_circle_btn js_update_btn" href="#"><i class="fa-lg far fa-list-alt"></i></a>
+                                        <td class="func_icon_width func_icon_row">
+                                            <a class="row_circle_btn js_update_btn" href="#"
+                                                    data-nohin_id="{{nohin.id}}"
+                                                    data-nohin_date="{{nohin.nohin_date|date:'Y/m/d'}}"
+                                                    data-nohinsaki="{{nohin.nohinsaki}}"
+                                                    data-memo="{{nohin.memo}}">
+                                                <i class="fa-lg far fa-list-alt"></i>
+                                            </a>
                                             <a class="row_circle_btn js_delete_btn" href="#"><i class="fas fa-times"></i></a>
                                         </td>
                                     </tr>
@@ -277,7 +283,7 @@
                         <button type="button" class="close" data-dismiss="modal"><i class="fas fa-lg fa-times"></i></button>
                     </div>
 
-                    <form action={% url 'nohin_toroku' %} method="post" autocomplete="off">
+                    <form action={% url 'nohin_koshin' %} method="post" autocomplete="off">
                         {% csrf_token %}
                         <div class="container-fluid">
                             <div class="row">

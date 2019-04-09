@@ -55,6 +55,13 @@ function showRegistModal() {
  * 各行の更新ボタン押下時の処理
  */
 function showUpdateModal() {
+	// alert($(this).data('nohin_date'));
+	// alert($(this).data('nohinsaki'));
+	// alert($(this).data('memo'));
+	$('#update_nohin_date').val($(this).data('nohin_date'));
+	$('#update_nohinsaki').val($(this).data('nohinsaki'));
+	$('#update_memo').val($(this).data('memo'));
+	
 	$('#update_nohin_modal').modal();
 }
 

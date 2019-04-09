@@ -44,7 +44,7 @@ class NohinTorokuView(View):
     def __initParams(
                 self, registForm=NohinForm(), 
                 registDetailFormset=NohinDetailFormset(None, queryset=NohinDetail.objects.none()), 
-                updateForm=NohinForm(),
+                updateForm=NohinUpdateForm(),
                 updateDetailFormset=NohinDetailUpdateFormset(None, queryset=NohinDetail.objects.none())):
 
         service = NohinTorokuService()
@@ -60,3 +60,21 @@ class NohinTorokuView(View):
         }
 
         return params
+
+class NohinKoshinView(View):
+    def post(self, request, *args, **kwargs):
+        '''
+        納品登録画面-更新処理
+        '''
+        # updateForm = UpdateShohinForm(request.POST)
+        # if not updateForm.is_valid():
+        #     params = ShohinTorokuView().__initParams(updateForm=updateForm)
+        #     params['openUpdateModal'] = True
+        #     return render(request, 'shohin/shohin_toroku.html', params)
+
+        # # 商品を更新する
+        # ShohinTorokuService().updateShohin(updateForm)
+        # messages.success(request, '商品を更新しました。')
+
+        # 納品情報登録画面初期表示処理へリダイレクト
+        return redirect(reverse('nohin_toroku'))
