@@ -28,11 +28,15 @@ $(function(){
 	$(".js_update_btn").on("click", showUpdateModal);
 	// ------------------------------
 	// 登録用モーダルの処理
+	// TODO:画面を分割
 	// ------------------------------
+	/*
+	// TODO:この処理の作成は後にまわす
 	// 行追加ボタン押下時の処理
 	$("#row_add_btn").on("click", modalAddRow);
 	// 行削除ボタン押下時の処理
 	$(".js_row_delete_btn").on("click", modalDeleteRow);
+	*/
 	// 商品選択時の処理
 	$(".js_modal_shohin").on("change", modalChangeShohin);
 	// 金額変更時の処理
@@ -41,6 +45,7 @@ $(function(){
 	$(".js_modal_amount").on("input", modalChangeAmount);
 	// ------------------------------
 	// 更新用モーダルの処理
+	// TODO:画面を分割
 	// ------------------------------
 	// 商品選択時の処理
 	$(".js_update_modal_shohin").on("change", updateModalChangeShohin);
@@ -93,20 +98,8 @@ function modalChangeShohin() {
 	let targetShohin = null;
 
 	// 商品の型番を取得
-	// if (val.indexOf("／") == -1) {
-	// 	kataban = val.trim();
-	// } else {
-	// 	kataban = val.substr(0, val.indexOf("／")).trim();
-	// }
 	kataban = getKataban(val);
-
 	// 型番に対応する商品情報（JSON）を取得
-	// for (let shohin of shohinJson) {
-	// 	if (shohin.kataban == kataban) {
-	// 		targetShohin = shohin;
-	// 		break;
-	// 	}
-	// }
 	targetShohin = getTargetShohinJson(kataban);
 
 	if (targetShohin == null) {
@@ -126,7 +119,6 @@ function modalChangeShohin() {
  * モーダルの単価変更時の処理
  */
 function modalChangePrice() {
-	// calcTotal($(".js_total"));
 	total = calcTotal($(".js_modal_price"), $(".js_modal_amount"));
 	$(".js_total").text(total.toLocaleString());
 }
@@ -135,7 +127,6 @@ function modalChangePrice() {
  * モーダルの数量変更時の処理
  */
 function modalChangeAmount() {
-	// calcTotal($(".js_total"));
 	total = calcTotal($(".js_modal_price"), $(".js_modal_amount"));
 	$(".js_total").text(total.toLocaleString());
 }
@@ -147,14 +138,11 @@ function modalChangeAmount() {
  * 各行の更新ボタン押下時の処理
  */
 function showUpdateModal() {
+	clearUpdateModal();
 	$('#update_nohin_date').val($(this).data('nohin_date'));
 	$('#update_nohinsaki').val($(this).data('nohinsaki'));
 	$('#update_memo').val($(this).data('memo'));
 
-	// alert(nohinDetailJson[$(this).data('nohin_id')])
-	// for (let detail of nohinDetailJson[$(this).data('nohin_id')]) {
-	// 	alert(detail.kataban);
-	// }
 	let nohinDetailList = nohinDetailJson[$(this).data('nohin_id')]
 	let detail;
 	for (let i = 0; i < nohinDetailList.length; i++) {
@@ -178,11 +166,24 @@ function showUpdateModal() {
 }
 
 /**
+ * 更新用モーダルをクリアする
+ */
+function clearUpdateModal() {
+	$('#update_nohin_date').val("");
+	$('#update_nohinsaki').val("");
+	$('#update_memo').val("");
+	$(".js_update_modal_shohin").val("");
+	$(".js_update_modal_price").val("");
+	$(".js_update_modal_amount").val("");
+	$("#update_nohin_modal").find(".zaikosu").text("");
+	$(".js_update_total").text("");
+}
+
+/**
  * モーダルの商品選択時の処理
  */
 function updateModalChangeShohin() {
 	let val = $(this).val();
-	alert(val);
 	let kataban ;
 	let targetShohin = null;
 
@@ -285,8 +286,6 @@ function getTargetShohinJson(kataban) {
  */
 // function calcTotal(target) {
 function calcTotal(priceList, amountList) {
-	// let priceList = $(".js_modal_price");
-	// let amountList = $(".js_modal_amount");
 	let total = 0;
 	let price;
 	let amount;
@@ -300,6 +299,5 @@ function calcTotal(priceList, amountList) {
 		total += price * amount;
 	}
 
-	// target.text(total.toLocaleString());
 	return total;
 }
