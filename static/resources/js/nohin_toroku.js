@@ -26,16 +26,28 @@ $(function(){
 	$(".js_regist_btn").on("click", showRegistModal);
 	// 各行の更新ボタン押下時の処理
 	$(".js_update_btn").on("click", showUpdateModal);
-	// モーダルの行追加ボタン押下時の処理
+	// ------------------------------
+	// 登録用モーダルの処理
+	// ------------------------------
+	// 行追加ボタン押下時の処理
 	$("#row_add_btn").on("click", modalAddRow);
-	// モーダルの行削除ボタン押下時の処理
+	// 行削除ボタン押下時の処理
 	$(".js_row_delete_btn").on("click", modalDeleteRow);
-	// モーダルの商品選択時の処理
+	// 商品選択時の処理
 	$(".js_modal_shohin").on("change", modalChangeShohin);
-	// モーダルの商品選択時の処理
+	// 金額変更時の処理
 	$(".js_modal_price").on("input", modalChangePrice);
-	// モーダルの商品選択時の処理
+	// 数量変更時の処理
 	$(".js_modal_amount").on("input", modalChangeAmount);
+	// ------------------------------
+	// 更新用モーダルの処理
+	// ------------------------------
+	// 商品選択時の処理
+	$(".js_update_modal_shohin").on("change", updateModalChangeShohin);
+	// 金額変更時の処理
+	$(".js_update_modal_price").on("input", updateModalChangePrice);
+	// 数量変更時の処理
+	$(".js_update_modal_amount").on("input", updateModalChangeAmount);
 
 	// モーダルを開くか判別
 	if (openRegistModal == 'True') {
@@ -44,53 +56,14 @@ $(function(){
 	}
 });
 
+//---------------------------------------
+// 以下、納品情報登録用モーダル用の処理
+//---------------------------------------
 /**
  * 画面右下の登録ボタン押下時の処理
  */
 function showRegistModal() {
 	$('#regist_nohin_modal').modal();
-}
-
-/**
- * 各行の更新ボタン押下時の処理
- */
-function showUpdateModal() {
-	// alert($(this).data('nohin_date'));
-	// alert($(this).data('nohinsaki'));
-	// alert($(this).data('memo'));
-	$('#update_nohin_date').val($(this).data('nohin_date'));
-	$('#update_nohinsaki').val($(this).data('nohinsaki'));
-	$('#update_memo').val($(this).data('memo'));
-	
-	$('#update_nohin_modal').modal();
-}
-
-/**
- * モーダルの納品先選択候補を作成
- */
-function createModalCompanyList() {
-	let modalCompanyList = $("#modal_company_list");
-	let optionList = [];
-	let option;
-	for (let company of companyJson) {
-		option = $("<option>", { value: company.company_name });
-		optionList.push(option);
-	}
-	modalCompanyList.append(optionList);
-}
-
-/**
- * モーダルの一覧部の商品選択候補を作成
- */
-function createModalShohinList() {
-	let modalShohinList = $("#modal_shohin_list");
-	let optionList = [];
-	for (let shohin of shohinJson) {
-		let content = shohin.kataban + " ／ " + shohin.shohin_name
-		option = $("<option>", { value: content });
-		optionList.push(option);
-	}
-	modalShohinList.append(optionList);
 }
 
 /**
@@ -120,19 +93,21 @@ function modalChangeShohin() {
 	let targetShohin = null;
 
 	// 商品の型番を取得
-	if (val.indexOf("／") == -1) {
-		kataban = val.trim();
-	} else {
-		kataban = val.substr(0, val.indexOf("／")).trim();
-	}
+	// if (val.indexOf("／") == -1) {
+	// 	kataban = val.trim();
+	// } else {
+	// 	kataban = val.substr(0, val.indexOf("／")).trim();
+	// }
+	kataban = getKataban(val);
 
 	// 型番に対応する商品情報（JSON）を取得
-	for (let shohin of shohinJson) {
-		if (shohin.kataban == kataban) {
-			targetShohin = shohin;
-			break;
-		}
-	}
+	// for (let shohin of shohinJson) {
+	// 	if (shohin.kataban == kataban) {
+	// 		targetShohin = shohin;
+	// 		break;
+	// 	}
+	// }
+	targetShohin = getTargetShohinJson(kataban);
 
 	if (targetShohin == null) {
 		$(this).val("");
@@ -143,29 +118,175 @@ function modalChangeShohin() {
 	// 単価、在庫数に商品情報の値を設定する
 	$(this).closest("tr").find(".js_modal_price").val(targetShohin.price);
 	$(this).closest("tr").find(".zaikosu").text(targetShohin.zaikosu.toLocaleString());
-	calcTotal($(".js_total"));
+	total = calcTotal($(".js_modal_price"), $(".js_modal_amount"));
+	$(".js_total").text(total.toLocaleString());
 }
 
 /**
  * モーダルの単価変更時の処理
  */
 function modalChangePrice() {
-	calcTotal($(".js_total"));
+	// calcTotal($(".js_total"));
+	total = calcTotal($(".js_modal_price"), $(".js_modal_amount"));
+	$(".js_total").text(total.toLocaleString());
 }
 
 /**
  * モーダルの数量変更時の処理
  */
 function modalChangeAmount() {
-	calcTotal($(".js_total"));
+	// calcTotal($(".js_total"));
+	total = calcTotal($(".js_modal_price"), $(".js_modal_amount"));
+	$(".js_total").text(total.toLocaleString());
+}
+
+//---------------------------------------
+// 以下、納品情報更新用モーダル用の処理
+//---------------------------------------
+/**
+ * 各行の更新ボタン押下時の処理
+ */
+function showUpdateModal() {
+	$('#update_nohin_date').val($(this).data('nohin_date'));
+	$('#update_nohinsaki').val($(this).data('nohinsaki'));
+	$('#update_memo').val($(this).data('memo'));
+
+	// alert(nohinDetailJson[$(this).data('nohin_id')])
+	// for (let detail of nohinDetailJson[$(this).data('nohin_id')]) {
+	// 	alert(detail.kataban);
+	// }
+	let nohinDetailList = nohinDetailJson[$(this).data('nohin_id')]
+	let detail;
+	for (let i = 0; i < nohinDetailList.length; i++) {
+		detail = nohinDetailList[i];
+		$("#update_nohin_modal").find("#id_form-" + i +"-kataban").val(detail.kataban);
+		$("#update_nohin_modal").find("#id_form-" + i +"-price").val(detail.price);
+		let amount = $("#update_nohin_modal").find("#id_form-" + i +"-amount")
+		amount.val(detail.amount);
+
+		noSlashKataban = getKataban(detail.kataban);
+		targetShohin = getTargetShohinJson(noSlashKataban);
+		// 在庫数に商品情報の値を設定する
+		amount.closest("tr").find(".zaikosu").text(targetShohin.zaikosu.toLocaleString());
+	}
+
+	// 合計金額を計算
+	total = calcTotal($(".js_update_modal_price"), $(".js_update_modal_amount"));
+	$(".js_update_total").text(total.toLocaleString());
+
+	$('#update_nohin_modal').modal();
+}
+
+/**
+ * モーダルの商品選択時の処理
+ */
+function updateModalChangeShohin() {
+	let val = $(this).val();
+	alert(val);
+	let kataban ;
+	let targetShohin = null;
+
+	// 商品の型番を取得
+	kataban = getKataban(val);
+	// 型番に対応する商品情報（JSON）を取得
+	targetShohin = getTargetShohinJson(kataban);
+
+	if (targetShohin == null) {
+		$(this).val("");
+		$(this).closest("tr").find(".zaikosu").text("");
+		return;
+	}
+
+	// 単価、在庫数に商品情報の値を設定する
+	$(this).closest("tr").find(".js_update_modal_price").val(targetShohin.price);
+	$(this).closest("tr").find(".zaikosu").text(targetShohin.zaikosu.toLocaleString());
+	total = calcTotal($(".js_update_modal_price"), $(".js_update_modal_amount"));
+	$(".js_update_total").text(total.toLocaleString());
+}
+
+/**
+ * モーダルの単価変更時の処理
+ */
+function updateModalChangePrice() {
+	total = calcTotal($(".js_update_modal_price"), $(".js_update_modal_amount"));
+	$(".js_update_total").text(total.toLocaleString());
+}
+
+/**
+ * モーダルの数量変更時の処理
+ */
+function updateModalChangeAmount() {
+	total = calcTotal($(".js_update_modal_price"), $(".js_update_modal_amount"));
+	$(".js_update_total").text(total.toLocaleString());
+}
+
+//--------------------------------------------
+// 以下、納品情報登録用、更新用モーダル共通の処理
+//--------------------------------------------
+/**
+ * モーダルの納品先選択候補を作成
+ */
+function createModalCompanyList() {
+	let modalCompanyList = $("#modal_company_list");
+	let optionList = [];
+	let option;
+	for (let company of companyJson) {
+		option = $("<option>", { value: company.company_name });
+		optionList.push(option);
+	}
+	modalCompanyList.append(optionList);
+}
+
+/**
+ * モーダルの一覧部の商品選択候補を作成
+ */
+function createModalShohinList() {
+	let modalShohinList = $("#modal_shohin_list");
+	let optionList = [];
+	for (let shohin of shohinJson) {
+		let content = shohin.kataban + " ／ " + shohin.shohin_name
+		option = $("<option>", { value: content });
+		optionList.push(option);
+	}
+	modalShohinList.append(optionList);
+}
+
+/**
+ * 商品の型番を取得する
+ */
+function getKataban(val) {
+	kataban = null;
+	// 商品の型番を取得
+	if (val.indexOf("／") == -1) {
+		kataban = val.trim();
+	} else {
+		kataban = val.substr(0, val.indexOf("／")).trim();
+	}
+	return kataban;
+}
+
+/**
+ * 型番に対応する商品情報（JSON）を取得する
+ */
+function getTargetShohinJson(kataban) {
+	targetShohin = null;
+	// 型番に対応する商品情報（JSON）を取得
+	for (let shohin of shohinJson) {
+		if (shohin.kataban == kataban) {
+			targetShohin = shohin;
+			break;
+		}
+	}
+	return targetShohin;
 }
 
 /**
  * 合計金額を計算する
  */
-function calcTotal(target) {
-	let priceList = $(".js_modal_price");
-	let amountList = $(".js_modal_amount");
+// function calcTotal(target) {
+function calcTotal(priceList, amountList) {
+	// let priceList = $(".js_modal_price");
+	// let amountList = $(".js_modal_amount");
 	let total = 0;
 	let price;
 	let amount;
@@ -179,5 +300,6 @@ function calcTotal(target) {
 		total += price * amount;
 	}
 
-	target.text(total.toLocaleString());
+	// target.text(total.toLocaleString());
+	return total;
 }

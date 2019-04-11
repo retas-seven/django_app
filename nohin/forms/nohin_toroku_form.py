@@ -110,7 +110,7 @@ class NohinUpdateForm(forms.ModelForm):
 
 class NohinDetailUpdateForm(forms.ModelForm):
     '''
-    納品詳細情報登録用フォーム
+    納品詳細情報更新用フォーム
     '''
     class Meta:
         model = NohinDetail
@@ -118,23 +118,24 @@ class NohinDetailUpdateForm(forms.ModelForm):
         widgets = {
             'kataban': forms.TextInput(
                 attrs = {
+                    # 'id': 'update_detail_kataban',
                     'type': 'search',
                     'list': 'modal_shohin_list',
-                    'class' : 'form-control form-control-lg js_modal_shohin',
+                    'class' : 'form-control form-control-lg js_update_modal_shohin',
                 }
             ),
             'price': forms.TextInput(
                 attrs = {
                     'type': 'number',
                     'min': '0',
-                    'class' : 'form-control form-control-lg js_modal_price',
+                    'class' : 'form-control form-control-lg js_update_modal_price',
                 }
             ),
             'amount': forms.TextInput(
                 attrs = {
                     'type': 'number',
                     'min': '0',
-                    'class' : 'form-control form-control-lg js_modal_amount',
+                    'class' : 'form-control form-control-lg js_update_modal_amount',
                 }
             ),
         }
