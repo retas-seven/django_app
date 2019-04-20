@@ -78,14 +78,14 @@
                                             <span>{{nohin.total_price|intcomma}}</span>
                                         </td>
                                         <td class="func_icon_width func_icon_row">
-                                            <a class="row_circle_btn js_update_btn" href="#"
+                                            <a class="row_circle_btn js_update_btn"
                                                     data-nohin_id="{{nohin.id}}"
                                                     data-nohin_date="{{nohin.nohin_date|date:'Y-m-d'}}"
                                                     data-nohinsaki="{{nohin.nohinsaki}}"
                                                     data-memo="{{nohin.memo}}">
                                                 <i class="fa-lg far fa-list-alt"></i>
                                             </a>
-                                            <a class="row_circle_btn js_delete_btn" href="#" data-nohin_id="{{nohin.id}}"><i class="fas fa-times"></i></a>
+                                            <a class="row_circle_btn js_delete_btn" data-nohin_id="{{nohin.id}}"><i class="fas fa-times"></i></a>
                                         </td>
                                     </tr>
                                 {% endfor %}
