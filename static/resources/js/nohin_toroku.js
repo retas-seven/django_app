@@ -57,7 +57,10 @@ $(function(){
 	// モーダルを開くか判別
 	if (openRegistModal == 'True') {
 		$('#regist_nohin_modal').modal();
-		calcTotal($(".js_total"));
+		let [total, zeigaku, zeikomiTotal] = calcTotal($(".js_modal_price"), $(".js_modal_amount"));
+		$(".js_total").text(total.toLocaleString());
+		$(".js_zeigaku").text(zeigaku.toLocaleString());
+		$(".js_zeikomi_total").text(zeikomiTotal.toLocaleString());
 	}
 });
 
@@ -111,24 +114,30 @@ function modalChangeShohin() {
 	// 単価、在庫数に商品情報の値を設定する
 	$(this).closest("tr").find(".js_modal_price").val(targetShohin.price);
 	$(this).closest("tr").find(".zaikosu").text(targetShohin.zaikosu.toLocaleString());
-	total = calcTotal($(".js_modal_price"), $(".js_modal_amount"));
+	let [total, zeigaku, zeikomiTotal] = calcTotal($(".js_modal_price"), $(".js_modal_amount"));
 	$(".js_total").text(total.toLocaleString());
+	$(".js_zeigaku").text(zeigaku.toLocaleString());
+	$(".js_zeikomi_total").text(zeikomiTotal.toLocaleString());
 }
 
 /**
  * モーダルの単価変更時の処理
  */
 function modalChangePrice() {
-	total = calcTotal($(".js_modal_price"), $(".js_modal_amount"));
+	let [total, zeigaku, zeikomiTotal] = calcTotal($(".js_modal_price"), $(".js_modal_amount"));
 	$(".js_total").text(total.toLocaleString());
+	$(".js_zeigaku").text(zeigaku.toLocaleString());
+	$(".js_zeikomi_total").text(zeikomiTotal.toLocaleString());
 }
 
 /**
  * モーダルの数量変更時の処理
  */
 function modalChangeAmount() {
-	total = calcTotal($(".js_modal_price"), $(".js_modal_amount"));
+	let [total, zeigaku, zeikomiTotal] = calcTotal($(".js_modal_price"), $(".js_modal_amount"));
 	$(".js_total").text(total.toLocaleString());
+	$(".js_zeigaku").text(zeigaku.toLocaleString());
+	$(".js_zeikomi_total").text(zeikomiTotal.toLocaleString());
 }
 
 //---------------------------------------
@@ -159,8 +168,10 @@ function showUpdateModal() {
 	}
 
 	// 合計金額を計算
-	total = calcTotal($(".js_update_modal_price"), $(".js_update_modal_amount"));
+	let [total, zeigaku, zeikomiTotal] = calcTotal($(".js_update_modal_price"), $(".js_update_modal_amount"));
 	$(".js_update_total").text(total.toLocaleString());
+	$(".js_update_zeigaku").text(zeigaku.toLocaleString());
+	$(".js_update_zeikomi_total").text(zeikomiTotal.toLocaleString());
 
 	$('#update_nohin_modal').modal();
 }
@@ -177,6 +188,8 @@ function clearUpdateModal() {
 	$(".js_update_modal_amount").val("");
 	$("#update_nohin_modal").find(".zaikosu").text("");
 	$(".js_update_total").text("");
+	$(".js_update_zeigaku").text("");
+	$(".js_update_zeikomi_total").text("");
 }
 
 /**
@@ -201,24 +214,30 @@ function updateModalChangeShohin() {
 	// 単価、在庫数に商品情報の値を設定する
 	$(this).closest("tr").find(".js_update_modal_price").val(targetShohin.price);
 	$(this).closest("tr").find(".zaikosu").text(targetShohin.zaikosu.toLocaleString());
-	total = calcTotal($(".js_update_modal_price"), $(".js_update_modal_amount"));
+	let [total, zeigaku, zeikomiTotal] = calcTotal($(".js_update_modal_price"), $(".js_update_modal_amount"));
 	$(".js_update_total").text(total.toLocaleString());
+	$(".js_update_zeigaku").text(zeigaku.toLocaleString());
+	$(".js_update_zeikomi_total").text(zeikomiTotal.toLocaleString());
 }
 
 /**
  * モーダルの単価変更時の処理
  */
 function updateModalChangePrice() {
-	total = calcTotal($(".js_update_modal_price"), $(".js_update_modal_amount"));
+	let [total, zeigaku, zeikomiTotal] = calcTotal($(".js_update_modal_price"), $(".js_update_modal_amount"));
 	$(".js_update_total").text(total.toLocaleString());
+	$(".js_update_zeigaku").text(zeigaku.toLocaleString());
+	$(".js_update_zeikomi_total").text(zeikomiTotal.toLocaleString());
 }
 
 /**
  * モーダルの数量変更時の処理
  */
 function updateModalChangeAmount() {
-	total = calcTotal($(".js_update_modal_price"), $(".js_update_modal_amount"));
+	let [total, zeigaku, zeikomiTotal] = calcTotal($(".js_update_modal_price"), $(".js_update_modal_amount"));
 	$(".js_update_total").text(total.toLocaleString());
+	$(".js_update_zeigaku").text(zeigaku.toLocaleString());
+	$(".js_update_zeikomi_total").text(zeikomiTotal.toLocaleString());
 }
 
 //--------------------------------------------
@@ -287,6 +306,8 @@ function getTargetShohinJson(kataban) {
 // function calcTotal(target) {
 function calcTotal(priceList, amountList) {
 	let total = 0;
+	let zeigaku = 0;
+	let zeikomiTotal = 0;
 	let price;
 	let amount;
 
@@ -299,5 +320,9 @@ function calcTotal(priceList, amountList) {
 		total += price * amount;
 	}
 
-	return total;
+	decimalTotal = new Decimal(total);
+	zeiritsu = new Decimal(0.08);
+	zeigaku = decimalTotal.times(zeiritsu).floor();
+	zeikomiTotal = decimalTotal.plus(zeigaku);
+	return [decimalTotal.toNumber(), zeigaku.toNumber(), zeikomiTotal.toNumber()]
 }
