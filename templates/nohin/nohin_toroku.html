@@ -118,7 +118,7 @@
                     <!-- MODAL HEADER -->
                     <div class="modal-header modal_header_global">
                         <div class="modal-title modal_title">
-                            <span>納品情報登録</span>
+                            <span>納品情報</span>
                         </div>
                         <!-- 閉じるボタン -->
                         <button type="button" class="close" data-dismiss="modal"><i class="fas fa-lg fa-times"></i></button>
@@ -284,7 +284,7 @@
                     <!-- MODAL HEADER -->
                     <div class="modal-header modal_header_global">
                         <div class="modal-title modal_title">
-                            <span>納品情報更新</span>
+                            <span>納品情報</span>
                         </div>
                         <!-- 閉じるボタン -->
                         <button type="button" class="close" data-dismiss="modal"><i class="fas fa-lg fa-times"></i></button>
@@ -292,6 +292,7 @@
 
                     <form action={% url 'nohin_koshin' %} method="post" autocomplete="off">
                         {% csrf_token %}
+                        <input type="hidden" id="update_nohin_id" name="update_nohin_id" value="">
                         <div class="container-fluid">
                             <div class="row">
                                 <!-- MODAL BODY -->
@@ -414,7 +415,7 @@
                         
                         <!-- MODAL FOOTER -->
                         <div class="modal-footer modal_footer_global">
-                            <button type="submit" onfocus="this.blur();" class="common_btn"><i class="fas fa-plus"></i> 更新</button>
+                            <button type="submit" onfocus="this.blur();" class="common_btn"><i class="fas fa-edit"></i> 更新</button>
                         </div>
                     </form>
                 </div>
@@ -436,6 +437,7 @@
         <script src="{% static 'resources/js/nohin_toroku.js' %}"></script>
         <script>
             var openRegistModal = '{{ openRegistModal }}';
+            var openUpdateModal = '{{ openUpdateModal }}';
             var shohinJson = JSON.parse( '{{ shohinJson }}'.replace(/&quot;/g,'"') );
             var companyJson = JSON.parse( '{{ companyJson }}'.replace(/&quot;/g,'"') );
             var nohinDetailJson = JSON.parse( '{{ nohinDetailJson }}'.replace(/&quot;/g,'"') );

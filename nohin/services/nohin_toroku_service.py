@@ -108,8 +108,40 @@ class NohinTorokuService:
         '''
         pass
 
-    def updateNohin(self, form):
+    def updateNohin(self, updateNohinId, updateForm, updateDetailFormset):
         '''
         商品情報を更新する
         '''
-        pass
+        nohin = Nohin.objects.get(
+            belong_user='testuser',
+            id=updateNohinId,
+        )
+
+        # 画面で入力した納品を取得する
+        nohinFormModel = updateForm.save(commit=False)
+        detailList = updateDetailFormset.save(commit=False)
+
+        totalPrice = 0
+        for detail in detailList:
+            totalPrice += Decimal(detail.price) * Decimal(detail.amount)
+
+        # 画面からPOSTされたデータの他に必須のデータをセットして保存する
+        nohin.nohin_date = nohinFormModel.nohin_date
+        nohin.total_price = Decimal(totalPrice) * Decimal('1.08')  # 税込額
+        nohin.memo = nohinFormModel.memo
+        nohin.nohinsaki = nohinFormModel.nohinsaki
+        nohin.update_user = 'testuser'
+        nohin.update_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        nohin.save()
+
+        # 更新はdelete→insertとする
+        NohinDetail.objects.filter(
+            nohin=nohin
+        ).delete()
+
+        for detail in updateDetailFormset.save(commit=False):
+            detail.belong_user = 'testuser'
+            detail.regist_user = 'testuser'
+            detail.regist_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+            detail.nohin = nohin
+        updateDetailFormset.save()

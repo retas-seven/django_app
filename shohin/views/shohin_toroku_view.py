@@ -34,7 +34,7 @@ class ShohinTorokuView(View):
     
         # 商品を登録する
         ShohinTorokuService().registShohin(registForm)
-        messages.success(request, '商品を登録しました。')
+        messages.success(request, '商品情報を登録しました。')
 
         # 商品登録画面初期表示処理へリダイレクト
         return redirect(reverse('shohin_toroku'))
@@ -46,7 +46,7 @@ class ShohinSakujoView(View):
         '''
         # 商品を登録する
         ShohinTorokuService().deleteShohin(request.POST.get("kataban"))
-        messages.success(request, '商品を削除しました。')
+        messages.success(request, '商品情報を削除しました。')
 
         # 商品登録画面初期表示処理へリダイレクト
         return redirect(reverse('shohin_toroku'))
@@ -64,7 +64,7 @@ class ShohinKoshinView(View):
 
         # 商品を更新する
         ShohinTorokuService().updateShohin(updateForm)
-        messages.success(request, '商品を更新しました。')
+        messages.success(request, '商品情報を更新しました。')
 
         # 商品登録画面初期表示処理へリダイレクト
         return redirect(reverse('shohin_toroku'))

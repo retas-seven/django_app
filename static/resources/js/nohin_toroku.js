@@ -56,11 +56,20 @@ $(function(){
 
 	// モーダルを開くか判別
 	if (openRegistModal == 'True') {
-		$('#regist_nohin_modal').modal();
 		let [total, zeigaku, zeikomiTotal] = calcTotal($(".js_modal_price"), $(".js_modal_amount"));
 		$(".js_total").text(total.toLocaleString());
 		$(".js_zeigaku").text(zeigaku.toLocaleString());
 		$(".js_zeikomi_total").text(zeikomiTotal.toLocaleString());
+		$('#regist_nohin_modal').modal();
+	}
+
+	// モーダルを開くか判別
+	if (openUpdateModal == 'True') {
+		let [total, zeigaku, zeikomiTotal] = calcTotal($(".js_update_modal_price"), $(".js_update_modal_amount"));
+		$(".js_update_total").text(total.toLocaleString());
+		$(".js_update_zeigaku").text(zeigaku.toLocaleString());
+		$(".js_update_zeikomi_total").text(zeikomiTotal.toLocaleString());
+		$('#update_nohin_modal').modal();
 	}
 });
 
@@ -148,6 +157,7 @@ function modalChangeAmount() {
  */
 function showUpdateModal() {
 	clearUpdateModal();
+	$('#update_nohin_id').val($(this).data('nohin_id'));
 	$('#update_nohin_date').val($(this).data('nohin_date'));
 	$('#update_nohinsaki').val($(this).data('nohinsaki'));
 	$('#update_memo').val($(this).data('memo'));
@@ -180,6 +190,7 @@ function showUpdateModal() {
  * 更新用モーダルをクリアする
  */
 function clearUpdateModal() {
+	$('#update_id').val("");
 	$('#update_nohin_date').val("");
 	$('#update_nohinsaki').val("");
 	$('#update_memo').val("");

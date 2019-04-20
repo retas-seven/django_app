@@ -5,8 +5,8 @@ from django.urls import reverse
 from django.contrib import messages
 from nohin.services.nohin_toroku_service import NohinTorokuService
 from nohin.forms.nohin_toroku_form import NohinForm
-from nohin.forms.nohin_toroku_form import NohinUpdateForm
 from nohin.forms.nohin_toroku_form import NohinDetailFormset
+from nohin.forms.nohin_toroku_form import NohinUpdateForm
 from nohin.forms.nohin_toroku_form import NohinDetailUpdateFormset
 from app_table.models import NohinDetail
 
@@ -66,15 +66,23 @@ class NohinKoshinView(View):
         '''
         納品登録画面-更新処理
         '''
-        # updateForm = UpdateShohinForm(request.POST)
-        # if not updateForm.is_valid():
-        #     params = ShohinTorokuView().__initParams(updateForm=updateForm)
-        #     params['openUpdateModal'] = True
-        #     return render(request, 'shohin/shohin_toroku.html', params)
+        updateForm = NohinUpdateForm(request.POST)
+        updateDetailFormset = NohinDetailUpdateFormset(request.POST)
 
-        # # 商品を更新する
-        # ShohinTorokuService().updateShohin(updateForm)
-        # messages.success(request, '商品を更新しました。')
+        if (not updateForm.is_valid()) or (not updateDetailFormset.is_valid()):
+            params = NohinTorokuView()._NohinTorokuView__initParams(
+                updateForm=updateForm,
+                updateDetailFormset=updateDetailFormset,
+            )
+            # 納品登録画面へ戻った際の初期処理でダイアログを開く
+            params['openUpdateModal'] = True
+            return render(request, 'nohin/nohin_toroku.html', params)
+    
+        # 納品を更新する
+        updateNohinId = request.POST.get("update_nohin_id")
+        NohinTorokuService().updateNohin(updateNohinId, updateForm, updateDetailFormset)
+
+        messages.success(request, '納品情報を更新しました。')
 
         # 納品情報登録画面初期表示処理へリダイレクト
         return redirect(reverse('nohin_toroku'))
