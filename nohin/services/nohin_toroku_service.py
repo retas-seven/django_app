@@ -102,11 +102,12 @@ class NohinTorokuService:
             detail.nohin = nohin
         registDetailFormset.save()
 
-    def deleteNohin(self, id):
+    def deleteNohin(self, nohin_id):
         '''
         商品情報を削除する
         '''
-        pass
+        nohin = Nohin.objects.get(belong_user='testuser', id=nohin_id)
+        nohin.delete()
 
     def updateNohin(self, updateNohinId, updateForm, updateDetailFormset):
         '''

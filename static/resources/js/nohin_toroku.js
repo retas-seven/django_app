@@ -26,6 +26,8 @@ $(function(){
 	$(".js_regist_btn").on("click", showRegistModal);
 	// 各行の更新ボタン押下時の処理
 	$(".js_update_btn").on("click", showUpdateModal);
+	// 各行の削除ボタン押下時の処理
+	$(".js_delete_btn").on("click", deleteNohin);
 	// ------------------------------
 	// 登録用モーダルの処理
 	// TODO:画面を分割
@@ -337,3 +339,20 @@ function calcTotal(priceList, amountList) {
 	zeikomiTotal = decimalTotal.plus(zeigaku);
 	return [decimalTotal.toNumber(), zeigaku.toNumber(), zeikomiTotal.toNumber()]
 }
+
+
+//---------------------------------------
+// 以下、納品情報削除用の処理
+//---------------------------------------
+/**
+ * 各行の削除ボタン押下時の処理
+ */
+function deleteNohin() {
+	if(!confirm('削除しますか？')){
+		return false;
+	}
+	let nohin_id = $(this).data('nohin_id');
+	let form = $('[name=nohin_sakujo_form]');
+	$('.js_nohin_sakujo_key_id').val(nohin_id);
+	form.submit();
+};

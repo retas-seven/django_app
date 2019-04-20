@@ -61,6 +61,18 @@ class NohinTorokuView(View):
 
         return params
 
+class NohinSakujoView(View):
+    def post(self, request, *args, **kwargs):
+        '''
+        納品登録画面-削除処理
+        '''
+        # 商品を登録する
+        NohinTorokuService().deleteNohin(request.POST.get("nohin_id"))
+        messages.success(request, '納品情報を削除しました。')
+
+        # 商品登録画面初期表示処理へリダイレクト
+        return redirect(reverse('nohin_toroku'))
+
 class NohinKoshinView(View):
     def post(self, request, *args, **kwargs):
         '''

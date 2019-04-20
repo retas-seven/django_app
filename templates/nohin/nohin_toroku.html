@@ -85,7 +85,7 @@
                                                     data-memo="{{nohin.memo}}">
                                                 <i class="fa-lg far fa-list-alt"></i>
                                             </a>
-                                            <a class="row_circle_btn js_delete_btn" href="#"><i class="fas fa-times"></i></a>
+                                            <a class="row_circle_btn js_delete_btn" href="#" data-nohin_id="{{nohin.id}}"><i class="fas fa-times"></i></a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -94,6 +94,12 @@
                     </div>
                 </div><!-- end row-->
             </div>
+
+            <!-- 納品情報削除用のForm-->
+            <form action={% url 'nohin_sakujo' %} method="post" name="nohin_sakujo_form">
+                {% csrf_token %}
+                <input type="hidden" value="" class="js_nohin_sakujo_key_id" name="nohin_id">
+            </form>
         </div>
         
         <!-- FOOTER -->
