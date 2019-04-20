@@ -18,7 +18,7 @@ class NohinTorokuService:
         nohinList = (Nohin.objects
             .filter(belong_user='testuser')
             .values('id', 'nohin_date', 'nohinsaki', 'total_price', 'memo')
-            .order_by('-nohin_date') # 降順
+            .order_by('-nohin_date', '-regist_date') # 降順
         )
         return nohinList
     
@@ -90,7 +90,7 @@ class NohinTorokuService:
 
         # 画面からPOSTされたデータの他に必須のデータをセットして保存する
         nohin.belong_user = 'testuser'
-        nohin.total_price = totalPrice
+        nohin.total_price = Decimal(totalPrice) * Decimal('1.08')  # 税込額
         nohin.regist_user = 'testuser'
         nohin.regist_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
         nohin.save()

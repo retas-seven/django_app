@@ -42,10 +42,10 @@ class NohinTorokuView(View):
         return redirect(reverse('nohin_toroku'))
 
     def __initParams(
-                self, registForm=NohinForm(), 
-                registDetailFormset=NohinDetailFormset(None, queryset=NohinDetail.objects.none()), 
-                updateForm=NohinUpdateForm(),
-                updateDetailFormset=NohinDetailUpdateFormset(None, queryset=NohinDetail.objects.none())):
+            self, registForm=NohinForm(), 
+            registDetailFormset=NohinDetailFormset(None, queryset=NohinDetail.objects.none()), 
+            updateForm=NohinUpdateForm(),
+            updateDetailFormset=NohinDetailUpdateFormset(None, queryset=NohinDetail.objects.none())):
 
         service = NohinTorokuService()
         params = {
