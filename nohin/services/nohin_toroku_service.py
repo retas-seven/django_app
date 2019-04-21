@@ -76,6 +76,25 @@ class NohinTorokuService:
         )
         return ret
 
+    def registCompany(self, companyName):
+        '''
+        会社名の存在有無を確認し、存在しなければ登録する
+        '''
+        exist = (Company.objects
+            .filter(
+                belong_user='testuser',
+                company_name=companyName,
+            ).exists()
+        )
+
+        if not exist:
+            company = Company()
+            company.belong_user = 'testuser'
+            company.company_name = companyName
+            company.regist_user = 'testuser'
+            company.regist_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+            company.save()
+
     def registNohin(self, registForm, registDetailFormset):
         '''
         商品情報を登録する

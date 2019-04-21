@@ -35,7 +35,9 @@ class NohinTorokuView(View):
             return render(request, 'nohin/nohin_toroku.html', params)
     
         # 納品を登録する
-        NohinTorokuService().registNohin(registForm, registDetailFormset)
+        service = NohinTorokuService()
+        service.registCompany(registForm.cleaned_data['nohinsaki'])
+        service.registNohin(registForm, registDetailFormset)
         messages.success(request, '納品情報を登録しました。')
 
         # 納品登録画面初期表示処理へリダイレクト
@@ -66,11 +68,11 @@ class NohinSakujoView(View):
         '''
         納品登録画面-削除処理
         '''
-        # 商品を登録する
+        # 納品を登録する
         NohinTorokuService().deleteNohin(request.POST.get("nohin_id"))
         messages.success(request, '納品情報を削除しました。')
 
-        # 商品登録画面初期表示処理へリダイレクト
+        # 納品登録画面初期表示処理へリダイレクト
         return redirect(reverse('nohin_toroku'))
 
 class NohinKoshinView(View):
@@ -92,7 +94,9 @@ class NohinKoshinView(View):
     
         # 納品を更新する
         updateNohinId = request.POST.get("update_nohin_id")
-        NohinTorokuService().updateNohin(updateNohinId, updateForm, updateDetailFormset)
+        service = NohinTorokuService()
+        service.registCompany(updateForm.cleaned_data['nohinsaki'])
+        service.updateNohin(updateNohinId, updateForm, updateDetailFormset)
 
         messages.success(request, '納品情報を更新しました。')
 
