@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'shohin.apps.ShohinConfig',
     'nohin.apps.NohinConfig',
     'app_table.apps.AppTableConfig',
+    'app_common.apps.AppCommonConfig',
     'django.contrib.humanize',
 ]
 
@@ -54,6 +55,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 共通ミドルウェア
+    'app_common.middleware.common_middleware.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -144,4 +147,42 @@ NUMBER_GROUPING = 3
 MESSAGE_TAGS = {
     message_constants.SUCCESS: 'alert alert-success alert-dismissible fade show animated fadeInLeftBig',
     message_constants.ERROR: 'alert alert-danger alert-dismissible fade show animated fadeInLeftBig',
+}
+
+# ログ出力の設定
+os.makedirs('/home/webims', exist_ok=True)
+LOGGING = {
+    'version': 1,
+    'formatters': {
+        'middleware_log_formatter': {
+            'format': '\t'.join([
+                "[%(levelname)s]",
+                "%(asctime)s",
+                "%(user)s",
+                "%(url)s",
+                "%(message)s",
+            ])
+        },
+    },
+    'handlers': {
+        'middleware_logfile_handler': {
+            'level': 'DEBUG' if DEBUG else 'INFO',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'filename': '/home/webims/application.log',
+            'when': 'D',
+            'interval': 1, 
+            'formatter': 'middleware_log_formatter',
+        },
+        'middleware_console_handler': {
+            'level': 'DEBUG' if DEBUG else 'CRITICAL',
+            'class': 'logging.StreamHandler', 
+            'formatter': 'middleware_log_formatter'
+        },
+    },
+    'loggers': {
+        'middleware_logger': {
+            'handlers': ['middleware_logfile_handler', 'middleware_console_handler'],
+            'level': 'DEBUG',
+        },
+    },
 }
