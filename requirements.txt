@@ -11,7 +11,9 @@ cloudpickle==0.6.1
 colorama==0.4.0
 cryptography==2.3.1
 decorator==4.3.0
+defusedxml==0.6.0
 Django==2.1.2
+django-allauth==0.39.1
 docutils==0.14
 entrypoints==0.2.3
 idna==2.7
@@ -33,6 +35,7 @@ mistune==0.8.4
 nbconvert==5.3.1
 nbformat==4.4.0
 numpydoc==0.8.0
+oauthlib==3.0.1
 packaging==18.0
 pandocfilters==1.4.2
 parso==0.3.1
@@ -49,6 +52,7 @@ pyOpenSSL==18.0.0
 pyparsing==2.3.0
 PySocks==1.6.8
 python-dateutil==2.7.5
+python3-openid==3.1.0
 pytz==2018.7
 pywin32==223
 pyzmq==17.1.2
@@ -56,6 +60,7 @@ QtAwesome==0.5.3
 qtconsole==4.4.2
 QtPy==1.5.2
 requests==2.20.1
+requests-oauthlib==1.2.0
 rope==0.11.0
 six==1.11.0
 snowballstemmer==1.2.1
