@@ -40,11 +40,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
+    # django-allauth関連
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # 独自機能
+    'accounts.apps.AccountsConfig',
     'shohin.apps.ShohinConfig',
     'nohin.apps.NohinConfig',
     'app_table.apps.AppTableConfig',
     'app_common.apps.AppCommonConfig',
-    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -64,7 +71,11 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            # django all-auth用のテンプレート
+            os.path.join(BASE_DIR, 'templates', 'allauth'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -186,3 +197,9 @@ LOGGING = {
         },
     },
 }
+
+# django all-auth関連
+SITE_ID = 1
+LOGIN_REDIRECT_URL = 'home'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
+ACCOUNT_LOGOUT_ON_GET=True  # ログアウト時、ログアウト画面を経由しない

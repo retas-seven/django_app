@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            body {
+                color: gray;
+                font-size: 16pt;
+            }
+            
+            h1 {
+                color: red;
+                opacity: 0.2;
+                font-size: 140pt;
+                margin-top: -20px;
+                margin-bottom: 0px;
+                text-align: right;
+            }
+            
+            p {
+                margin: 10px;
+            }
+            
+            a {
+                color: blue;
+                text-decoration: none;
+            }
+        </style>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1>home</h1>
+        <p>{{message|safe}}</p>
+        <table>
+            <form action="{% url 'shohin_toroku' %}" method="post">
+                {% csrf_token %}
+                {{ form.as_table }}
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="click"></td>
+                </tr>
+            </form>
+        </table>
+    </body>
+</html>
