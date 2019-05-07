@@ -198,8 +198,23 @@ LOGGING = {
     },
 }
 
+#---------------------
 # django all-auth関連
+#---------------------
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+# 認証方式を「メールアドレスとパスワード」に変更
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ユーザー名は使用しない
+ACCOUNT_USERNAME_REQUIRED = False
+# ユーザー登録確認メールは送信しない
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+# メールアドレスを必須項目にする
+ACCOUNT_EMAIL_REQUIRED = True
 SITE_ID = 1
 LOGIN_REDIRECT_URL = 'home'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
-ACCOUNT_LOGOUT_ON_GET=True  # ログアウト時、ログアウト画面を経由しない
+# ログアウト時、ログアウト画面を経由しない
+ACCOUNT_LOGOUT_ON_GET = True
