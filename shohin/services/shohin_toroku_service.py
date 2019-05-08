@@ -5,13 +5,15 @@ class ShohinTorokuService:
     '''
     商品登録画面用サービスクラス
     '''
+    def __init__(self, request):
+        self.request = request
 
     def retrieveShohin(self):
         '''
         商品一覧情報を検索する
         '''
         shohinList = (Shohin.objects
-            .filter(belong_user='testuser')
+            .filter(belong_user=self.request.user.email)
             .values('id', 'kataban', 'shohin_name', 'price', 'zaikosu', 'memo')
             .order_by('kataban')
         )
@@ -28,7 +30,7 @@ class ShohinTorokuService:
         '''
         ret = (Shohin.objects
             .filter(
-                belong_user='testuser',
+                belong_user=self.request.user.email,
                 kataban=kataban,
             ).exists()
         )
@@ -39,13 +41,13 @@ class ShohinTorokuService:
         商品情報を登録する
         '''
         shohin = Shohin()
-        shohin.belong_user = 'testuser'
+        shohin.belong_user = self.request.user.email
         shohin.kataban = registForm.cleaned_data['registKataban']
         shohin.shohin_name = registForm.cleaned_data['registShohinName']
         shohin.price = registForm.cleaned_data['registPrice']
         shohin.zaikosu = registForm.cleaned_data['registZaikosu']
         shohin.memo = registForm.cleaned_data['registMemo']
-        shohin.regist_user = 'testuser'
+        shohin.regist_user = self.request.user.email
         shohin.regist_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
         shohin.save()
 
@@ -53,7 +55,7 @@ class ShohinTorokuService:
         '''
         商品情報を削除する
         '''
-        shohin = Shohin.objects.get(belong_user='testuser', kataban=kataban)
+        shohin = Shohin.objects.get(belong_user=self.request.user.email, kataban=kataban)
         shohin.delete()
 
     def updateShohin(self, updateForm):
@@ -61,7 +63,7 @@ class ShohinTorokuService:
         商品情報を更新する
         '''
         shohin = Shohin.objects.get(
-            belong_user='testuser',
+            belong_user=self.request.user.email,
             kataban=updateForm.cleaned_data['updateKataban'],
         )
 
@@ -69,6 +71,6 @@ class ShohinTorokuService:
         shohin.price = updateForm.cleaned_data['updatePrice']
         shohin.zaikosu = updateForm.cleaned_data['updateZaikosu']
         shohin.memo = updateForm.cleaned_data['updateMemo']
-        shohin.update_user = 'testuser'
+        shohin.update_user = self.request.user.email
         shohin.update_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
         shohin.save()

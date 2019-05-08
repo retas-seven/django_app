@@ -218,3 +218,4 @@ LOGIN_REDIRECT_URL = 'home'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
 # ログアウト時、ログアウト画面を経由しない
 ACCOUNT_LOGOUT_ON_GET = True
+LOGIN_URL = '/accounts/login/'
