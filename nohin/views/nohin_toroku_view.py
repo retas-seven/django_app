@@ -9,8 +9,9 @@ from nohin.forms.nohin_toroku_form import NohinDetailFormset
 from nohin.forms.nohin_toroku_form import NohinUpdateForm
 from nohin.forms.nohin_toroku_form import NohinDetailUpdateFormset
 from app_table.models import NohinDetail
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class NohinTorokuView(View):
+class NohinTorokuView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         '''
         納品登録画面-初期表示処理
