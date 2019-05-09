@@ -43,7 +43,7 @@ class ShohinTorokuView(LoginRequiredMixin, View):
         # 商品登録画面初期表示処理へリダイレクト
         return redirect(reverse('shohin_toroku'))
 
-class ShohinSakujoView(View):
+class ShohinSakujoView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         '''
         商品登録画面-削除処理
@@ -55,7 +55,7 @@ class ShohinSakujoView(View):
         # 商品登録画面初期表示処理へリダイレクト
         return redirect(reverse('shohin_toroku'))
 
-class ShohinKoshinView(View):
+class ShohinKoshinView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         '''
         商品登録画面-更新処理

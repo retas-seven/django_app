@@ -64,7 +64,7 @@ class NohinTorokuView(LoginRequiredMixin, View):
 
         return params
 
-class NohinSakujoView(View):
+class NohinSakujoView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         '''
         納品登録画面-削除処理
@@ -76,7 +76,7 @@ class NohinSakujoView(View):
         # 納品登録画面初期表示処理へリダイレクト
         return redirect(reverse('nohin_toroku'))
 
-class NohinKoshinView(View):
+class NohinKoshinView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         '''
         納品登録画面-更新処理
