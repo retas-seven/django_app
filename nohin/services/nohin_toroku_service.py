@@ -10,13 +10,15 @@ class NohinTorokuService:
     '''
     納品登録画面用サービスクラス
     '''
+    def __init__(self, request):
+        self.request = request
 
     def retrieveNohin(self):
         '''
         納品一覧情報を検索する
         '''
         nohinList = (Nohin.objects
-            .filter(belong_user='testuser')
+            .filter(belong_user=self.request.user.email)
             .values('id', 'nohin_date', 'nohinsaki', 'total_price', 'memo')
             .order_by('-nohin_date', '-regist_date') # 降順
         )
@@ -28,7 +30,7 @@ class NohinTorokuService:
         '''
         ret = {}
         nohinDetailList = list(NohinDetail.objects
-            .filter(belong_user='testuser')
+            .filter(belong_user=self.request.user.email)
             .values('nohin', 'kataban', 'price', 'amount')
         )
         for nohinDetail in nohinDetailList:
@@ -44,7 +46,7 @@ class NohinTorokuService:
         '''
         shohinJson = json.dumps(
             list(Shohin.objects
-                .filter(belong_user='testuser')
+                .filter(belong_user=self.request.user.email)
                 .values('kataban', 'shohin_name', 'zaikosu', 'price')
                 .order_by('kataban')
             )
@@ -57,7 +59,7 @@ class NohinTorokuService:
         '''
         companyJson = json.dumps(
             list(Company.objects
-                .filter(belong_user='testuser')
+                .filter(belong_user=self.request.user.email)
                 .values('company_name')
                 .order_by('company_name')
             )
@@ -70,7 +72,7 @@ class NohinTorokuService:
         '''
         ret = (Nohin.objects
             .filter(
-                belong_user='testuser',
+                belong_user=self.request.user.email,
                 id=id,
             ).exists()
         )
@@ -82,16 +84,16 @@ class NohinTorokuService:
         '''
         exist = (Company.objects
             .filter(
-                belong_user='testuser',
+                belong_user=self.request.user.email,
                 company_name=companyName,
             ).exists()
         )
 
         if not exist:
             company = Company()
-            company.belong_user = 'testuser'
+            company.belong_user = self.request.user.email
             company.company_name = companyName
-            company.regist_user = 'testuser'
+            company.regist_user = self.request.user.email
             company.regist_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
             company.save()
 
@@ -108,15 +110,15 @@ class NohinTorokuService:
             totalPrice += Decimal(detail.price) * Decimal(detail.amount)
 
         # 画面からPOSTされたデータの他に必須のデータをセットして保存する
-        nohin.belong_user = 'testuser'
+        nohin.belong_user = self.request.user.email
         nohin.total_price = Decimal(totalPrice) * Decimal('1.08')  # 税込額
-        nohin.regist_user = 'testuser'
+        nohin.regist_user = self.request.user.email
         nohin.regist_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
         nohin.save()
 
         for detail in registDetailFormset.save(commit=False):
-            detail.belong_user = 'testuser'
-            detail.regist_user = 'testuser'
+            detail.belong_user = self.request.user.email
+            detail.regist_user = self.request.user.email
             detail.regist_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
             detail.nohin = nohin
         registDetailFormset.save()
@@ -125,7 +127,7 @@ class NohinTorokuService:
         '''
         商品情報を削除する
         '''
-        nohin = Nohin.objects.get(belong_user='testuser', id=nohin_id)
+        nohin = Nohin.objects.get(belong_user=self.request.user.email, id=nohin_id)
         nohin.delete()
 
     def updateNohin(self, updateNohinId, updateForm, updateDetailFormset):
@@ -133,7 +135,7 @@ class NohinTorokuService:
         商品情報を更新する
         '''
         nohin = Nohin.objects.get(
-            belong_user='testuser',
+            belong_user=self.request.user.email,
             id=updateNohinId,
         )
 
@@ -150,7 +152,7 @@ class NohinTorokuService:
         nohin.total_price = Decimal(totalPrice) * Decimal('1.08')  # 税込額
         nohin.memo = nohinFormModel.memo
         nohin.nohinsaki = nohinFormModel.nohinsaki
-        nohin.update_user = 'testuser'
+        nohin.update_user = self.request.user.email
         nohin.update_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
         nohin.save()
 
@@ -160,8 +162,8 @@ class NohinTorokuService:
         ).delete()
 
         for detail in updateDetailFormset.save(commit=False):
-            detail.belong_user = 'testuser'
-            detail.regist_user = 'testuser'
+            detail.belong_user = self.request.user.email
+            detail.regist_user = self.request.user.email
             detail.regist_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
             detail.nohin = nohin
         updateDetailFormset.save()

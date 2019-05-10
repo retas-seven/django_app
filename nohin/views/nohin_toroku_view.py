@@ -36,7 +36,7 @@ class NohinTorokuView(LoginRequiredMixin, View):
             return render(request, 'nohin/nohin_toroku.html', params)
     
         # 納品を登録する
-        service = NohinTorokuService()
+        service = NohinTorokuService(request)
         service.registCompany(registForm.cleaned_data['nohinsaki'])
         service.registNohin(registForm, registDetailFormset)
         messages.success(request, '納品情報を登録しました。')
@@ -50,7 +50,7 @@ class NohinTorokuView(LoginRequiredMixin, View):
             updateForm=NohinUpdateForm(),
             updateDetailFormset=NohinDetailUpdateFormset(None, queryset=NohinDetail.objects.none())):
 
-        service = NohinTorokuService()
+        service = NohinTorokuService(self.request)
         params = {
             'nohinList': service.retrieveNohin(),
             'nohinDetailJson': service.retrieveNohinDetailList(),
@@ -70,7 +70,7 @@ class NohinSakujoView(LoginRequiredMixin, View):
         納品登録画面-削除処理
         '''
         # 納品を登録する
-        NohinTorokuService().deleteNohin(request.POST.get("nohin_id"))
+        NohinTorokuService(request).deleteNohin(request.POST.get("nohin_id"))
         messages.success(request, '納品情報を削除しました。')
 
         # 納品登録画面初期表示処理へリダイレクト
@@ -95,7 +95,7 @@ class NohinKoshinView(LoginRequiredMixin, View):
     
         # 納品を更新する
         updateNohinId = request.POST.get("update_nohin_id")
-        service = NohinTorokuService()
+        service = NohinTorokuService(request)
         service.registCompany(updateForm.cleaned_data['nohinsaki'])
         service.updateNohin(updateNohinId, updateForm, updateDetailFormset)
 
