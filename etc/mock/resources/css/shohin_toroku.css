@@ -23,7 +23,7 @@
     word-break: break-all;
 }
 .price_row {
-    font-size: 2.2rem;
+    font-size: 1.375rem;
     font-family: 'Merriweather', serif;
     font-weight: 100;
     text-align: right;
@@ -31,7 +31,7 @@
     word-break: break-all;
 }
 .zaikosu_row {
-    font-size: 2.2rem;
+    font-size: 1.375rem;
     font-family: 'Merriweather', serif;
     font-weight: 100;
     text-align: right;
@@ -49,12 +49,12 @@
     */
 }
 .shohin_kataban {
-    font-size: 1.4rem;
+    font-size: .875rem;
     line-height: 1.4;
     font-weight: 400;
 }
 .shohin_name {
-    font-size: 2.2rem;
+    font-size: 1.375rem;
     margin: 0px;
     font-weight: 500;
 }

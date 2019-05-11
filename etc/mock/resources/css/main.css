@@ -10,7 +10,7 @@
 /* ------------------------------------------- */
 .table td {
     border-top: 0px;
-    padding: .7rem;
+    padding: .4375rem;
 }
 .alert-success {
     color: rgb(67, 124, 80);
@@ -19,13 +19,13 @@
     content: '\f05a';
     font-family: 'Font Awesome 5 Free';
     font-weight: bold;
-    padding-right: .5rem;
+    padding-right: .3125rem;
 }
 .alert-danger > span:before {
     content: '\f057';
     font-family: 'Font Awesome 5 Free';
     font-weight: bold;
-    padding-right: .5rem;
+    padding-right: .3125rem;
 }
 .form-control:disabled, .form-control[readonly] {
     background-color: rgba(0, 0, 0, 0);
@@ -36,17 +36,36 @@
 .container-fluid {
     max-width: 1140px;
 }
+
+.navbar {
+    padding: .25rem .5rem;
+}
+hr {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+.navbar-brand {
+    padding-top: .1rem;
+    padding-bottom: .1rem;
+}
+
 /* ------------------------------------------- */
 /* 全体の設定 */
 /* ------------------------------------------- */
 html {
+    /*
     font-size: 62.5%;
+    font-size: 125%;
+    */
+    font-size: 100%;
 }
 body {
     letter-spacing: .1em;
+    font-size: 1rem; /* 1rem == 16px */
     line-height: 1.6;
-    font-size: 1.6rem;
-    /*font-family: 'Noto Sans JP';*/
+    /*
+    font-family: 'Noto Sans JP';
+    */
     color: rgb(81, 81, 81);
 }
 /* ------------------------------------------- */
@@ -84,7 +103,7 @@ body {
     box-shadow: 0px 1px 15px -3px rgba(130, 130, 130, 0.5);
     box-shadow: 0px 6px 3px -1px rgba(190, 190, 190, 0.2);
     */
-    filter: drop-shadow(.8rem .3rem .6rem rgba(140, 140, 140, .5));
+    filter: drop-shadow(.5rem .18rem .375rem rgba(140, 140, 140, .5));
     border-bottom: solid 1px rgb(180, 180, 180);
     z-index: 1;
     position: sticky;
@@ -95,7 +114,7 @@ body {
     /*
     padding: 25px;
     */
-    padding: 2.5rem 2.5rem 13ex 2.5rem; 
+    padding: 1.5625rem 1.5625rem 13ex 1.5625rem; 
     /*background: rgb(225, 225, 225);*/
     /*background: linear-gradient(75deg, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(32,147,234,1) 100%);*/
     /*background: linear-gradient(105deg, rgb(237, 237, 237) 0%,rgb(237, 237, 237) 70%,rgb(230, 230, 230) 71%,rgb(230, 230, 230) 100%);*/
@@ -111,7 +130,7 @@ body {
     background: rgb(254, 254, 254);
     /*padding: 10px 20px 20px 20px;*/
     padding-top: 6px;
-    font-size: 1.1rem;
+    font-size: .6875rem;
     /*
     box-shadow: 0px -1px 15px -3px rgba(130, 130, 130, 0.5);
     z-index: 1;
@@ -227,7 +246,7 @@ input:-webkit-autofill {
 /* ヘッダ部のタイトル文字 */
 /* ------------------------------------------- */
 .header-title {
-    font-size: 4rem;
+    font-size: 2.5rem;
     font-family: 'Libre Barcode 128 Text', cursive;
 }
 /* ------------------------------------------- */
@@ -239,9 +258,9 @@ input:-webkit-autofill {
 .common_btn {
     background-color: rgb(164, 164, 164);
     text-align: center;
-    font-size: 1.6rem;
-    padding: 1.2rem 2.1rem;
-    border-radius: calc(1.6rem + 1.2rem);
+    font-size: 1rem;
+    padding: .75rem 1.3125rem;
+    border-radius: calc(1rem + .75rem);
     color: white;
     border: none;
     font-family: 'Noto Sans JP';
@@ -254,7 +273,7 @@ input:-webkit-autofill {
     outline: none;
 }
 .font_16 {
-    font-size: 1.6rem;
+    font-size: 1rem;
 }
 .hr_2 {
     /*
@@ -262,9 +281,9 @@ input:-webkit-autofill {
     height: 2px;
     border: none;
     */
-    margin-bottom: 1.5rem;
-    margin-left: -.5rem;
-    margin-right: -.5rem;
+    margin-bottom: .9375rem;
+    margin-left: -.3125rem;
+    margin-right: -.3125rem;
     /*
     border-top: 2px double rgb(170, 170, 170);
     */
@@ -280,16 +299,16 @@ input:-webkit-autofill {
 }
 
 .section_title {
-    height: 3.3rem;
+    height: 2.0625rem;
     border-bottom: solid 2px rgb(207, 207, 207);
     position: relative;
     width: 100%;
-    margin-top: 3.5rem;
-    margin-bottom: 2.5rem;
+    margin-top: 2.1875rem;
+    margin-bottom: 1.5625rem;
 }
 .section_title:before {
     content: ' ';
-    margin-left: .5rem;
+    margin-left: .3125rem;
 }
 .section_title:after {
     position: absolute;
@@ -300,7 +319,7 @@ input:-webkit-autofill {
     */
     border-bottom: solid 2px rgb(150, 150, 150);
     bottom: -2px;
-    width: 8.5rem;
+    width: 5.3125rem;
 }
 /* ------------------------------------------- */
 /* 一覧部 */
@@ -309,8 +328,8 @@ input:-webkit-autofill {
     color: rgb(80, 80, 80);
     display: flex;
     align-items: center;
-    padding-top: .8rem;
-    padding-bottom: .5rem;
+    padding-top: .5rem;
+    padding-bottom: .3125rem;
     font-weight: 500;
     /*
     background-color: rgb(240, 240, 240);
@@ -337,7 +356,7 @@ input:-webkit-autofill {
     text-align: center;
     color: rgb(81, 81, 71);
     transition: all 170ms 0s ease;
-    font-size: 1.5rem;
+    font-size: .9375rem;
 }
 .row_circle_btn:hover {
     color: white !important;
@@ -376,7 +395,7 @@ input:-webkit-autofill {
     background-color: rgba(141, 141, 141, 1);
     border-radius: 50%;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: .9375rem;
     box-shadow: 0px 7px 5px 0px rgba(170, 170, 170, 0.5);
     transition: all 170ms 0s ease;
 }
@@ -392,7 +411,7 @@ input:-webkit-autofill {
     text-align: center;
     background-color: rgb(177, 177, 177);
     border-radius: 50%;
-    font-size: 1.5rem;
+    font-size: .9375rem;
     transition: all 170ms 0s ease;
     color:white !important;
 }
@@ -409,22 +428,22 @@ input:-webkit-autofill {
 }
 .modal_header_global {
     background-color: rgba(255, 255, 255, .5);
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-left: 1.5625rem;
+    padding-right: 1.5625rem;
 }
 .modal_title {
 	display: flex;
 	align-items: center;
-    font-size: 2rem;
+    font-size: 1.25rem;
     font-weight: 500;
 }
 .modal_boddy_global {
-    padding: 2.5rem;
+    padding: 1.5625rem;
 }
 .modal_footer_global {
     background-color: rgba(255, 255, 255, .5);
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-left: 1.5625rem;
+    padding-right: 1.5625rem;
 }
 /* ------------------------------------------- */
 /* エラーメッセージ */
@@ -434,9 +453,9 @@ input:-webkit-autofill {
     animation-fill-mode: both;
     animation-name: fadeIn;
     color: rgb(249, 89, 89);
-    font-size: 1.5rem;
-    margin-top: .5rem;
-    margin-bottom: .5rem;
+    font-size: .9375rem;
+    margin-top: .3125rem;
+    margin-bottom: .3125rem;
 }
 
 /* ------------------------------------------- */
@@ -451,7 +470,7 @@ input:-webkit-autofill {
 	    min-width: 100vw;
 	}
 	.contents{
-        padding: 2.5rem 0 13ex 0; 
+        padding: 1.5625rem 0 13ex 0; 
 	}
 	.circle_btn {
 	    bottom: 2.5ex;
