@@ -18,18 +18,18 @@
 .func_icon_head {
 }
 .date_row {
-    font-size: 2.0rem;
+    font-size: 1.25rem;
     font-family: 'Merriweather', serif;
     font-weight: 100;
     text-align: center;
     overflow: hidden;
 }
 .torihikisaki_row {
-    font-size: 2.2rem;
+    font-size: 1.375rem;
     font-weight: 400;
 }
 .kingaku_row {
-    font-size: 2.2rem;
+    font-size: 1.375rem;
     font-family: 'Merriweather', serif;
     font-weight: 100;
     text-align: right;
@@ -47,7 +47,7 @@
 /* ------------------------------------------- */
 .modal_thead_tr {
     color: rgb(80, 80, 80);
-    padding-bottom: .5rem;
+    padding-bottom: .3125rem;
 }
 .modal_thead_tr td {
     text-align: center;
@@ -95,7 +95,7 @@
     text-align: right;
 }
 .shohin_ithiran_hr {
-    margin: 3.0rem 0px 2.0rem 0px;
+    margin: 1.875rem 0px 1.25rem 0px;
 }
 
 .total_price_row {
@@ -106,8 +106,8 @@
     background-color: rgb(220, 220, 220);
     */
     display: table;
-    margin-top: 2rem;
-    margin-bottom: 4rem;
+    margin-top: 1.25rem;
+    margin-bottom: 2.5rem;
 }
 .total_price_row_tmp {
     width: 30%;
@@ -126,7 +126,7 @@
     */
     border-bottom: solid 2px rgb(170, 170, 170);
     text-align: center;
-    padding-right: .5rem;
+    padding-right: .3125rem;
     vertical-align: middle;
     font-weight: 500;
     /*background-color: rgb(170, 170, 170);*/
@@ -145,8 +145,8 @@
     font-family: 'Merriweather', serif;
     text-align: right;
     vertical-align: middle;
-    padding-right: 3.4rem;
-    font-size: 1.8rem;
+    padding-right: 2.125rem;
+    font-size: 1.125rem;
 }
 
 /* ------------------------------------------- */
