@@ -7,28 +7,28 @@
 
 .menu_list a {
     display:block;
-    font-size: 3.5rem;
+    font-size: 2.1875rem;
     font-weight: 500;
     text-decoration: none;
     color: rgb(111, 111, 111);
 }
 
 .menu_list > li {
-    line-height: 7.7rem;
-    padding-left: 2.2rem;
+    line-height: 4.8125rem;
+    padding-left: 1.375rem;
     /*
     margin-top: 5rem;
     background-image: linear-gradient(103deg, transparent 68%, rgb(190, 190, 190) 32%);
     */
     background-image: linear-gradient(103deg, rgb(226, 226, 226) 60%, rgb(177, 177, 177) 40%);
-    border-bottom: solid 0.3rem rgb(177, 177, 177);
-    border-left: solid 2rem rgb(177, 177, 177);
+    border-bottom: solid 0.1875rem rgb(177, 177, 177);
+    border-left: solid 1.25rem rgb(177, 177, 177);
 }
 
 .menu_list > li:first-of-type {
-    margin-top: 2.5rem;
+    margin-top: 1.5625rem;
 }
 
 .menu_list > li:not(:first-of-type) {
-    margin-top: 5.5rem;
+    margin-top: 3.4375rem;
 }
