@@ -1,0 +1,23 @@
+@charset "utf-8";
+
+.label_name {
+    /*
+    text-align: right;
+    background-color: rgba(100, 100, 100, .5);
+    background-image: linear-gradient(135deg, rgb(170, 170, 170) 95%,transparent 5%);
+    padding-right: .3125rem;
+    border-left: double 4px rgb(100, 100, 100);
+    border-bottom: solid 1px rgb(100, 100, 100);
+    background-image: linear-gradient(45deg, transparent 50%, rgba(0,0,0,0.055) 50%);
+    background-color: rgb(229, 229, 229);
+    */
+    border-left: solid 4px rgb(181, 181, 181);
+    border-bottom: solid 1px rgb(181, 181, 181);
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 500;
+    line-height: 2.1rem;
+    /*
+    background-color: rgb(234, 234, 234);
+    */
+}

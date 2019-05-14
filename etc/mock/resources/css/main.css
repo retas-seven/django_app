@@ -272,6 +272,42 @@ input:-webkit-autofill {
     background-color: rgb(115, 207, 207);
     outline: none;
 }
+.common_circle_btn {
+    cursor: pointer;
+    width: 4.5rem;
+    height: 4.5rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    text-align: center;
+    font-size: 1.2rem;
+    transition: all 250ms 0s ease;
+    border: solid 1px rgb(210, 210, 210);
+    color: rgb(120, 120, 120);
+    position: relative;
+    padding: 0;
+}
+.common_circle_btn:hover {
+    background-color: rgb(115, 207, 207);
+    border: solid 1px rgb(115, 207, 207);
+    outline: none;
+    color: white;
+}
+.common_circle_btn > .btn_txt {
+    font-size: .95rem;
+    position: absolute;
+    top: 4.7rem;
+    width: inherit;
+    color: rgb(120, 120, 120);
+}
+.button_area {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    /*
+    justify-content: space-between;
+    */
+    justify-content: space-evenly;
+}
 .font_16 {
     font-size: 1rem;
 }
