@@ -1,4 +1,4 @@
-$(function(){
+$(document).ready(function() {
 	// wow
 	new WOW().init();
 	
@@ -17,4 +17,7 @@ $(function(){
 		touchpadSupport: true,
 		fixedBackground: true
 	});
+
+	// animsition
+	$(".animsition").animsition();
 });

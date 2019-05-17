@@ -181,7 +181,7 @@ input:-webkit-autofill {
 @keyframes fadeInUpSmall {
     from {
         opacity: 0;
-        transform: translate3d(0, 25px, 0);
+        transform: translate3d(0, 50px, 0);
     }
     to {
         opacity: 1;
@@ -275,23 +275,31 @@ input:-webkit-autofill {
     outline: none;
 }
 .common_circle_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     width: 4.5rem;
     height: 4.5rem;
+    /*
     background-color: rgb(255, 255, 255);
+    border: solid 1px rgb(210, 210, 210);
+    color: rgb(120, 120, 120);
+    */
+    background-color: rgb(164, 164, 164);
+    border: solid 1px rgb(164, 164, 164);
+    color: white;
     border-radius: 50%;
     text-align: center;
     font-size: 1.2rem;
     transition: all 250ms 0s ease;
-    border: solid 1px rgb(210, 210, 210);
-    color: rgb(120, 120, 120);
     position: relative;
     padding: 0;
 }
 .common_circle_btn:hover {
     background-color: rgb(115, 207, 207);
     border: solid 1px rgb(115, 207, 207);
-    outline: none;
+    text-decoration: none;
     color: white;
 }
 .common_circle_btn > .btn_txt {
