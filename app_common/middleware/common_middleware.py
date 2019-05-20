@@ -1,4 +1,6 @@
 from logging import getLogger
+import sys
+import traceback
 
 
 class CommonMiddleware:
@@ -23,7 +25,18 @@ class CommonMiddleware:
 
         self.__outLog(request, 'end')
         return response
-    
+
+    def process_exception(self, request, exception):
+        '''
+        例外発生時の処理
+        '''
+        print('---------------------')
+        print('process_exception')
+        print('---------------------')
+        trc = traceback.format_exc()
+        print(trc)
+        print('---------------------')
+
     def __outLog(self, request, logMessage):
         '''
         リクエストごとのログを出力する

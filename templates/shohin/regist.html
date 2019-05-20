@@ -10,7 +10,6 @@
         <link rel="stylesheet" href="{% static 'resources/css/lib/animsition.css' %}">
         <link rel="stylesheet" href="{% static 'resources/css/main.css' %}">
         <link rel="stylesheet" href="{% static 'resources/css/shohin/regist.css' %}">
-        
         <title>商品登録</title>
     </head>
     <body class="animsition">
@@ -48,36 +47,66 @@
             </div>
             
             <div class="container-fluid animated fadeInUpSmall">
-                <form action="" method="post" name="shohin_kataban_form">
+                <form action={% url 'shohin_regist_view' %} method="post" name="shohin_form">
                     {% csrf_token %}
                     <div class="form-group row">
                         <label for="kataban" class="col-2 col-form-label label_name">型番</label>
                         <div class="col-10">
+                            <!--
                             <input type="text" class="form-control form-control-lg" id="kataban" name="kataban" autocomplete="off"/>
+                            -->
+                            {{ form.kataban }}
+                            {% if form.kataban.errors %}
+                                <p class="error_msg">{{ form.kataban.errors.0 }}</p>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="shohin_name" class="col-2 col-form-label label_name">商品名</label>
                         <div class="col-10">
+                            <!--
                             <input type="text" class="form-control form-control-lg" id="shohin_name" name="shohin_name" autocomplete="off"/>
+                            -->
+                            {{ form.shohin_name }}
+                            {% if form.shohin_name.errors %}
+                                <p class="error_msg">{{ form.shohin_name.errors.0 }}</p>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="price" class="col-2 col-form-label label_name">単価</label>
                         <div class="col-10">
+                            <!--
                             <input type="text" class="form-control form-control-lg width_210" id="price" name="price" autocomplete="off"/>
+                            -->
+                            {{ form.price }}
+                            {% if form.price.errors %}
+                                <p class="error_msg">{{ form.price.errors.0 }}</p>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="zaikosu" class="col-2 col-form-label label_name">在庫数</label>
                         <div class="col-10">
+                            <!--
                             <input type="text" class="form-control form-control-lg width_210" id="zaikosu" name="zaikosu" autocomplete="off"/>
+                            -->
+                            {{ form.zaikosu }}
+                            {% if form.zaikosu.errors %}
+                                <p class="error_msg">{{ form.zaikosu.errors.0 }}</p>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="memo" class="col-2 col-form-label label_name">メモ</label>
                         <div class="col-10">
+                            <!--
                             <textarea name="memo" cols="40" rows="10" maxlength="1000" class="form-control form-control-lg" id="memo"></textarea>
+                            -->
+                            {{ form.memo }}
+                            {% if form.memo.errors %}
+                                <p class="error_msg">{{ form.memo.errors.0 }}</p>
+                            {% endif %}
                         </div>
                     </div>
                 </form>
@@ -86,7 +115,8 @@
                 <div class="row">
                     <div class="col-12 button_area">
                         <a href={% url 'shohin_list_view' %} class="common_circle_btn animsition-link"><i class="fas fa-chevron-left"></i><div class="btn_txt">戻る</div></a>
-                        <a href="" class="common_circle_btn animsition-link"><i class="fas fa-plus"></i><div class="btn_txt">登録</div></a>
+                        <!--<a class="js_regist_btn common_circle_btn animsition-link"><i class="fas fa-plus"></i><div class="btn_txt">登録</div></a>-->
+                        <button class="js_regist_btn common_circle_btn"><i class="fas fa-plus"></i><div class="btn_txt">登録！</div></button>
                     </div>
                 </div>
             </div>

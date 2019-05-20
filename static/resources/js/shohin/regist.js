@@ -42,4 +42,15 @@ $(document).ready(function() {
 		overlayParentElement : 'body',
 		transition: function(url){ window.location.href = url; }
 	});
+
+	// 登録ボタン押下時の処理
+	$(".js_regist_btn").on("click", registShohin);
 });
+
+/**
+ * 登録ボタン押下時の処理
+ */
+function registShohin() {
+	let form = $('[name=shohin_form]');
+	form.submit();
+};
