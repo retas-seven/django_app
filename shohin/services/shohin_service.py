@@ -23,14 +23,20 @@ class ShohinService:
         '''
         商品情報を登録する
         '''
-        print('----------------')
-        print('商品情報登録')
-        print('----------------')
         shohin = form.save(commit=False)
         shohin.belong_user = self.request.user.email
         shohin.regist_user = self.request.user.email
         shohin.regist_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
         shohin.save()
-        print('----------------')
-        print(vars(shohin))
-        print('----------------')
+        
+    def existShohin(self, kataban):
+        '''
+        商品の存在有無を確認する
+        '''
+        ret = (Shohin.objects
+            .filter(
+                belong_user=self.request.user.email,
+                kataban=kataban,
+            ).exists()
+        )
+        return ret
