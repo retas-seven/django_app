@@ -47,7 +47,7 @@
             </div>
             
             <div class="container-fluid animated fadeInUpSmall">
-                <form action={% url 'shohin_regist_view' %} method="post" name="shohin_form">
+                <form action="" method="post" name="shohin_form">
                     {% csrf_token %}
                     <div class="form-group row">
                         <label for="kataban" class="col-2 col-form-label label_name">型番</label>
@@ -116,7 +116,12 @@
                     <div class="col-12 button_area">
                         <a href={% url 'shohin_list_view' %} class="common_circle_btn animsition-link"><i class="fas fa-chevron-left"></i><div class="btn_txt">戻る</div></a>
                         <!--<a class="js_regist_btn common_circle_btn animsition-link"><i class="fas fa-plus"></i><div class="btn_txt">登録</div></a>-->
-                        <button class="js_regist_btn common_circle_btn"><i class="fas fa-plus"></i><div class="btn_txt">登録</div></button>
+                        {% if mode == 'regist' %}
+                            <button class="js_execute_btn common_circle_btn"><i class="fas fa-plus"></i><div class="btn_txt">登録</div></button>
+                        {% endif %}
+                        {% if mode == 'update' %}
+                            <button class="js_execute_btn common_circle_btn"><i class="fas fa-level-up-alt"></i><div class="btn_txt">更新</div></button>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -140,5 +145,10 @@
         <script src="{% static 'resources/js/lib/easeScroll.js' %}"></script>
         <script src="{% static 'resources/js/lib/animsition.js' %}"></script>
         <script src="{% static 'resources/js/shohin/regist.js' %}"></script>
+        <script>
+            var shohin_regist_view_url = "{% url 'shohin_regist_view' %}";
+            var shohin_update_view_url = "{% url 'shohin_update_view' %}";
+            var mode = "{{ mode }}";
+        </script>
     </body>
 </html>

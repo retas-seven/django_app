@@ -59,16 +59,10 @@ $(function(){
 	});
 	
 	/**
-	 * 登録ボタン押下時の処理
-	 */
-    $('.js_regist_btn').click(function(e) {
-		
-	});
-	
-	/**
 	 * 更新ボタン押下時の処理
 	 */
     $('.js_update_btn').click(function(e) {
-
+		kataban = $(this).parents('td').data('kataban');
+		window.location.href = shohin_update_view_url + '?kataban=' + kataban
 	});
 });

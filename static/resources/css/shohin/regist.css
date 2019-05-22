@@ -12,9 +12,10 @@
     background-color: rgb(229, 229, 229);
     */
     
+    /* border: solid 1px rgba(181, 181, 181, 1); */
     border-left: solid 12px rgb(181, 181, 181);
     border-bottom: solid 1px rgb(181, 181, 181);
-    
+    box-sizing: border-box;
     text-align: center;
     vertical-align: middle;
     font-weight: 500;

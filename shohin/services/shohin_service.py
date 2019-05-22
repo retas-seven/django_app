@@ -19,6 +19,23 @@ class ShohinService:
         )
         return shohinList
 
+    def retrieveShohin(self, kataban):
+        '''
+        商品情報を検索する
+        '''
+        shohin = (Shohin.objects
+            .filter(belong_user=self.request.user.email, kataban=kataban)
+            .values('id', 'kataban', 'shohin_name', 'price', 'zaikosu', 'memo')
+        )
+        return shohin
+
+    def retrieveShohinModel(self, kataban):
+        '''
+        商品情報を検索する
+        '''
+        shohin = Shohin.objects.get(belong_user=self.request.user.email, kataban=kataban)
+        return shohin
+
     def registShohin(self, form):
         '''
         商品情報を登録する
@@ -27,6 +44,15 @@ class ShohinService:
         shohin.belong_user = self.request.user.email
         shohin.regist_user = self.request.user.email
         shohin.regist_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        shohin.save()
+
+    def updateShohin(self, form):
+        '''
+        商品情報を更新する
+        '''
+        shohin = form.save(commit=False)
+        shohin.update_user = self.request.user.email
+        shohin.update_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
         shohin.save()
         
     def existShohin(self, kataban):
