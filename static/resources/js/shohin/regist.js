@@ -40,7 +40,14 @@ $(document).ready(function() {
 		overlay : false,
 		overlayClass : 'animsition-overlay-slide',
 		overlayParentElement : 'body',
-		transition: function(url){ window.location.href = url; }
+		// transition: function(url){ window.location.href = url; }
+		transition: function(url){
+			if (url === void 0 || url == '') {
+				return;
+			} else {
+				window.location.href = url;
+			}
+		}
 	});
 
 	// 画面の初期状態を設定
@@ -57,6 +64,7 @@ function init() {
 
 	if (mode == 'regist') {
 		form.attr('action', shohin_regist_view_url);
+
 	} else if (mode == 'update') {
 		form.attr('action', shohin_update_view_url);
 		// 型番は読み取りのみとし、更新させない
@@ -69,7 +77,9 @@ function init() {
  * 登録／更新ボタン押下時の処理
  */
 function execute() {
-	let form = $('[name=shohin_form]');
-	form.submit();
+	$('body').on('animsition.outEnd', () => {
+		let form = $('[name=shohin_form]');
+		form.submit();
+	});
 };
 

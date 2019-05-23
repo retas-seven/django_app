@@ -40,6 +40,27 @@ $(function(){
 		overlay : false,
 		overlayClass : 'animsition-overlay-slide',
 		overlayParentElement : 'body',
-		transition: function(url){ window.location.href = url; }
+		// transition: execute(url)
+		transition: function(url){
+			if (url === void 0 || url == '') {
+				return;
+			} else {
+				window.location.href = url;
+			}
+		}
 	});
+
+	// 登録／更新ボタン押下時の処理
+	$(".js_execute_btn").on("click", execute);
 });
+
+/**
+ * 登録／更新ボタン押下時の処理
+ */
+function execute() {
+	$('body').on('animsition.outEnd', executeMain);
+};
+
+function executeMain() {
+	window.location.href = 'list.html';
+};

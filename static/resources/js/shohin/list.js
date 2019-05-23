@@ -40,29 +40,48 @@ $(function(){
 		overlay : false,
 		overlayClass : 'animsition-overlay-slide',
 		overlayParentElement : 'body',
-		transition: function(url){ window.location.href = url; }
+		// transition: function(url){ window.location.href = url; }
+		transition: function(url){
+			if (url === void 0 || url == '') {
+				return;
+			} else {
+				window.location.href = url;
+			}
+		}
 	});
 
-	/**
-	 * 削除ボタン押下時の処理
-	 */
-    $('.js_delete_btn').click(function(e) {
-        if(!confirm('削除しますか？')){
-            return false;
-        }
-		
-		kataban = $(this).parents('td').data('kataban');
-		form = $('[name=shohin_kataban_form]');
-		form.attr('action', shohin_delete_view_url);
-		$('.js_shohin_kataban').val(kataban);
+	// 削除ボタン押下時の処理
+	$(".js_delete_btn").on("click", execDelete);
+
+	// 更新ボタン押下時の処理
+	$(".js_update_btn").on("click", execUpdate);
+});
+
+/**
+ * 削除ボタン押下時の処理
+ */
+function execDelete() {
+	if(!confirm('削除しますか？')){
+		return false;
+	}
+	
+	kataban = $(this).parents('td').data('kataban');
+	form = $('[name=shohin_kataban_form]');
+	form.attr('action', shohin_delete_view_url);
+	$('.js_shohin_kataban').val(kataban);
+
+	$('body').on('animsition.outEnd', () => {
 		form.submit();
 	});
-	
-	/**
-	 * 更新ボタン押下時の処理
-	 */
-    $('.js_update_btn').click(function(e) {
-		kataban = $(this).parents('td').data('kataban');
+}
+
+/**
+ * 更新ボタン押下時の処理
+ */
+function execUpdate() {
+	kataban = $(this).parents('td').data('kataban');
+
+	$('body').on('animsition.outEnd', () => {
 		window.location.href = shohin_update_view_url + '?kataban=' + kataban
 	});
-});
+}
