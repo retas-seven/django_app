@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+        <link rel="stylesheet" href="../resources/css/lib/animsition.css">
+        <link rel="stylesheet" href="../resources/css/main.css">
+        <link rel="stylesheet" href="../resources/css/nohin/list.css">
+        <title>納品登録</title>
+    </head>
+    <body class="animsition">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="navbar navbar-light">
+                            <a class="navbar-brand header-title" href="#">Web-IMS</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENTS -->
+        <div class="contents">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-striped animated fadeInUpSmall">
+                            <thead>
+                                <tr class="thead_tr">
+                                    <td class="date_width">
+                                        <span>納品日</span>
+                                        <hr>
+                                    </td>
+                                    <td class="torihikisaki_width">
+                                        <span>納品先</span>
+                                        <hr>
+                                    </td>
+                                    <td class="kingaku_width">
+                                        <span>合計金額</span>
+                                        <hr>
+                                    </td>
+                                    <td class="func_icon_width func_icon_head">
+                                        <a class="circle_btn_small" data-toggle="modal" data-target="#nohinSearchModal"><i class="fas fa-search"></i></a>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 行サンプル -->
+                                <tr class="align_center">
+                                    <td class="date_width date_row">
+                                        <span>2018/12/02</span>
+                                    </td>
+                                    <td class="torihikisaki_width torihikisaki_row">
+                                        <span>株式会社平成システム</span>
+                                    </td>
+                                    <td class="kingaku_width kingaku_row">
+                                        <i class="fas fa-yen-sign font_16"></i>
+                                        <span>1,210,500</span>
+                                    </td>
+                                    <td class="func_icon_width func_icon_row">
+                                        <a class="row_circle_btn" href="#"><i class="fa-lg far fa-list-alt pl-1"></i></a>
+                                        <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
+                                    </td>
+                                </tr>
+                                <!-- 行サンプル -->
+                                <tr class="align_center">
+                                    <td class="date_width date_row">
+                                        <span>2018/10/20</span>
+                                    </td>
+                                    <td class="torihikisaki_width torihikisaki_row">
+                                        <span>株式会社Micro-Star International</span>
+                                    </td>
+                                    <td class="kingaku_width kingaku_row">
+                                        <i class="fas fa-yen-sign font_16"></i>
+                                        <span>11,200,000</span>
+                                    </td>
+                                    <td class="func_icon_width func_icon_row">
+                                        <a class="row_circle_btn" href="#"><i class="fa-lg far fa-list-alt pl-1"></i></a>
+                                        <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
+                                    </td>
+                                </tr>
+                                <!-- 行サンプル -->
+                                <tr class="align_center">
+                                    <td class="date_width date_row">
+                                        <span>2018/07/26</span>
+                                    </td>
+                                    <td class="torihikisaki_width torihikisaki_row">
+                                        <span>株式会社アドバンスドマイクロデバイセズ</span>
+                                    </td>
+                                    <td class="kingaku_width kingaku_row">
+                                        <i class="fas fa-yen-sign font_16"></i>
+                                        <span>1,500,000</span>
+                                    </td>
+                                    <td class="func_icon_width func_icon_row">
+                                        <a class="row_circle_btn" href="#"><i class="fa-lg far fa-list-alt pl-1"></i></a>
+                                        <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- end row-->
+            </div>
+        </div>
+        
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <p>django sample app 2019</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- 画面右下のボタン -->
+        <a href="regist.html" class="circle_btn animated fadeInRightBig animsition-link">
+            <i class="fa-lg fas fa-plus color_white"></i></a>
+
+        <!-- MODAL -->
+        <div class="modal fade" id="nohinSearchModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content modal_global">
+                    
+                    <!-- MODAL HEADER -->
+                    <div class="modal-header modal_header_global">
+                        <div class="modal-title modal_title">
+                            <span>納品履歴検索</span>
+                        </div>
+                        <!-- 閉じるボタン -->
+                        <button type="button" class="close" data-dismiss="modal"><i class="fas fa-lg fa-times"></i></button>
+                    </div>
+
+                    <form action="nohin_toroku.html" method="post" autocomplete="off">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <!-- MODAL BODY -->
+                                <div class="modal-body modal_boddy_global">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- MODAL FOOTER -->
+                        <div class="modal-footer modal_footer_global">
+                            <button type="submit" onfocus="this.blur();" class="common_btn"><i class="fas fa-search"></i> 検索</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+            
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="../resources/js/lib/wow.min.js"></script>
+        <script src="../resources/js/lib/easeScroll.js"></script>
+        <script src="../resources/js/lib/animsition.js"></script>
+        <script src="../resources/js/nohin/list.js"></script>
+    </body>
+</html>

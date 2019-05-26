@@ -1,0 +1,52 @@
+@charset "utf-8";
+
+/* ------------------------------------------- */
+/* 納品登録画面 */
+/* ------------------------------------------- */
+.date_width {
+    width: 16%;
+}
+.torihikisaki_width {
+    width: 49%;
+}
+.kingaku_width {
+    width: 22%;
+}
+.func_icon_width {
+    width: 13%;
+}
+.func_icon_head {
+}
+.date_row {
+    font-size: 1.25rem;
+    font-family: 'Merriweather', serif;
+    font-weight: 100;
+    text-align: center;
+    overflow: hidden;
+}
+.torihikisaki_row {
+    font-size: 1.375rem;
+    font-weight: 400;
+}
+.kingaku_row {
+    font-size: 1.375rem;
+    font-family: 'Merriweather', serif;
+    font-weight: 100;
+    text-align: right;
+    overflow: hidden;
+}
+.func_icon_row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* ------------------------------------------- */
+/* モバイル用設定 */
+/* ------------------------------------------- */
+@media all and (max-width: 992px) {
+    .modal-lg {
+        min-width: 100vw;
+    }
+}

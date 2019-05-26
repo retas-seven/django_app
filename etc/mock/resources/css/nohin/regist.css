@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+/* ------------------------------------------- */
+/* 納品登録画面 */
+/* ------------------------------------------- */
+.modal_thead_tr {
+    color: rgb(80, 80, 80);
+    padding-bottom: .3125rem;
+}
+.modal_thead_tr td {
+    text-align: center;
+}
+.modal_thead_tr hr {
+    background-color: rgb(181, 181, 181);
+    margin-bottom: 0;
+}
+.nohin_shohin_width {
+    width: 55%;
+}
+.nohin_tanka_width {
+    width: 14%;
+}
+.nohin_suryo_width {
+    width: 24%;
+}
+.nohin_func_icon_width {
+    width: 7%;
+}
+.nohin_suryo_row {
+    width: auto;
+    white-space: nowrap;
+}
+.nohin_suryo_row > input {
+    width: 45% !important;
+}
+.nohin_suryo_row > .slash {
+    font-family: 'Merriweather', serif;
+    width: 8%;
+    text-align: right;
+}
+.nohin_suryo_row > .zaikosu {
+    font-family: 'Merriweather', serif;
+    width: 47%;
+    text-align: right;
+}
+
+.total_num {
+    font-size: 1.25rem;
+    font-family: 'Merriweather', serif;
+    font-weight: 100;
+}
+.total {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    line-height: 1.5rem;
+}
+.total_hr {
+    border-top: 4px double rgba(181, 181, 181, 1);
+}
+
