@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="col-12">
                         <nav class="navbar navbar-light">
-                            <a class="navbar-brand header-title animsition-link" href={% url 'home' %}>Web-IMS</a>
+                            <a class="navbar-brand header-title animsition-link" href={% url 'home' %}></a>
                         </nav>
                     </div>
                 </div>
@@ -51,11 +51,10 @@
                 <form action="" method="post" name="shohin_form">
                     {% csrf_token %}
                     <div class="form-group row">
-                        <label for="kataban" class="col-2 col-form-label label_name">型番</label>
+                        <div class="col-2">
+                            <label for="kataban" class="col-form-label label_name">型番</label>
+                        </div>
                         <div class="col-10">
-                            <!--
-                            <input type="text" class="form-control form-control-lg" id="kataban" name="kataban" autocomplete="off"/>
-                            -->
                             {{ form.kataban }}
                             {% if form.kataban.errors %}
                                 <p class="error_msg">{{ form.kataban.errors.0 }}</p>
@@ -63,11 +62,10 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="shohin_name" class="col-2 col-form-label label_name">商品名</label>
+                        <div class="col-2">
+                            <label for="shohin_name" class="col-form-label label_name">商品名</label>
+                        </div>
                         <div class="col-10">
-                            <!--
-                            <input type="text" class="form-control form-control-lg" id="shohin_name" name="shohin_name" autocomplete="off"/>
-                            -->
                             {{ form.shohin_name }}
                             {% if form.shohin_name.errors %}
                                 <p class="error_msg">{{ form.shohin_name.errors.0 }}</p>
@@ -75,11 +73,10 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="price" class="col-2 col-form-label label_name">単価</label>
+                        <div class="col-2">
+                            <label for="price" class="col-form-label label_name">単価</label>
+                        </div>
                         <div class="col-10">
-                            <!--
-                            <input type="text" class="form-control form-control-lg width_210" id="price" name="price" autocomplete="off"/>
-                            -->
                             {{ form.price }}
                             {% if form.price.errors %}
                                 <p class="error_msg">{{ form.price.errors.0 }}</p>
@@ -87,11 +84,10 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="zaikosu" class="col-2 col-form-label label_name">在庫数</label>
+                        <div class="col-2">
+                            <label for="zaikosu" class="col-form-label label_name">在庫数</label>
+                        </div>
                         <div class="col-10">
-                            <!--
-                            <input type="text" class="form-control form-control-lg width_210" id="zaikosu" name="zaikosu" autocomplete="off"/>
-                            -->
                             {{ form.zaikosu }}
                             {% if form.zaikosu.errors %}
                                 <p class="error_msg">{{ form.zaikosu.errors.0 }}</p>
@@ -99,11 +95,10 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="memo" class="col-2 col-form-label label_name">メモ</label>
+                        <div class="col-2">
+                            <label for="memo" class="col-form-label label_name">メモ</label>
+                        </div>
                         <div class="col-10">
-                            <!--
-                            <textarea name="memo" cols="40" rows="10" maxlength="1000" class="form-control form-control-lg" id="memo"></textarea>
-                            -->
                             {{ form.memo }}
                             {% if form.memo.errors %}
                                 <p class="error_msg">{{ form.memo.errors.0 }}</p>

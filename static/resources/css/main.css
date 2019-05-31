@@ -8,6 +8,12 @@
 /* ------------------------------------------- */
 /* bootstrap4のスタイルを上書き */
 /* ------------------------------------------- */
+.navbar-brand {
+    background: url("../img/logo.png") no-repeat center center;
+    /* background-size: contain; */
+    height: 4rem;
+    width: 8rem;
+}
 .table td {
     border-top: 0px;
     padding: .4375rem;
@@ -36,14 +42,16 @@
     background-color: rgba(0,0,0,.05);
 }
 .container-fluid {
-    max-width: 1140px;
+    max-width: 1200px;
 }
-
+.header .container-fluid {
+    max-width: 100vw
+}
 .navbar {
     padding: .25rem .5rem;
 }
 hr {
-    margin-top: .5rem;
+    margin-top: .7rem;
     margin-bottom: .5rem;
 }
 .navbar-brand {
@@ -115,8 +123,9 @@ body {
     flex: 1;
     /*
     padding: 25px;
+    padding: 1.5625rem 1.5625rem 13ex 1.5625rem;
     */
-    padding: 1.5625rem 1.5625rem 13ex 1.5625rem; 
+    padding: 2.5625rem 1.5625rem 13ex 1.5625rem; 
     /*background: rgb(225, 225, 225);*/
     /*background: linear-gradient(75deg, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(32,147,234,1) 100%);*/
     /*background: linear-gradient(105deg, rgb(237, 237, 237) 0%,rgb(237, 237, 237) 70%,rgb(230, 230, 230) 71%,rgb(230, 230, 230) 100%);*/
@@ -463,6 +472,40 @@ input:-webkit-autofill {
 }
 .circle_btn_small:hover {
     background-color: rgb(115, 207, 207);
+}
+
+/* ------------------------------------------- */
+/* 入力項目のラベル */
+/* ------------------------------------------- */
+.label_name {
+    /*
+    text-align: right;
+    background-color: rgba(100, 100, 100, .5);
+    background-image: linear-gradient(135deg, rgb(170, 170, 170) 95%,transparent 5%);
+    padding-right: .3125rem;
+    border-left: double 4px rgb(100, 100, 100);
+    border-bottom: solid 1px rgb(100, 100, 100);
+    background-image: linear-gradient(45deg, transparent 50%, rgba(0,0,0,0.055) 50%);
+    background-color: rgb(229, 229, 229);
+    border-left: solid 12px rgb(181, 181, 181);
+    */
+    
+    border-left: solid 1px rgb(181, 181, 181);
+    border-bottom: solid 1px rgb(181, 181, 181);
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 500;
+    line-height: 2.1rem;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    /*
+    background-image: linear-gradient(135deg, rgba(0,0,0,.05) 95%,transparent 5%);
+    background-image: linear-gradient(135deg, rgba(170, 170, 170, .5) 95%,transparent 5%);
+    background-image: linear-gradient(45deg, transparent 50%, rgba(0,0,0,0.055) 50%);
+    background-color: rgb(234, 234, 234);
+    */
 }
 
 /* ------------------------------------------- */
