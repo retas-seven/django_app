@@ -1,0 +1,266 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" type="image/png" href="{% static 'resources/img/favicon.ico' %}"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+        <link rel="stylesheet" href="{% static 'resources/css/lib/animsition.css' %}">
+        <link rel="stylesheet" href="{% static 'resources/css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'resources/css/nohin/regist.css' %}">
+        <title>納品登録</title>
+    </head>
+    <body class="animsition">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="navbar navbar-light">
+                            <a class="navbar-brand header-title animsition-link" href="#"></a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENTS -->
+        <div class="contents">
+            <div class="container-fluid">
+                {% if messages %}
+                    <div class="row">
+                        <div class="col-12">
+                            {% for message in messages %}
+                                <div class="{{ message.tags }}" role="alert" style="padding: 1.0ex 2.0ex;">
+                                    <span>{{ message }}</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+                                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                            <br>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="container-fluid animated fadeInUpSmall">
+                <form action="nohin_toroku.html" method="post" autocomplete="off">
+                    
+                    <div class="form-group row">
+                        <div class="col-2">
+                            <label for="nohin_date" class="col-form-label label_name">納品日</label>
+                        </div>
+                        <div class="col-10">
+                            <input required type="date" class="form-control form-control-lg width_210" id="nohin_date" name="nohin_date" autocomplete="off"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-2">
+                            <label for="nohinsaki" class="col-form-label label_name">納品先</label>
+                        </div>
+                        <div class="col-10">
+                            <input required type="search" class="form-control form-control-lg" name="nohinsaki" autocomplete="off" list="company_list">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-2">
+                            <label for="memo" class="col-form-label label_name">メモ</label>
+                        </div>
+                        <div class="col-10">
+                            <textarea name="memo" cols="40" rows="3" maxlength="1000" class="form-control form-control-lg" id="memo"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group row mt-5">
+                        <div class="col-12">
+                            <table id="modal_table" class="table table-striped">
+                                <thead>
+                                    <tr class="modal_thead_tr">
+                                        <td class="nohin_shohin_width">
+                                            <span>型番・商品名</span>
+                                            <hr>
+                                        </td>
+                                        <td class="nohin_tanka_width">
+                                            <span>単価</span>
+                                            <hr>
+                                        </td>
+                                        <td class="nohin_suryo_width">
+                                            <span>数量</span>
+                                            <hr>
+                                        </td>
+                                        <td class="nohin_func_icon_width">
+                                            <a id="row_add_btn" class="circle_btn_small"><i class="fas fa-plus"></i></a>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- 商品行 -->
+                                    <tr>
+                                        <td class="nohin_shohin_width">
+                                            <input required type="search" class="form-control form-control-lg js_shohin" name="registShohin" autocomplete="off" list="shohin_list">
+                                        </td>
+                                        <td class="nohin_tanka_width">
+                                            <input required type="number" min="0" step="1000" class="form-control form-control-lg js_price" name="registNohinTanka" autocomplete="off"/>
+                                        </td>
+                                        <td class="nohin_suryo_width nohin_suryo_row form-inline">
+                                            <input required type="number" min="0" class="form-control form-control-lg js_amount" name="registNohinSuryo" autocomplete="off"/>
+                                            <span class="slash">/</span>
+                                            <span class="zaikosu js_zaikosu"></span>
+                                        </td>
+                                        <td class="nohin_func_icon_width nohin_func_icon_row">
+                                            <a class="row_circle_btn_small js_row_delete_btn" href="#"><i class="fas fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                    <!-- 商品行 -->
+                                    <tr>
+                                        <td class="nohin_shohin_width">
+                                            <input required type="search" class="form-control form-control-lg js_shohin" name="registShohin" autocomplete="off" list="shohin_list">
+                                        </td>
+                                        <td class="nohin_tanka_width">
+                                            <input required type="number" min="0" step="1000" class="form-control form-control-lg js_price" name="registNohinTanka" autocomplete="off"/>
+                                        </td>
+                                        <td class="nohin_suryo_width nohin_suryo_row form-inline">
+                                            <input required type="number" min="0" class="form-control form-control-lg js_amount" name="registNohinSuryo" autocomplete="off"/>
+                                            <span class="slash">/</span>
+                                            <span class="zaikosu js_zaikosu"></span>
+                                        </td>
+                                        <td class="nohin_func_icon_width nohin_func_icon_row">
+                                            <a class="row_circle_btn_small js_row_delete_btn" href="#"><i class="fas fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                    <!-- 商品行 -->
+                                    <tr>
+                                        <td class="nohin_shohin_width">
+                                            <input required type="search" class="form-control form-control-lg js_shohin" name="registShohin" autocomplete="off" list="shohin_list">
+                                        </td>
+                                        <td class="nohin_tanka_width">
+                                            <input required type="number" min="0" step="1000" class="form-control form-control-lg js_price" name="registNohinTanka" autocomplete="off"/>
+                                        </td>
+                                        <td class="nohin_suryo_width nohin_suryo_row form-inline">
+                                            <input required type="number" min="0" class="form-control form-control-lg js_amount" name="registNohinSuryo" autocomplete="off"/>
+                                            <span class="slash">/</span>
+                                            <span class="zaikosu js_zaikosu"></span>
+                                        </td>
+                                        <td class="nohin_func_icon_width nohin_func_icon_row">
+                                            <a class="row_circle_btn_small js_row_delete_btn" href="#"><i class="fas fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                    <!-- 商品行 -->
+                                    <tr>
+                                        <td class="nohin_shohin_width">
+                                            <input required type="search" class="form-control form-control-lg js_shohin" name="registShohin" autocomplete="off" list="shohin_list">
+                                        </td>
+                                        <td class="nohin_tanka_width">
+                                            <input required type="number" min="0" step="1000" class="form-control form-control-lg js_price" name="registNohinTanka" autocomplete="off"/>
+                                        </td>
+                                        <td class="nohin_suryo_width nohin_suryo_row form-inline">
+                                            <input required type="number" min="0" class="form-control form-control-lg js_amount" name="registNohinSuryo" autocomplete="off"/>
+                                            <span class="slash">/</span>
+                                            <span class="zaikosu js_zaikosu"></span>
+                                        </td>
+                                        <td class="nohin_func_icon_width nohin_func_icon_row">
+                                            <a class="row_circle_btn_small js_row_delete_btn" href="#"><i class="fas fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                    <!-- 商品行 -->
+                                    <tr>
+                                        <td class="nohin_shohin_width">
+                                            <input required type="search" class="form-control form-control-lg js_shohin" name="registShohin" autocomplete="off" list="shohin_list">
+                                        </td>
+                                        <td class="nohin_tanka_width">
+                                            <input required type="number" min="0" step="1000" class="form-control form-control-lg js_price" name="registNohinTanka" autocomplete="off"/>
+                                        </td>
+                                        <td class="nohin_suryo_width nohin_suryo_row form-inline">
+                                            <input required type="number" min="0" class="form-control form-control-lg js_amount" name="registNohinSuryo" autocomplete="off"/>
+                                            <span class="slash">/</span>
+                                            <span class="zaikosu js_zaikosu"></span>
+                                        </td>
+                                        <td class="nohin_func_icon_width nohin_func_icon_row">
+                                            <a class="row_circle_btn_small js_row_delete_btn" href="#"><i class="fas fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div><!-- end col-12 -->
+                    </div><!-- end row -->
+
+                    <!-- 合計表示 -->
+                    <div class="row mt-5">
+                        <div class="col-sm-4 col-12">
+                            <ui class="total">
+                                <li>税抜額</li>
+                                <li>
+                                    <i class="fas fa-yen-sign fa-fw"></i>
+                                    <span class="js_zeinuki total_num">0</span>
+                                </li>
+                            </ui>
+                            <hr class="total_hr">
+                        </div>
+                        <div class="col-sm-4 col-12">
+                            <ui class="total">
+                                <li>消費税</li>
+                                <li>
+                                    <i class="fas fa-yen-sign fa-fw"></i>
+                                    <span class="js_shohizei total_num">0‬‬</span>
+                                </li>
+                            </ui>
+                            <hr class="total_hr">
+                        </div>
+                        <div class="col-sm-4 col-12">
+                            <ui class="total">
+                                <li>税込合計</li>
+                                <li>
+                                    <i class="fas fa-yen-sign fa-fw"></i>
+                                    <span class="js_zeikomi total_num">0</span>
+                                </li>
+                            </ui>
+                            <hr class="total_hr">
+                        </div>
+                    </div>
+
+                    <!-- BUTTON AREA -->
+                    <div class="row mt-5">
+                        <div class="col-12 button_area">
+                            <a href="./list.html" class="common_circle_btn animsition-link"><i class="fas fa-chevron-left"></i><div class="btn_txt">戻る</div></a>
+                            <button class="js_execute_btn common_circle_btn animsition-link"><i class="fas fa-plus"></i><div class="btn_txt">登録</div></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <p>django sample app 2019</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+                
+        <!-- jsの初期処理でoptionを追加するdatalist -->
+        <datalist id="company_list">
+        </datalist>
+        <datalist id="shohin_list">
+        </datalist>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/7.2.3/decimal.min.js"></script>
+        <script src="{% static 'resources/js/lib/wow.min.js' %}"></script>
+        <script src="{% static 'resources/js/lib/easeScroll.js' %}"></script>
+        <script src="{% static 'resources/js/lib/animsition.js' %}"></script>
+        <script src="{% static 'resources/js/nohin/regist.js' %}"></script>
+        <script>
+            var shohinJson = JSON.parse( '{{ shohinJson }}'.replace(/&quot;/g,'"') );
+            var companyJson = JSON.parse( '{{ companyJson }}'.replace(/&quot;/g,'"') );
+        </script>
+    </body>
+</html>
