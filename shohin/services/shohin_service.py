@@ -66,3 +66,10 @@ class ShohinService:
             ).exists()
         )
         return ret
+
+    def deleteShohin(self, kataban):
+        '''
+        商品情報を削除する
+        '''
+        shohin = Shohin.objects.get(belong_user=self.request.user.email, kataban=kataban)
+        shohin.delete()
