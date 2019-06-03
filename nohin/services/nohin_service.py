@@ -21,4 +21,10 @@ class NohinService:
             .order_by('-nohin_date', '-regist_date') # 降順
         )
         return nohinList
-    
+
+    def deleteNohin(self, nohinId):
+        '''
+        納品情報を削除する
+        '''
+        nohin = Nohin.objects.get(belong_user=self.request.user.email, id=nohinId)
+        nohin.delete()

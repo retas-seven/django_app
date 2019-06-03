@@ -86,68 +86,22 @@
                                             <span>{{nohin.total_price|intcomma}}</span>
                                         </td>
                                         <td class="func_icon_width func_icon_row" data-nohin_id="{{nohin.id}}">
-                                            <a class="row_circle_btn" href="#"><i class="fa-lg far fa-list-alt pl-1"></i></a>
-                                            <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
+                                            <a class="animsition-link row_circle_btn js_update_btn"><i class="fa-lg far fa-list-alt pl-1"></i></a>
+                                            <a class="animsition-link row_circle_btn js_delete_btn"><i class="fas fa-times pl-1"></i></a>
                                         </td>
                                     </tr>
                                 {% endfor %}
-
-
-                                <!-- 行サンプル 
-                                <tr class="align_center">
-                                    <td class="date_width date_row">
-                                        <span>2018/12/02</span>
-                                    </td>
-                                    <td class="torihikisaki_width torihikisaki_row">
-                                        <span>株式会社平成システム</span>
-                                    </td>
-                                    <td class="kingaku_width kingaku_row">
-                                        <i class="fas fa-yen-sign font_16"></i>
-                                        <span>1,210,500</span>
-                                    </td>
-                                    <td class="func_icon_width func_icon_row">
-                                        <a class="row_circle_btn" href="#"><i class="fa-lg far fa-list-alt pl-1"></i></a>
-                                        <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="align_center">
-                                    <td class="date_width date_row">
-                                        <span>2018/10/20</span>
-                                    </td>
-                                    <td class="torihikisaki_width torihikisaki_row">
-                                        <span>株式会社Micro-Star International</span>
-                                    </td>
-                                    <td class="kingaku_width kingaku_row">
-                                        <i class="fas fa-yen-sign font_16"></i>
-                                        <span>11,200,000</span>
-                                    </td>
-                                    <td class="func_icon_width func_icon_row">
-                                        <a class="row_circle_btn" href="#"><i class="fa-lg far fa-list-alt pl-1"></i></a>
-                                        <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="align_center">
-                                    <td class="date_width date_row">
-                                        <span>2018/07/26</span>
-                                    </td>
-                                    <td class="torihikisaki_width torihikisaki_row">
-                                        <span>株式会社アドバンスドマイクロデバイセズ</span>
-                                    </td>
-                                    <td class="kingaku_width kingaku_row">
-                                        <i class="fas fa-yen-sign font_16"></i>
-                                        <span>1,500,000</span>
-                                    </td>
-                                    <td class="func_icon_width func_icon_row">
-                                        <a class="row_circle_btn" href="#"><i class="fa-lg far fa-list-alt pl-1"></i></a>
-                                        <a class="row_circle_btn" href="#"><i class="fas fa-times pl-1"></i></a>
-                                    </td>
-                                </tr>
-                                -->
                             </tbody>
                         </table>
                     </div>
                 </div><!-- end row-->
             </div>
+
+            <!-- 処理対象型番送信用Form-->
+            <form action="" method="post" name="nohin_id_form">
+                {% csrf_token %}
+                <input type="hidden" value="" class="js_nohin_id" name="nohin_id">
+            </form>
         </div>
         
         <!-- FOOTER -->
@@ -162,7 +116,7 @@
         </footer>
 
         <!-- 画面右下のボタン -->
-        <a href="regist.html" class="circle_btn animated fadeInRightBig animsition-link">
+        <a href={% url 'nohin_regist_view' %} class="circle_btn animated fadeInRightBig animsition-link">
             <i class="fa-lg fas fa-plus color_white"></i></a>
 
         <!-- MODAL -->
@@ -205,5 +159,9 @@
         <script src="{% static 'resources/js/lib/easeScroll.js' %}"></script>
         <script src="{% static 'resources/js/lib/animsition.js' %}"></script>
         <script src="{% static 'resources/js/nohin/list.js' %}"></script>
+        <script>
+            var nohinDeleteViewUrl = "{% url 'nohin_delete_view' %}";
+            var nohinUpdateViewUrl = "{% url 'nohin_update_view' %}";
+        </script>
     </body>
 </html>
