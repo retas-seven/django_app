@@ -263,6 +263,9 @@ input:-webkit-autofill {
 /* ------------------------------------------- */
 /* 汎用 */
 /* ------------------------------------------- */
+.display_none {
+    display: none;
+}
 .color_white {
     color: white;
 }

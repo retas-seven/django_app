@@ -101,18 +101,50 @@ function createShohinList() {
  * 行追加ボタン押下時の処理
  */
 function addRow() {
-	$("#modal_table tbody tr:last-child").clone(true).appendTo("#modal_table tbody");
-	$("#modal_table tbody tr:last-child input").val("");
-	$("#modal_table tbody tr:last-child .zaikosu").text("");
+	// $("#detail_table tbody tr:last-child").clone(true).appendTo("#detail_table tbody");
+	// $("#detail_table tbody tr:last-child input").val("");
+	// $("#detail_table tbody tr:last-child .zaikosu").text("");
+	
+	// 新規行を追加
+	let formIdx = $('#id_form-TOTAL_FORMS').val();
+	let newRow = $(".js_empty_row tbody tr:last-child").clone(true);
+	newRow.appendTo("#detail_table tbody");
+
+	// 新規行に追加する入力項目を作成
+	let emptyKataban = $('#id_form-__prefix__-kataban');
+	let emptyPrice = $('#id_form-__prefix__-price');
+	let emptyAmount = $('#id_form-__prefix__-amount');
+	let newRowKataban = emptyKataban[0].outerHTML.replace(/__prefix__/g, formIdx);
+	let newRowPrice = emptyPrice[0].outerHTML.replace(/__prefix__/g, formIdx);
+	let newRowAmount= emptyAmount[0].outerHTML.replace(/__prefix__/g, formIdx);
+
+	// 新規行に入力項目を設定
+	$("#detail_table tbody tr:last-child .js_dummy_kataban").replaceWith(newRowKataban);
+	$("#detail_table tbody tr:last-child .js_dummy_price").replaceWith(newRowPrice);
+	$("#detail_table tbody tr:last-child .js_dummy_amount").replaceWith(newRowAmount);
+
+	// 新規行に追加した入力項目を取得し、入力時のイベントを設定
+	newRowKatabanElement = $('#id_form-' + formIdx + '-kataban');
+	newRowPriceElement = $('#id_form-' + formIdx + '-price');
+	newRowAmountElement = $('#id_form-' + formIdx + '-amount');
+	newRowKatabanElement.on("change", changeShohin);
+	newRowPriceElement.on("input", changePrice);
+	newRowAmountElement.on("input", changeAmount);
+
+	// let formIdx = $('#id_form-TOTAL_FORMS').val();
+	// $("#detail_table tbody").append($('.js_empty_row').html().replace(/__prefix__/g, formIdx));
+	$('#id_form-TOTAL_FORMS').val(parseInt(formIdx) + 1);
 }
 
 /**
  * 行削除ボタン押下時の処理
  */
 function deleteRow() {
-	if($(".js_row_delete_btn").length != 1) {
-		$(this).parent().parent().remove();
-	}
+	// if($(".js_row_delete_btn").length != 1) {
+	// 	$(this).parent().parent().remove();
+	// }
+	$(this).parent().parent().remove();
+	
 	// 合計部の金額を設定する
 	calcTotal();
 }
@@ -133,12 +165,18 @@ function changeShohin() {
 	if (targetShohin == null) {
 		$(this).val("");
 		$(this).closest("tr").find(".js_zaikosu").text("");
+		$(this).closest("tr").find(".js_price").val("");
+		$(this).closest("tr").find(".js_amount").val("");
+
+		// 合計部の金額を設定する
+		calcTotal();
 		return;
 	}
 
 	// 単価、在庫数に商品情報の値を設定する
 	$(this).closest("tr").find(".js_price").val(targetShohin.price);
 	$(this).closest("tr").find(".js_zaikosu").text(targetShohin.zaikosu.toLocaleString());
+
 	// 合計部の金額を設定する
 	calcTotal();
 }
