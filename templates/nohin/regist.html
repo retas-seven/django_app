@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -20,7 +21,7 @@
                 <div class="row">
                     <div class="col-12">
                         <nav class="navbar navbar-light">
-                            <a class="navbar-brand header-title animsition-link" href="#"></a>
+                            <a class="navbar-brand header-title animsition-link" href="{% url 'home' %}"></a>
                         </nav>
                     </div>
                 </div>
@@ -48,14 +49,19 @@
             </div>
 
             <div class="container-fluid animated fadeInUpSmall">
-                <form action="nohin_toroku.html" method="post" autocomplete="off">
+                <form action="{% url 'nohin_regist_view' %}" method="post" autocomplete="off">
+                    {% csrf_token %}
                     
                     <div class="form-group row">
                         <div class="col-2">
                             <label for="nohin_date" class="col-form-label label_name">納品日</label>
                         </div>
                         <div class="col-10">
-                            <input required type="date" class="form-control form-control-lg width_210" id="nohin_date" name="nohin_date" autocomplete="off"/>
+                            <!-- <input required type="date" class="form-control form-control-lg width_210" id="nohin_date" name="nohin_date" autocomplete="off"/> -->
+                            {{ form.nohin_date }}
+                            {% if reg.nohin_date.errors %}
+                                <p class="error_msg">{{ form.nohin_date.errors.0 }}</p>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="form-group row">
@@ -63,7 +69,11 @@
                             <label for="nohinsaki" class="col-form-label label_name">納品先</label>
                         </div>
                         <div class="col-10">
-                            <input required type="search" class="form-control form-control-lg" name="nohinsaki" autocomplete="off" list="company_list">
+                            <!-- <input required type="search" class="form-control form-control-lg" name="nohinsaki" autocomplete="off" list="company_list"> -->
+                            {{ form.nohinsaki }}
+                            {% if form.nohinsaki.errors %}
+                                <p class="error_msg">{{ form.nohinsaki.errors.0 }}</p>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="form-group row">
@@ -71,13 +81,17 @@
                             <label for="memo" class="col-form-label label_name">メモ</label>
                         </div>
                         <div class="col-10">
-                            <textarea name="memo" cols="40" rows="3" maxlength="1000" class="form-control form-control-lg" id="memo"></textarea>
+                            <!-- <textarea name="memo" cols="40" rows="3" maxlength="1000" class="form-control form-control-lg" id="memo"></textarea> -->
+                            {{ form.memo }}
+                            {% if form.memo.errors %}
+                                <p class="error_msg">{{ form.memo.errors.0 }}</p>
+                            {% endif %}
                         </div>
                     </div>
 
                     <div class="form-group row mt-5">
                         <div class="col-12">
-                            <table id="modal_table" class="table table-striped">
+                            <table id="detail_table" class="table table-striped">
                                 <thead>
                                     <tr class="modal_thead_tr">
                                         <td class="nohin_shohin_width">
@@ -98,93 +112,64 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- 商品行 -->
+                                    {% for detail in formset %}
+                                        <tr>
+                                            <td class="nohin_shohin_width">
+                                                {{ detail.kataban }}
+                                                {% if detail.kataban.errors %}
+                                                    <p class="error_msg">{{ detail.kataban.errors.0 }}</p>
+                                                {% endif %}
+                                            </td>
+                                            <td class="nohin_tanka_width">
+                                                {{ detail.price }}
+                                                {% if detail.price.errors %}
+                                                    <p class="error_msg">{{ detail.price.errors.0 }}</p>
+                                                {% endif %}
+                                            </td>
+                                            <td class="nohin_suryo_width nohin_suryo_row form-inline">
+                                                {{ detail.amount }}
+                                                <span class="slash">/</span>
+                                                <span class="zaikosu js_zaikosu"></span>
+                                                {% if detail.amount.errors %}
+                                                    <p class="error_msg">{{ detail.amount.errors.0 }}</p>
+                                                {% endif %}
+                                            </td>
+                                            <td class="nohin_func_icon_width nohin_func_icon_row">
+                                                <a class="row_circle_btn_small js_row_delete_btn"><i class="fas fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            {{ formset.management_form }}
+
+                            <!-- javascriptで一覧部の行を追加する際に使用するテンプレート -->
+                            <div class="display_none">
+                                {{ formset.empty_form.kataban }}
+                                {{ formset.empty_form.price }}
+                                {{ formset.empty_form.amount }}
+                            </div>
+                            <table class="display_none js_empty_row">
+                                <tbody>
                                     <tr>
                                         <td class="nohin_shohin_width">
-                                            <input required type="search" class="form-control form-control-lg js_shohin" name="registShohin" autocomplete="off" list="shohin_list">
+                                            <span class="js_dummy_kataban"></span>
                                         </td>
                                         <td class="nohin_tanka_width">
-                                            <input required type="number" min="0" step="1000" class="form-control form-control-lg js_price" name="registNohinTanka" autocomplete="off"/>
+                                            <span class="js_dummy_price"></span>
                                         </td>
                                         <td class="nohin_suryo_width nohin_suryo_row form-inline">
-                                            <input required type="number" min="0" class="form-control form-control-lg js_amount" name="registNohinSuryo" autocomplete="off"/>
+                                            <span class="js_dummy_amount"></span>
                                             <span class="slash">/</span>
                                             <span class="zaikosu js_zaikosu"></span>
                                         </td>
                                         <td class="nohin_func_icon_width nohin_func_icon_row">
-                                            <a class="row_circle_btn_small js_row_delete_btn" href="#"><i class="fas fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <!-- 商品行 -->
-                                    <tr>
-                                        <td class="nohin_shohin_width">
-                                            <input required type="search" class="form-control form-control-lg js_shohin" name="registShohin" autocomplete="off" list="shohin_list">
-                                        </td>
-                                        <td class="nohin_tanka_width">
-                                            <input required type="number" min="0" step="1000" class="form-control form-control-lg js_price" name="registNohinTanka" autocomplete="off"/>
-                                        </td>
-                                        <td class="nohin_suryo_width nohin_suryo_row form-inline">
-                                            <input required type="number" min="0" class="form-control form-control-lg js_amount" name="registNohinSuryo" autocomplete="off"/>
-                                            <span class="slash">/</span>
-                                            <span class="zaikosu js_zaikosu"></span>
-                                        </td>
-                                        <td class="nohin_func_icon_width nohin_func_icon_row">
-                                            <a class="row_circle_btn_small js_row_delete_btn" href="#"><i class="fas fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <!-- 商品行 -->
-                                    <tr>
-                                        <td class="nohin_shohin_width">
-                                            <input required type="search" class="form-control form-control-lg js_shohin" name="registShohin" autocomplete="off" list="shohin_list">
-                                        </td>
-                                        <td class="nohin_tanka_width">
-                                            <input required type="number" min="0" step="1000" class="form-control form-control-lg js_price" name="registNohinTanka" autocomplete="off"/>
-                                        </td>
-                                        <td class="nohin_suryo_width nohin_suryo_row form-inline">
-                                            <input required type="number" min="0" class="form-control form-control-lg js_amount" name="registNohinSuryo" autocomplete="off"/>
-                                            <span class="slash">/</span>
-                                            <span class="zaikosu js_zaikosu"></span>
-                                        </td>
-                                        <td class="nohin_func_icon_width nohin_func_icon_row">
-                                            <a class="row_circle_btn_small js_row_delete_btn" href="#"><i class="fas fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <!-- 商品行 -->
-                                    <tr>
-                                        <td class="nohin_shohin_width">
-                                            <input required type="search" class="form-control form-control-lg js_shohin" name="registShohin" autocomplete="off" list="shohin_list">
-                                        </td>
-                                        <td class="nohin_tanka_width">
-                                            <input required type="number" min="0" step="1000" class="form-control form-control-lg js_price" name="registNohinTanka" autocomplete="off"/>
-                                        </td>
-                                        <td class="nohin_suryo_width nohin_suryo_row form-inline">
-                                            <input required type="number" min="0" class="form-control form-control-lg js_amount" name="registNohinSuryo" autocomplete="off"/>
-                                            <span class="slash">/</span>
-                                            <span class="zaikosu js_zaikosu"></span>
-                                        </td>
-                                        <td class="nohin_func_icon_width nohin_func_icon_row">
-                                            <a class="row_circle_btn_small js_row_delete_btn" href="#"><i class="fas fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <!-- 商品行 -->
-                                    <tr>
-                                        <td class="nohin_shohin_width">
-                                            <input required type="search" class="form-control form-control-lg js_shohin" name="registShohin" autocomplete="off" list="shohin_list">
-                                        </td>
-                                        <td class="nohin_tanka_width">
-                                            <input required type="number" min="0" step="1000" class="form-control form-control-lg js_price" name="registNohinTanka" autocomplete="off"/>
-                                        </td>
-                                        <td class="nohin_suryo_width nohin_suryo_row form-inline">
-                                            <input required type="number" min="0" class="form-control form-control-lg js_amount" name="registNohinSuryo" autocomplete="off"/>
-                                            <span class="slash">/</span>
-                                            <span class="zaikosu js_zaikosu"></span>
-                                        </td>
-                                        <td class="nohin_func_icon_width nohin_func_icon_row">
-                                            <a class="row_circle_btn_small js_row_delete_btn" href="#"><i class="fas fa-times"></i></a>
+                                            <a class="row_circle_btn_small js_row_delete_btn"><i class="fas fa-times"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+
                         </div><!-- end col-12 -->
                     </div><!-- end row -->
 
@@ -259,8 +244,8 @@
         <script src="{% static 'resources/js/lib/animsition.js' %}"></script>
         <script src="{% static 'resources/js/nohin/regist.js' %}"></script>
         <script>
-            var shohinJson = JSON.parse( '{{ shohinJson }}'.replace(/&quot;/g,'"') );
-            var companyJson = JSON.parse( '{{ companyJson }}'.replace(/&quot;/g,'"') );
+            var shohinJson = JSON.parse( '{{ shohin_json }}'.replace(/&quot;/g,'"') );
+            var companyJson = JSON.parse( '{{ company_json }}'.replace(/&quot;/g,'"') );
         </script>
     </body>
 </html>

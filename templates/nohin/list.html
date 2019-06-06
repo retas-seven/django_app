@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-12">
                         <nav class="navbar navbar-light">
-                            <a class="navbar-brand header-title" href={% url 'home' %}></a>
+                            <a class="navbar-brand header-title animsition-link" href="{% url 'home' %}"></a>
                         </nav>
                     </div>
                 </div>
@@ -86,8 +86,8 @@
                                             <span>{{nohin.total_price|intcomma}}</span>
                                         </td>
                                         <td class="func_icon_width func_icon_row" data-nohin_id="{{nohin.id}}">
-                                            <a class="animsition-link row_circle_btn js_update_btn"><i class="fa-lg far fa-list-alt pl-1"></i></a>
-                                            <a class="animsition-link row_circle_btn js_delete_btn"><i class="fas fa-times pl-1"></i></a>
+                                            <a class="animsition-link row_circle_btn js_update_btn"><i class="fa-lg far fa-list-alt"></i></a>
+                                            <a class="animsition-link row_circle_btn js_delete_btn"><i class="fas fa-times"></i></a>
                                         </td>
                                     </tr>
                                 {% endfor %}
