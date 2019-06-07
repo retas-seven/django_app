@@ -44,7 +44,7 @@ class CommonMiddleware:
         self.logger.info(
             logMessage,
             extra={
-                'user': 'testuser',
+                'user': request.user.email,
                 'url': request.build_absolute_uri(),
             }
         )

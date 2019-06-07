@@ -3,7 +3,7 @@ from app_table.models import NohinDetail
 from app_table.models import Shohin
 from app_table.models import Company
 from decimal import Decimal
-import datetime
+from datetime import datetime
 import json
 
 class NohinService:
@@ -56,3 +56,48 @@ class NohinService:
             )
         )
         return companyJson
+
+    def registCompany(self, companyName):
+        '''
+        会社名の存在有無を確認し、存在しなければ登録する
+        '''
+        exist = (Company.objects
+            .filter(
+                belong_user=self.request.user.email,
+                company_name=companyName,
+            ).exists()
+        )
+
+        if not exist:
+            company = Company()
+            company.belong_user = self.request.user.email
+            company.company_name = companyName
+            company.regist_user = self.request.user.email
+            company.regist_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+            company.save()
+
+    def registNohin(self, form, detailFormset):
+        '''
+        商品情報を登録する
+        '''
+        # 保存対象の納品オブジェクトを取得する（この時点ではコミットしない）
+        nohin = form.save(commit=False)
+        detailList = detailFormset.save(commit=False)
+
+        totalPrice = 0
+        for detail in detailList:
+            totalPrice += Decimal(detail.price) * Decimal(detail.amount)
+
+        # 画面からPOSTされたデータの他に必須のデータをセットして保存する
+        nohin.belong_user = self.request.user.email
+        nohin.total_price = Decimal(totalPrice) * Decimal('1.08')  # 税込額 TODO:マスタに税率を保持する
+        nohin.regist_user = self.request.user.email
+        nohin.regist_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        nohin.save()
+
+        for detail in detailFormset.save(commit=False):
+            detail.belong_user = self.request.user.email
+            detail.regist_user = self.request.user.email
+            detail.regist_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+            detail.nohin = nohin
+        detailFormset.save()

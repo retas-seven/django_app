@@ -65,6 +65,9 @@ $(document).ready(function() {
 	$(".js_price").on("input", changePrice);
 	// 数量変更時の処理
 	$(".js_amount").on("input", changeAmount);
+
+	// 登録ボタン押下時の処理
+	$(".js_execute_btn").on("click", execute);
 });
 
 var SEPARATOR = " ／ ";
@@ -150,7 +153,7 @@ function deleteRow() {
 }
 
 /**
- * モーダルの商品選択時の処理
+ * 商品選択時の処理
  */
 function changeShohin() {
 	let val = $(this).val();
@@ -254,3 +257,13 @@ function changeAmount() {
 function changePrice() {
 	calcTotal();
 }
+
+/**
+ * 登録／更新ボタン押下時の処理
+ */
+function execute() {
+	$('body').on('animsition.outEnd', () => {
+		let form = $('[name=nohin_form]');
+		form.submit();
+	});
+};
