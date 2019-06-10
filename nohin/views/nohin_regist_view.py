@@ -21,6 +21,7 @@ class NohinRegistView(LoginRequiredMixin, View):
         formset = NohinDetailFormset(None, queryset=NohinDetail.objects.none())
 
         params = {
+            'mode': 'regist',
             'form': form,
             'formset': formset,
             'shohin_json': service.retrieveShohin(),
@@ -39,6 +40,7 @@ class NohinRegistView(LoginRequiredMixin, View):
 
         if (not form.is_valid()) or (not detailFormset.is_valid()):
             params = {
+                'mode': 'regist',
                 'form': form,
                 'formset': detailFormset,
                 'shohin_json': service.retrieveShohin(),

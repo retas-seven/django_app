@@ -204,9 +204,11 @@ input:-webkit-autofill {
 /* ------------------------------------------- */
 /* Spinner */
 /* ------------------------------------------- */
+/*
 .is_hide{
     display:none; 
 }
+*/
 .loading{
     position:fixed;
     top:0;

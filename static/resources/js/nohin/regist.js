@@ -50,10 +50,13 @@ $(document).ready(function() {
 		}
 	});
 
+	// 画面の初期表示状態を設定
+	init();
 	// 納品先候補を作成
 	createCompanyList();
 	// 一覧部の商品選択候補を作成
 	createShohinList();
+
 	// 行追加ボタン押下時の処理
 	$("#row_add_btn").on("click", addRow);
 	// 行削除ボタン押下時の処理
@@ -66,11 +69,27 @@ $(document).ready(function() {
 	// 数量変更時の処理
 	$(".js_amount").on("input", changeAmount);
 
-	// 登録ボタン押下時の処理
+	// 登録／更新ボタン押下時の処理
 	$(".js_execute_btn").on("click", execute);
 });
 
 var SEPARATOR = " ／ ";
+
+/**
+ * 画面初期化
+ */
+function init() {
+	let form = $('[name=nohin_form]');
+
+	if (mode == 'regist') {
+		form.attr('action', nohinRegistViewUrl);
+		
+	} else if (mode == 'update') {
+		form.attr('action', nohinUpdateViewUrl);
+		// 合計部の金額を設定する
+		calcTotal();
+	}
+};
 
 /**
  * 納品先選択候補を作成

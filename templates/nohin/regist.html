@@ -49,8 +49,13 @@
             </div>
 
             <div class="container-fluid animated fadeInUpSmall">
-                <form action="{% url 'nohin_regist_view' %}" method="post" name="nohin_form" autocomplete="off">
+                <form action="" method="post" name="nohin_form" autocomplete="off">
                     {% csrf_token %}
+
+                    <!-- 更新対象のNohin.idの値 -->
+                    {% if mode == 'update' %}
+                        <input type="hidden" name="update_nohin_id" value="{{ update_nohin_id }}" />
+                    {% endif %}
                     
                     <div class="form-group row">
                         <div class="col-2">
@@ -135,7 +140,17 @@
                                                 {% endif %}
                                             </td>
                                             <td class="nohin_func_icon_width nohin_func_icon_row">
-                                                <a class="row_circle_btn_small js_row_delete_btn"><i class="fas fa-times"></i></a>
+                                                {% if detail.instance.pk %}
+                                                    {{ detail.DELETE }}
+                                                {% endif %}
+                                                {% if not detail.instance.pk %}
+                                                    <a class="row_circle_btn_small js_row_delete_btn"><i class="fas fa-times"></i></a>
+                                                {% endif %}
+                                    
+                                                <!-- 隠しフィールドを出力 -->
+                                                {% for field in detail.hidden_fields %}
+                                                    {{ field }}
+                                                {% endfor %}
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -211,7 +226,12 @@
                     <div class="row mt-5">
                         <div class="col-12 button_area">
                             <a href="{% url 'nohin_list_view' %}" class="common_circle_btn animsition-link"><i class="fas fa-chevron-left"></i><div class="btn_txt">戻る</div></a>
-                            <button class="js_execute_btn common_circle_btn animsition-link"><i class="fas fa-plus"></i><div class="btn_txt">登録</div></button>
+                            {% if mode == 'regist' %}
+                                <button class="js_execute_btn common_circle_btn animsition-link"><i class="fas fa-plus"></i><div class="btn_txt">登録</div></button>
+                            {% endif %}
+                            {% if mode == 'update' %}
+                                <button class="js_execute_btn common_circle_btn animsition-link"><i class="fas fa-level-up-alt"></i><div class="btn_txt">更新</div></button>
+                            {% endif %}
                         </div>
                     </div>
                 </form>
@@ -246,6 +266,9 @@
         <script>
             var shohinJson = JSON.parse( '{{ shohin_json }}'.replace(/&quot;/g,'"') );
             var companyJson = JSON.parse( '{{ company_json }}'.replace(/&quot;/g,'"') );
+            var nohinRegistViewUrl = "{% url 'nohin_regist_view' %}";
+            var nohinUpdateViewUrl = "{% url 'nohin_update_view' %}";
+            var mode = "{{ mode }}";
         </script>
     </body>
 </html>

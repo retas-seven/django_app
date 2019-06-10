@@ -1,7 +1,5 @@
 from django import forms
 from django.forms import modelformset_factory
-# from django.forms import inlineformset_factory
-# from django.forms.models import inlineformset_factory
 from app_table.models import Nohin
 from app_table.models import NohinDetail
 
@@ -73,14 +71,6 @@ NohinDetailFormset = modelformset_factory(
     NohinDetail,
     form = NohinDetailForm,
     extra = 5,
+    max_num = 5,
+    can_delete = True,
 )
-
-# NohinFormset = inlineformset_factory(
-#     Nohin,
-#     NohinDetail,
-#     fields = {'kataban', 'price', 'amount'},
-#     extra=5,
-#     max_num=5,
-#     can_delete=False,
-# )
-
