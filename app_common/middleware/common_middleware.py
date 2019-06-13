@@ -44,8 +44,8 @@ class CommonMiddleware:
         self.logger.info(
             logMessage,
             extra={
-                # 'user': request.user.email,
-                'user': 'test',
+                'user': request.user.email if request.user.is_authenticated else 'AnonymousUser',
                 'url': request.build_absolute_uri(),
             }
         )
+    
