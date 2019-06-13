@@ -61,6 +61,8 @@ $(document).ready(function() {
 	$("#row_add_btn").on("click", addRow);
 	// 行削除ボタン押下時の処理
 	$(".js_row_delete_btn").on("click", deleteRow);
+	// 行トグルボタン押下時の処理
+	$(".js_row_toggle_btn").on("click", toggleRow);
 
 	// 商品選択時の処理
 	$(".js_shohin").on("change", changeShohin);
@@ -81,12 +83,18 @@ var SEPARATOR = " ／ ";
 function init() {
 	let form = $('[name=nohin_form]');
 
+	// TODO: 更新画面で、行を削除状態にしてsubmitした際、
+	// 入力チェックエラーなどで戻り遷移しすると、
+	// 見た目が通常行と同じになってしまうことの暫定対処として、
+	// 削除チェックボックスのチェックを外す。
+	$('[id^="id_form"][id$="-DELETE"]').prop("checked", false);
+
 	if (mode == 'regist') {
 		form.attr('action', nohinRegistViewUrl);
 		
 	} else if (mode == 'update') {
 		form.attr('action', nohinUpdateViewUrl);
-		// 合計部の金額を設定する
+		// 既存行の合計金額を設定する
 		calcTotal();
 	}
 };
@@ -172,6 +180,31 @@ function deleteRow() {
 }
 
 /**
+ * 行トグルボタン押下時の処理
+ */
+function toggleRow() {
+	delCheckbox = $(this).siblings('input[type="checkbox"]');
+	currentRow = $(this).parent().parent();
+
+	if (delCheckbox.prop("checked")) {
+		// 行を有効化する
+		delCheckbox.prop("checked", false);
+		currentRow.removeClass('js_deleted_row');
+		currentRow.find(':input').attr('readonly', false);
+		$(this).html('<i class="fas fa-times"></i>')
+	} else {
+		// 行を無効化する
+		delCheckbox.prop("checked", true);
+		currentRow.addClass('js_deleted_row');
+		currentRow.find('input').attr('readonly', true);
+		$(this).html('<i class="fas fa-undo"></i>')
+	}
+	
+	// 合計部の金額を設定する
+	calcTotal();
+}
+
+/**
  * 商品選択時の処理
  */
 function changeShohin() {
@@ -245,11 +278,18 @@ function calcTotal() {
 	let amount;
 
 	for (let i = 0; i < priceList.length; i++) {
+		// 読取専用（＝更新画面で、削除状態にされた行）は計算対象外
+		if(priceList[i].readOnly && amountList[i].readOnly) {
+			continue;
+		}
+
 		price = priceList[i].valueAsNumber;
 		amount = amountList[i].valueAsNumber;
+
 		if (Number.isNaN(price) || Number.isNaN(amount)) {
 			continue;
 		}
+
 		total += price * amount;
 	}
 

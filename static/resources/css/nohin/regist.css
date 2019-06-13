@@ -23,9 +23,6 @@
 .nohin_suryo_width {
     width: 24%;
 }
-.nohin_func_icon_width {
-    width: 7%;
-}
 .nohin_suryo_row {
     width: auto;
     white-space: nowrap;
@@ -42,6 +39,20 @@
     font-family: 'Merriweather', serif;
     width: 47%;
     text-align: right;
+}
+.nohin_func_icon_width {
+    width: 7%;
+}
+.table .nohin_func_icon_row {
+    vertical-align: middle;
+}
+
+.table .nohin_func_icon_row input[type=checkbox] {
+    display: none;
+}
+
+.js_deleted_row {
+    background-color: rgba(0, 0, 0, .1) !important;
 }
 
 .total_num {

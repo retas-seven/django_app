@@ -141,10 +141,10 @@
                                             </td>
                                             <td class="nohin_func_icon_width nohin_func_icon_row">
                                                 {% if detail.instance.pk %}
+                                                    <a class="row_circle_btn js_row_toggle_btn"><i class="fas fa-times"></i></a>
                                                     {{ detail.DELETE }}
-                                                {% endif %}
-                                                {% if not detail.instance.pk %}
-                                                    <a class="row_circle_btn_small js_row_delete_btn"><i class="fas fa-times"></i></a>
+                                                {% else %}
+                                                    <a class="row_circle_btn js_row_delete_btn"><i class="fas fa-times"></i></a>
                                                 {% endif %}
                                     
                                                 <!-- 隠しフィールドを出力 -->
@@ -179,7 +179,7 @@
                                             <span class="zaikosu js_zaikosu"></span>
                                         </td>
                                         <td class="nohin_func_icon_width nohin_func_icon_row">
-                                            <a class="row_circle_btn_small js_row_delete_btn"><i class="fas fa-times"></i></a>
+                                            <a class="row_circle_btn js_row_delete_btn"><i class="fas fa-times"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>
