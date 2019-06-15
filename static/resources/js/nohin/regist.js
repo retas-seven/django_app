@@ -94,6 +94,8 @@ function init() {
 		
 	} else if (mode == 'update') {
 		form.attr('action', nohinUpdateViewUrl);
+		// 既存行の在庫数を設定する
+		setAllDetailRowZaioksu();
 		// 既存行の合計金額を設定する
 		calcTotal();
 	}
@@ -117,14 +119,42 @@ function createCompanyList() {
  * 一覧部の商品選択候補を作成
  */
 function createShohinList() {
-	let modalShohinList = $("#shohin_list");
+	let shohinList = $("#shohin_list");
 	let optionList = [];
 	for (let shohin of shohinJson) {
 		let content = shohin.kataban + SEPARATOR + shohin.shohin_name
 		option = $("<option>", { value: content });
 		optionList.push(option);
 	}
-	modalShohinList.append(optionList);
+	shohinList.append(optionList);
+}
+
+/**
+ * 商品選択時の処理
+ */
+function setAllDetailRowZaioksu() {
+	let detailRowShohinList = $('.js_shohin')
+	let val = null;
+
+	for (let detailRowShohin of detailRowShohinList) {
+		val = detailRowShohin.value;
+		if (val == '') {
+			continue;
+		}
+
+		// 商品の型番を取得
+		kataban = getKataban(val);
+		// 型番に対応する商品情報（JSON）を取得
+		targetShohin = getTargetShohinJson(kataban);
+		console.log(targetShohin);
+
+		if (targetShohin == null) {
+			continue;
+		}
+
+		// 在庫数に商品情報の値を設定する
+		$(detailRowShohin).closest("tr").find(".js_zaikosu").text(targetShohin.zaikosu.toLocaleString());
+	}
 }
 
 /**
