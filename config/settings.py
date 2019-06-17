@@ -181,7 +181,8 @@ LOGGING = {
             'class': 'logging.handlers.TimedRotatingFileHandler',
             'filename': '/home/webims/application.log',
             'when': 'D',
-            'interval': 1, 
+            'interval': 1,
+            'backupCount': 365,
             'formatter': 'middleware_log_formatter',
         },
         'middleware_console_handler': {
