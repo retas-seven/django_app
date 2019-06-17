@@ -11,8 +11,16 @@
 .navbar-brand {
     background: url("../img/logo.png") no-repeat center center;
     /* background-size: contain; */
-    height: 4rem;
+    height: 3.5rem;
     width: 8rem;
+}
+@media all and (max-width: 992px) {
+    .navbar-brand {
+        background: url("../img/logo_m.png") no-repeat center center;
+        /* background-size: contain; */
+        /* height: 3.5rem;
+        width: 8rem; */
+    }
 }
 .table td {
     border-top: 0px;
@@ -68,6 +76,7 @@ html {
     font-size: 125%;
     */
     font-size: 100%;
+    overflow: hidden;
 }
 body {
     letter-spacing: .1em;
@@ -83,12 +92,12 @@ body {
 /* ------------------------------------------- */
 @media all and (max-width: 992px) {
 	html {
-	    font-size: 52.6825%;
+	    font-size: 70%;
 	}
 }
 @media all and (max-width: 768px) {
 	html {
-	    font-size: 46.865%;
+	    font-size: 50%;
 	}
 }
 @media all and (max-width: 480px) {
@@ -265,6 +274,28 @@ input:-webkit-autofill {
 /* ------------------------------------------- */
 /* 汎用 */
 /* ------------------------------------------- */
+.top_manu_item {
+    letter-spacing: 0;
+    box-sizing: border-box;
+    font-size: .9rem;
+    /* background-color: rgb(240, 240, 240); */
+    /* background-image: linear-gradient(103deg, transparent 68%, rgba(0,0,0,0.025) 42%); */
+    border-right: 1px solid rgb(181, 181, 181);
+    border-bottom: 1px solid rgb(181, 181, 181);
+    width: 7.5rem;
+    text-align: center;
+}
+.top_manu_item:hover {
+    box-sizing: border-box;
+    background-color: rgba(115, 207, 207, .7);
+    border-right: solid 1px rgb(115, 207, 207);
+    border-bottom: solid 1px rgb(115, 207, 207);
+    text-decoration: none;
+    transition: all 170ms 0s ease;
+}
+.nav-link:hover {
+    color: white !important;
+}
 .display_none {
     display: none;
 }
@@ -556,10 +587,39 @@ input:-webkit-autofill {
 /* モバイル用設定 */
 /* ------------------------------------------- */
 @media all and (max-width: 992px) {
-	.col-12 {
+	/* .col-12 {
 	    padding-left: 0;
 	    padding-right: 0;
-	}
+    } */
+    .top_manu_item {
+        /* background-color: aquamarine; */
+        box-sizing: border-box;
+        font-size: 1.2rem;
+        background-color: white;
+        border-top: 0px solid rgb(181, 181, 181);
+        border-right: 0px solid rgb(181, 181, 181);
+        border-bottom: 1px solid rgb(181, 181, 181);
+        padding-left: 2rem;
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+        width: 100vw;
+    }
+    .top_manu_item:hover {
+        box-sizing: border-box;
+        background-color: rgba(115, 207, 207, .7);
+        border-top: 0px solid rgb(115, 207, 207);
+        border-right: solid 0px rgb(115, 207, 207);
+        border-bottom: solid 1px rgb(115, 207, 207);
+        text-decoration: none;
+        transition: all 170ms 0s ease;
+    }
+    .top_manu_item:first-child {
+        border-top: 1px solid rgb(181, 181, 181);
+    }
+    .top_manu_item:last-child {
+        border-bottom: 0px solid rgb(181, 181, 181);
+    }
+	.mo
 	.modal-lg {
 	    min-width: 100vw;
 	}
