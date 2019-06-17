@@ -280,7 +280,7 @@ input:-webkit-autofill {
     font-size: .9rem;
     /* background-color: rgb(240, 240, 240); */
     /* background-image: linear-gradient(103deg, transparent 68%, rgba(0,0,0,0.025) 42%); */
-    border-right: 1px solid rgb(181, 181, 181);
+    border-left: 1px solid rgb(181, 181, 181);
     border-bottom: 1px solid rgb(181, 181, 181);
     width: 7.5rem;
     text-align: center;
@@ -288,7 +288,7 @@ input:-webkit-autofill {
 .top_manu_item:hover {
     box-sizing: border-box;
     background-color: rgba(115, 207, 207, .7);
-    border-right: solid 1px rgb(115, 207, 207);
+    border-left: solid 1px rgb(115, 207, 207);
     border-bottom: solid 1px rgb(115, 207, 207);
     text-decoration: none;
     transition: all 170ms 0s ease;
@@ -597,9 +597,9 @@ input:-webkit-autofill {
         font-size: 1.2rem;
         background-color: white;
         border-top: 0px solid rgb(181, 181, 181);
-        border-right: 0px solid rgb(181, 181, 181);
+        border-left: 0px solid rgb(181, 181, 181);
         border-bottom: 1px solid rgb(181, 181, 181);
-        padding-left: 2rem;
+        /* padding-left: 2rem; */
         padding-top: .5rem;
         padding-bottom: .5rem;
         width: 100vw;
@@ -608,7 +608,7 @@ input:-webkit-autofill {
         box-sizing: border-box;
         background-color: rgba(115, 207, 207, .7);
         border-top: 0px solid rgb(115, 207, 207);
-        border-right: solid 0px rgb(115, 207, 207);
+        border-left: solid 0px rgb(115, 207, 207);
         border-bottom: solid 1px rgb(115, 207, 207);
         text-decoration: none;
         transition: all 170ms 0s ease;
