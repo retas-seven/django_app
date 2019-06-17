@@ -75,34 +75,9 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="{% static 'resources/js/lib/wow.min.js' %}"></script>
+        <script src="{% static 'resources/js/lib/easeScroll.js' %}"></script>
         <script src="{% static 'resources/js/lib/animsition.js' %}"></script>
-        <script>
-            $(function(){
-                // animsition
-                // $(".animsition").animsition();
-                $(".animsition").animsition({
-                    inClass: 'fade-in',
-                    outClass: 'fade-out-up-sm',
-                    inDuration: 500,
-                    outDuration: 500,
-                    linkElement: '.animsition-link',
-                    // e.g. linkElement: 'a:not([target="_blank"]):not([href^="#"])'
-                    loading: true,
-                    loadingParentElement: 'body', //animsition wrapper element
-                    loadingClass: 'animsition-loading',
-                    loadingInner: '', // e.g '<img src="loading.svg" />'
-                    timeout: false,
-                    timeoutCountdown: 5000,
-                    onLoadEvent: true,
-                    browser: [ 'animation-duration', '-webkit-animation-duration'],
-                    // "browser" option allows you to disable the "animsition" in case the css property in the array is not supported by your browser.
-                    // The default setting is to disable the "animsition" in a browser that does not support "animation-duration".
-                    overlay : false,
-                    overlayClass : 'animsition-overlay-slide',
-                    overlayParentElement : 'body',
-                    transition: function(url){ window.location.href = url; }
-                });
-            });
-        </script>
+        <script src="{% static 'resources/js/main.js' %}"></script>
     </body>
 </html>
