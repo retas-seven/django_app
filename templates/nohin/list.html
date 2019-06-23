@@ -105,8 +105,15 @@
                                             <span>{{nohin.total_price|intcomma}}</span>
                                         </td>
                                         <td class="func_icon_width func_icon_row" data-nohin_id="{{nohin.id}}">
-                                            <a class="animsition-link row_circle_btn js_update_btn"><i class="fa-lg far fa-list-alt"></i></a>
-                                            <a class="animsition-link row_circle_btn js_delete_btn"><i class="fas fa-times"></i></a>
+                                            {% if mode == 'list' %}
+                                                <a class="animsition-link row_circle_btn js_update_btn"><i class="fa-lg far fa-list-alt"></i></a>
+                                                <a class="animsition-link row_circle_btn js_delete_btn"><i class="fas fa-times"></i></a>
+                                            {% endif %}
+                                            {% if mode == 'pdf_list' %}
+                                                <!-- 納品書プレビュー，ダウンロード -->
+                                                <a href="{% url 'delivery_note_view' %}?nohin_id={{nohin.id}}&preview=1" target="_blank" class="row_circle_btn"><i class="far fa-file"></i></a>
+                                                <a href="{% url 'delivery_note_view' %}?nohin_id={{nohin.id}}" class="row_circle_btn"><i class="fas fa-download"></i></a>
+                                            {% endif %}
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -135,8 +142,9 @@
         </footer>
 
         <!-- 画面右下のボタン -->
-        <a href={% url 'nohin_regist_view' %} class="circle_btn animated fadeInRightBig animsition-link">
-            <i class="fa-lg fas fa-plus color_white"></i></a>
+        {% if mode == 'list' %}
+            <a href={% url 'nohin_regist_view' %} class="circle_btn animated fadeInRightBig animsition-link"><i class="fa-lg fas fa-plus color_white"></i></a>
+        {% endif %}
 
         <!-- MODAL -->
         <div class="modal fade" id="nohinSearchModal" tabindex="-1">

@@ -1,0 +1,277 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>納品書</title>
+        <style>
+            @font-face {
+                font-family: 'janapese';
+                src: url("{% static 'resources/font/GenYoMinJP-Regular.ttf' %}")
+            }
+            @page {
+                size: A4;
+                font-family: 'janapese';
+                margin: 1.2cm;
+            }
+            html, body {
+                font-family: 'janapese';
+            }
+            body {
+                font-weight: 400;
+                font-size: 12px;
+                /* line-height: 25px; */
+            }
+            .header {
+                font-weight: 600;
+                text-align: center;
+                background-color: rgb(235, 235, 235);
+                border-top-style: solid;
+                border-left-style: solid;
+                border-right: solid;
+                border-bottom-style: solid;
+                border-top-width: 1px;
+                border-left-width: 1px;
+                border-right-width: 1px;
+                border-bottom-width: 1px;
+                border-top-color: rgb(235, 235, 235);
+                border-left-color: rgb(235, 235, 235);
+                border-right-color: rgb(235, 235, 235);
+                border-bottom-color: rgb(235, 235, 235);
+            }
+            .title {
+                font-size: 30px;
+                font-weight: 600;
+               /* text-align: right;*/
+               /* padding: 10px 20px 0px 20px; */
+               line-height: 0px;
+            }
+            /*             
+            .details {
+                padding: 10px 20px 0px 20px;
+                text-align: left;
+                margin-top: 1cm;
+            }
+            */
+            .normal_border {
+                border-top-style: solid;
+                border-left-style: solid;
+                border-right: solid;
+                border-bottom-style: solid;
+                border-top-width: 1px;
+                border-left-width: 1px;
+                border-right-width: 1px;
+                border-bottom-width: 1px;
+                border-top-color: rgb(70, 70, 70);
+                border-left-color: rgb(70, 70, 70);
+                border-right-color: rgb(70, 70, 70);
+                border-bottom-color: rgb(70, 70, 70);
+            }
+            .light_border {
+                border-top-style: solid;
+                border-left-style: solid;
+                border-right: solid;
+                border-bottom-style: solid;
+                border-top-width: 1px;
+                border-left-width: 1px;
+                border-right-width: 1px;
+                border-bottom-width: 1px;
+                border-top-color: rgb(200, 200, 200);
+                border-left-color: rgb(200, 200, 200);
+                border-right-color: rgb(200, 200, 200);
+                border-bottom-color: rgb(200, 200, 200);
+            }
+            .bottom_border {
+                border-bottom-style: solid;
+                border-bottom-width: 1px;
+                border-bottom-color: rgb(70, 70, 70);
+            }
+
+            /* 明細テーブル */
+            .nohin_meisai_table {
+                margin-top: .7cm;
+            }
+            .nohin_meisai_table thead {
+                height: 1cm;
+                text-align: center;
+                font-weight: 600;
+                border-top-style: solid;
+                border-top-width: 1px;
+                border-top-color: rgb(70, 70, 70);
+            }
+            .nohin_meisai_table tbody {
+                height: .8cm;
+                text-align: right;
+            }
+
+            /* 合計テーブル */
+            .total_table {
+                margin-top: .7cm;
+                height: .8cm;
+                text-align: right;
+            }
+
+            /* 納品先テーブル */
+            .nohinsaki_table {
+                margin-top: 1.2cm;
+                text-align: left;
+            }
+            .nohinsaki {
+                margin-top: 1cm;
+                font-size: 18px;
+                line-height: 25px;
+            }
+
+            /* 合計金額テーブル */
+            .goukeikingaku_table {
+                margin-top: 1cm;
+                font-size: 14px;
+            }
+            .goukeikingaku_table td {
+                height: 1cm;
+                padding-top: .1cm;
+                text-align: center;
+            }
+            .goukeikingaku_table .zeikomi_kingaku_disp {
+                font-size: 16px;
+                text-align: right;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- <p class="bottom_border" style="margin-left: 15cm;">No：</p>
+        <div>
+            <div class="header" style="padding-top: .2cm; padding-bottom: .2cm;">
+                <span class='title'>納&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;書</span>
+            </div>
+        <div> -->
+    
+        <table>
+            <tr>
+                <td class="header" rowspan="2" style="padding-top: .2cm; padding-bottom: .2cm; width: 75%">
+                    <span class='title'>納&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;書</span>
+                </td>
+                <td style="width: 4%">
+                    <!-- blank -->
+                </td>
+                <td class="bottom_border" style="width: 7%; padding-top: .1cm;">
+                    <span>納品日：</span>
+                </td>
+                <td class="bottom_border" style="width: 14%; padding-top: .1cm; text-align: right">
+                    <span>{{ nohin.nohin_date }}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <!-- blank -->
+                </td>
+                <td class="bottom_border" style="padding-top: .1cm;">
+                    <span>No：</span>
+                </td>
+                <td class="bottom_border" style="padding-top: .1cm;">
+                    <!-- blank -->
+                </td>
+            </tr>
+        </table>
+
+        <table class="nohinsaki_table">
+            <tr>
+                <td class="nohinsaki" style="width: 60%;">
+                    <p style="padding-left: 5px; padding-right: 10px; text-decoration: underline;">{{ nohin.nohinsaki }}&nbsp;&nbsp;&nbsp;御中</p>
+                </td>
+                <td rowspan="2" class="light_border" style="width: 40%; vertical-align: top; text-align: left; padding-top: .1cm; padding-left: .1cm;">
+                    <!-- blank -->
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 3.5cm;">
+                    <!-- blank -->
+                </td>
+            </tr>
+        </table>
+
+        <table class="goukeikingaku_table">
+            <tr>
+                <td class="normal_border" style="width: 27%; background-color:rgb(235, 235, 235);">
+                    <p>合計金額（税込）</p>
+                </td>
+                <td class="normal_border zeikomi_kingaku_disp" style="width: 38%; text-align: right; padding-right: .2cm;">
+                    <p>￥{{ nohin.zeikomi_total_price|intcomma }}</p>
+                </td>
+                <td style="width: 40%;"></td>
+            </tr>
+        </table>
+    
+        <table class="normal_border nohin_meisai_table">
+            <thead>
+                <tr>
+                    <td style="background-color: rgb(210, 210, 210); padding-top: .1cm;">
+                        <span>型番／品名</span>
+                    </td>
+                    <td style="background-color: rgb(210, 210, 210); padding-top: .1cm;">
+                        <span>単価</span>
+                    </td>
+                    <td style="background-color: rgb(210, 210, 210); padding-top: .1cm;">
+                        <span>数量</span>
+                    </td>
+                    <td style="background-color: rgb(210, 210, 210); padding-top: .1cm;">
+                        <span>計</span>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for detail in detailList %}
+                    <tr>
+                        <td style="width: 65%; text-align: left; padding-top: .1cm; padding-left: .1cm;">
+                            <p>{{ detail.kataban }}</p>
+                        </td>
+                        <td style="width: 14%; padding-top: .1cm; padding-right: .1cm;">
+                            <p>￥{{ detail.price|intcomma }}</p>
+                        </td>
+                        <td  style="width: 9%; padding-top: .1cm; padding-right: .1cm;">
+                            <p>{{ detail.amount|intcomma }}</p>
+                        </td>
+                        <td  style="width: 17%; padding-top: .1cm; padding-right: .1cm;">
+                            <p>￥{{ detail.item_total|intcomma }}</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <table class="total_table">
+            <tbody>
+                <tr>
+                    <td style="width: 65%;">
+                    </td>
+                    <td class="normal_border" style="width: 14%; padding-top: .1cm; text-align: center; background-color: rgb(210, 210, 210);">
+                        <p>小計</p>
+                    </td>
+                    <td class="normal_border" style="width: 26%; padding-top: .1cm; padding-right: .1cm;">
+                        <p>￥{{ nohin.total_price|intcomma }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td class="normal_border" style="padding-top: .1cm; text-align: center; background-color: rgb(210, 210, 210);">
+                        <p>消費税</p>
+                    </td>
+                    <td class="normal_border" style="padding-top: .1cm; padding-right: .1cm;">
+                        <p>￥{{ nohin.zeigaku|intcomma }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td class="normal_border" style="padding-top: .1cm; text-align: center; background-color: rgb(210, 210, 210);">
+                        <p>合計</p>
+                    </td>
+                    <td class="normal_border" style="padding-top: .1cm; padding-right: .1cm;">
+                        <p>￥{{ nohin.zeikomi_total_price|intcomma }}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

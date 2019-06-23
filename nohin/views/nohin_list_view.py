@@ -12,9 +12,11 @@ class NohinListView(LoginRequiredMixin, View):
         '''
         納品一覧画面-初期表示処理
         '''
+        mode = self.kwargs.get('mode')
         service = NohinService(self.request)
         params = {
-            'nohin_list': service.retrieveNohinList()
+            'nohin_list': service.retrieveNohinList(),
+            'mode': mode,
         }
 
         return render(request, 'nohin/list.html', params)
