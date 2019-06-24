@@ -1,212 +1,139 @@
+{% extends 'fragment/base.html' %}
 {% load static %}
 {% load humanize %}
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="shortcut icon" type="image/png" href="{% static 'resources/img/favicon.ico' %}"/>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
-        <link rel="stylesheet" href="{% static 'resources/css/lib/animsition.css' %}">
-        <link rel="stylesheet" href="{% static 'resources/css/main.css' %}">
-        <link rel="stylesheet" href="{% static 'resources/css/shohin/list.css' %}">
-        <title>商品一覧</title>
-    </head>
-    <body class="animsition">
-        <!-- HEADER -->
-        <div class="header">
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand header-title animsition-link" href="{% url 'home' %}"></a>
 
-                {% if user.is_authenticated %}
-                    <!-- TODO: テンプレートの共通部分を切り出す -->
-                    <button class="navbar-toggler" type="button"
-                        data-toggle="collapse"
-                        data-target="#navmenu1"
-                        aria-controls="navmenu1"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navmenu1">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item mr-1 top_manu_item">
-                                <a class="animsition-link nav-link" href="{% url 'shohin_list_view' %}"><i class="fas fa-copy fa-fw"></i> 商品管理</a>
-                            </li>
-                            <li class="nav-item mr-3 top_manu_item">
-                                <a class="animsition-link nav-link" href="{% url 'nohin_list_view' %}"><i class="fas fa-copy fa-fw"></i> 納品履歴</a>
-                            </li>
-                            <li class="nav-item mr-3 top_manu_item">
-                                <a class="animsition-link nav-link" href="{% url 'account_logout' %}"><i class="fas fa-sign-out-alt fa-fw"></i> ログアウト</a>
-                            </li>
-                        </ul>
-                    </div>
-                {% endif %}
-            </nav>
-        </div>
+<!-- ページごとのCSS -->
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'resources/css/shohin/list.css' %}">
+{% endblock %}
 
-        <!-- CONTENTS -->
-        <div class="contents">
-            <div class="container-fluid">
-                {% if messages %}
-                    <div class="row">
-                        <div class="col-12">
-                            {% for message in messages %}
-                                <div class="{{ message.tags }}" role="alert" style="padding: 1.0ex 2.0ex;">
-                                    <span>{{ message }}</span>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
-                                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                                    </button>
-                                </div>
-                            {% endfor %}
-                            <br>
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
+<!-- タイトル -->
+{% block page_title %}
+    商品一覧
+{% endblock %}
 
-            <div class="container-fluid animated fadeInUpSmall">
+<!-- コンテンツ -->
+{% block content %}
+    <div class="contents">
+        <!-- メッセージ表示部 -->
+        <div class="container-fluid">
+            {% if messages %}
                 <div class="row">
                     <div class="col-12">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr class="thead_tr">
-                                    <td class="shohin_width">
-                                        <span>型番・商品名</span>
-                                        <hr>
+                        {% for message in messages %}
+                            <div class="{{ message.tags }}" role="alert" style="padding: 1.0ex 2.0ex;">
+                                <span>{{ message }}</span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+                                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                        <br>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- 個別コンテンツ -->
+        <div class="container-fluid animated fadeInUpSmall">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class="thead_tr">
+                                <td class="shohin_width">
+                                    <span>型番・商品名</span>
+                                    <hr>
+                                </td>
+                                <td class="price_width">
+                                    <span>単価</span>
+                                    <hr>
+                                </td>
+                                <td class="zaikosu_width">
+                                    <span>在庫数</span>
+                                    <hr>
+                                </td>
+                                <td class="func_icon_width func_icon_head">
+                                    <!--TODO: 検索機能を追加する-->
+                                    <a class="circle_btn_small" data-toggle="modal" data-target="#search_condition_modal"><i class="fas fa-search"></i></a>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for shohin in shohin_list %}
+                                <tr class="align_center">
+                                    <td class="shohin_width shohin_row">
+                                        <span class="shohin_kataban">{{shohin.kataban}}</span><br>
+                                        <span class="shohin_name">{{shohin.shohin_name}}</span>
                                     </td>
-                                    <td class="price_width">
-                                        <span>単価</span>
-                                        <hr>
+                                    <td class="price_width price_row">
+                                        <i class="fas fa-yen-sign font_16"></i>
+                                        <span>{{shohin.price|intcomma}}</span>
                                     </td>
-                                    <td class="zaikosu_width">
-                                        <span>在庫数</span>
-                                        <hr>
+                                    <td class="zaikosu_width zaikosu_row">
+                                        <span>{{shohin.zaikosu|intcomma}}</span>
                                     </td>
-                                    <td class="func_icon_width func_icon_head">
-                                        <!--TODO: 検索機能を追加する-->
-                                        <a class="circle_btn_small" data-toggle="modal" data-target="#search_condition_modal"><i class="fas fa-search"></i></a>
+                                    <td class="func_icon_width func_icon_row" data-kataban="{{shohin.kataban}}">
+                                        <a class="animsition-link row_circle_btn js_update_btn"><i class="fa-lg far fa-list-alt"></i></a>
+                                        <a class="animsition-link row_circle_btn js_delete_btn"><i class="fas fa-times"></i></a>
                                     </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {% for shohin in shohin_list %}
-                                    <tr class="align_center">
-                                        <td class="shohin_width shohin_row">
-                                            <span class="shohin_kataban">{{shohin.kataban}}</span><br>
-                                            <span class="shohin_name">{{shohin.shohin_name}}</span>
-                                        </td>
-                                        <td class="price_width price_row">
-                                            <i class="fas fa-yen-sign font_16"></i>
-                                            <span>{{shohin.price|intcomma}}</span>
-                                        </td>
-                                        <td class="zaikosu_width zaikosu_row">
-                                            <span>{{shohin.zaikosu|intcomma}}</span>
-                                        </td>
-                                        <td class="func_icon_width func_icon_row" data-kataban="{{shohin.kataban}}">
-                                            <a class="animsition-link row_circle_btn js_update_btn"><i class="fa-lg far fa-list-alt"></i></a>
-                                            <a class="animsition-link row_circle_btn js_delete_btn"><i class="fas fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div><!-- end row-->
-            </div>
-
-            <!-- 処理対象型番送信用Form-->
-            <form action="" method="post" name="shohin_kataban_form">
-                {% csrf_token %}
-                <input type="hidden" value="" class="js_shohin_kataban" name="kataban">
-            </form>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div><!-- end row-->
         </div>
-        
-        <!-- FOOTER -->
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <p>django sample app 2019</p>
+
+        <!-- 処理対象型番送信用Form-->
+        <form action="" method="post" name="shohin_kataban_form">
+            {% csrf_token %}
+            <input type="hidden" value="" class="js_shohin_kataban" name="kataban">
+        </form>
+    </div>
+
+    <!-- 画面右下のボタン -->
+    <a href={% url 'shohin_regist_view' %} class="circle_btn animated fadeInRightBig animsition-link">
+        <i class="fa-lg fas fa-plus color_white"></i>
+    </a>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="search_condition_modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content modal_global">
+                
+                <!-- MODAL HEADER -->
+                <div class="modal-header modal_header_global">
+                    <div class="modal-title modal_title">
+                        <span>検索条件</span>
+                    </div>
+                    <!-- 閉じるボタン -->
+                    <button type="button" class="close" data-dismiss="modal"><i class="fas fa-lg fa-times"></i></button>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- MODAL BODY -->
+                        <div class="modal-body modal_boddy_global">
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
-
-        <!-- 画面右下のボタン -->
-        <a href={% url 'shohin_regist_view' %} class="circle_btn animated fadeInRightBig animsition-link">
-            <i class="fa-lg fas fa-plus color_white"></i>
-        </a>
-
-        <!-- MODAL -->
-        <div class="modal fade" id="search_condition_modal" tabindex="-1">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content modal_global">
-                    
-                    <!-- MODAL HEADER -->
-                    <div class="modal-header modal_header_global">
-                        <div class="modal-title modal_title">
-                            <span>検索条件</span>
-                        </div>
-                        <!-- 閉じるボタン -->
-                        <button type="button" class="close" data-dismiss="modal"><i class="fas fa-lg fa-times"></i></button>
-                    </div>
-
-                    <div class="container-fluid">
-                        <div class="row">
-                            <!-- MODAL BODY -->
-                            <div class="modal-body modal_boddy_global">
-                                <!--
-                                <div class="form-group row">
-                                    <label for="kataban" class="col-2 col-form-label label_name">型番</label>
-                                    <div class="col-10">
-                                        <input type="text" class="form-control form-control-lg" id="kataban" name="kataban" autocomplete="off"/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="shohin_name" class="col-2 col-form-label label_name">商品名</label>
-                                    <div class="col-10">
-                                        <input type="text" class="form-control form-control-lg" id="shohin_name" name="shohin_name" autocomplete="off"/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="price" class="col-2 col-form-label label_name">単価</label>
-                                    <div class="col-10">
-                                        <input type="text" class="form-control form-control-lg width_210" id="price" name="price" autocomplete="off"/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="zaikosu" class="col-2 col-form-label label_name">在庫数</label>
-                                    <div class="col-10">
-                                        <input type="text" class="form-control form-control-lg width_210" id="zaikosu" name="zaikosu" autocomplete="off"/>
-                                    </div>
-                                </div>
-                                -->
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- MODAL FOOTER -->
-                    <div class="modal-footer modal_footer_global">
-                        <button type="submit" onfocus="this.blur();" class="common_btn"><i class="fas fa-search"></i> 検索</button>
-                    </div>
+                
+                <!-- MODAL FOOTER -->
+                <div class="modal-footer modal_footer_global">
+                    <button type="submit" onfocus="this.blur();" class="common_btn"><i class="fas fa-search"></i> 検索</button>
                 </div>
             </div>
         </div>
-        
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <script src="{% static 'resources/js/lib/wow.min.js' %}"></script>
-        <script src="{% static 'resources/js/lib/easeScroll.js' %}"></script>
-        <script src="{% static 'resources/js/lib/animsition.js' %}"></script>
-        <script src="{% static 'resources/js/main.js' %}"></script>
-        <script src="{% static 'resources/js/shohin/list.js' %}"></script>
-        <script>
-            var shohin_delete_view_url = "{% url 'shohin_delete_view' %}";
-            var shohin_update_view_url = "{% url 'shohin_update_view' %}";
-        </script>
-    </body>
-</html>
+    </div>
+{% endblock %}
+
+<!-- ページごとのjs -->
+{% block extra_js %}
+    <script src="{% static 'resources/js/shohin/list.js' %}"></script>
+    <script>
+        var shohin_delete_view_url = "{% url 'shohin_delete_view' %}";
+        var shohin_update_view_url = "{% url 'shohin_update_view' %}";
+    </script>
+{% endblock %}

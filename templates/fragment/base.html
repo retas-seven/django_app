@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="{% static 'resources/css/main.css' %}">
         <!-- ページごとのCSS -->
         {% block extra_css %}{% endblock %}
-        <!-- ページタイトル -->
+        <!-- タイトル -->
         <title>{% block page_title %}在庫管理{% endblock %}</title>
     </head>
     <body class="animsition">
@@ -48,29 +48,8 @@
         </div>
 
         <!-- コンテンツ -->
-        <div class="contents">
-            <!-- メッセージエリア -->
-            <div class="container-fluid">
-                {% if messages %}
-                    <div class="row">
-                        <div class="col-12">
-                            {% for message in messages %}
-                                <div class="{{ message.tags }}" role="alert" style="padding: 1.0ex 2.0ex;">
-                                    <span>{{ message }}</span>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
-                                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                                    </button>
-                                </div>
-                            {% endfor %}
-                            <br>
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
-            <!-- 個別コンテンツ -->
-            {% block content %}
-            {% endblock %}
-        </div>
+        {% block content %}
+        {% endblock %}
 
         <!-- フッタ -->
         <footer class="footer">

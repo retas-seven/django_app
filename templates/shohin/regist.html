@@ -1,170 +1,123 @@
+{% extends 'fragment/base.html' %}
 {% load static %}
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="shortcut icon" type="image/png" href="{% static 'resources/img/favicon.ico' %}"/>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
-        <link rel="stylesheet" href="{% static 'resources/css/lib/animsition.css' %}">
-        <link rel="stylesheet" href="{% static 'resources/css/main.css' %}">
-        <link rel="stylesheet" href="{% static 'resources/css/shohin/regist.css' %}">
-        <title>商品登録</title>
-    </head>
-    <body class="animsition">
-        <!-- HEADER -->
-        <div class="header">
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand header-title animsition-link" href="{% url 'home' %}"></a>
 
-                {% if user.is_authenticated %}
-                    <!-- TODO: テンプレートの共通部分を切り出す -->
-                    <button class="navbar-toggler" type="button"
-                        data-toggle="collapse"
-                        data-target="#navmenu1"
-                        aria-controls="navmenu1"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navmenu1">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item mr-1 top_manu_item">
-                                <a class="animsition-link nav-link" href="{% url 'shohin_list_view' %}"><i class="fas fa-copy fa-fw"></i> 商品管理</a>
-                            </li>
-                            <li class="nav-item mr-3 top_manu_item">
-                                <a class="animsition-link nav-link" href="{% url 'nohin_list_view' %}"><i class="fas fa-copy fa-fw"></i> 納品履歴</a>
-                            </li>
-                            <li class="nav-item mr-3 top_manu_item">
-                                <a class="animsition-link nav-link" href="{% url 'account_logout' %}"><i class="fas fa-sign-out-alt fa-fw"></i> ログアウト</a>
-                            </li>
-                        </ul>
-                    </div>
-                {% endif %}
-            </nav>
-        </div>
+<!-- ページごとのCSS -->
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'resources/css/shohin/regist.css' %}">
+{% endblock %}
 
-        <!-- CONTENTS -->
-        <div class="contents">
-            <div class="container-fluid">
-                {% if messages %}
-                    <div class="row">
-                        <div class="col-12">
-                            {% for message in messages %}
-                                <div class="{{ message.tags }}" role="alert" style="padding: 1.0ex 2.0ex;">
-                                    <span>{{ message }}</span>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
-                                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                                    </button>
-                                </div>
-                            {% endfor %}
-                            <br>
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
-            
-            <div class="container-fluid animated fadeInUpSmall">
-                <form action="" method="post" name="shohin_form">
-                    {% csrf_token %}
-                    <div class="form-group row">
-                        <div class="col-2">
-                            <label for="kataban" class="col-form-label label_name">型番</label>
-                        </div>
-                        <div class="col-10">
-                            {{ form.kataban }}
-                            {% if form.kataban.errors %}
-                                <p class="error_msg">{{ form.kataban.errors.0 }}</p>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-2">
-                            <label for="shohin_name" class="col-form-label label_name">商品名</label>
-                        </div>
-                        <div class="col-10">
-                            {{ form.shohin_name }}
-                            {% if form.shohin_name.errors %}
-                                <p class="error_msg">{{ form.shohin_name.errors.0 }}</p>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-2">
-                            <label for="price" class="col-form-label label_name">単価</label>
-                        </div>
-                        <div class="col-10">
-                            {{ form.price }}
-                            {% if form.price.errors %}
-                                <p class="error_msg">{{ form.price.errors.0 }}</p>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-2">
-                            <label for="zaikosu" class="col-form-label label_name">在庫数</label>
-                        </div>
-                        <div class="col-10">
-                            {{ form.zaikosu }}
-                            {% if form.zaikosu.errors %}
-                                <p class="error_msg">{{ form.zaikosu.errors.0 }}</p>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-2">
-                            <label for="memo" class="col-form-label label_name">メモ</label>
-                        </div>
-                        <div class="col-10">
-                            {{ form.memo }}
-                            {% if form.memo.errors %}
-                                <p class="error_msg">{{ form.memo.errors.0 }}</p>
-                            {% endif %}
-                        </div>
-                    </div>
-                </form>
-                
-                <!-- BUTTON -->
-                <div class="row">
-                    <div class="col-12 button_area">
-                        <a href={% url 'shohin_list_view' %} class="common_circle_btn animsition-link"><i class="fas fa-chevron-left"></i><div class="btn_txt">戻る</div></a>
-                        <!--<a class="js_regist_btn common_circle_btn animsition-link"><i class="fas fa-plus"></i><div class="btn_txt">登録</div></a>-->
-                        {% if mode == 'regist' %}
-                            <button class="animsition-link js_execute_btn common_circle_btn"><i class="fas fa-check"></i><div class="btn_txt">登録</div></button>
-                        {% endif %}
-                        {% if mode == 'update' %}
-                            <button class="animsition-link js_execute_btn common_circle_btn"><i class="fas fa-check"></i><div class="btn_txt">更新</div></button>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- FOOTER -->
-        <footer class="footer">
-            <div class="container-fluid">
+<!-- タイトル -->
+{% block page_title %}
+    商品登録
+{% endblock %}
+
+<!-- コンテンツ -->
+{% block content %}
+    <div class="contents">
+        <!-- メッセージ表示部 -->
+        <div class="container-fluid">
+            {% if messages %}
                 <div class="row">
                     <div class="col-12">
-                        <p>django sample app 2019</p>
+                        {% for message in messages %}
+                            <div class="{{ message.tags }}" role="alert" style="padding: 1.0ex 2.0ex;">
+                                <span>{{ message }}</span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+                                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                        <br>
                     </div>
                 </div>
-            </div>
-        </footer>
+            {% endif %}
+        </div>
         
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <script src="{% static 'resources/js/lib/wow.min.js' %}"></script>
-        <script src="{% static 'resources/js/lib/easeScroll.js' %}"></script>
-        <script src="{% static 'resources/js/lib/animsition.js' %}"></script>
-        <script src="{% static 'resources/js/main.js' %}"></script>
-        <script src="{% static 'resources/js/shohin/regist.js' %}"></script>
-        <script>
-            var shohin_regist_view_url = "{% url 'shohin_regist_view' %}";
-            var shohin_update_view_url = "{% url 'shohin_update_view' %}";
-            var mode = "{{ mode }}";
-        </script>
-    </body>
-</html>
+        <!-- 個別コンテンツ -->
+        <div class="container-fluid animated fadeInUpSmall">
+            <form action="" method="post" name="shohin_form">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <div class="col-2">
+                        <label for="kataban" class="col-form-label label_name">型番</label>
+                    </div>
+                    <div class="col-10">
+                        {{ form.kataban }}
+                        {% if form.kataban.errors %}
+                            <p class="error_msg">{{ form.kataban.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-2">
+                        <label for="shohin_name" class="col-form-label label_name">商品名</label>
+                    </div>
+                    <div class="col-10">
+                        {{ form.shohin_name }}
+                        {% if form.shohin_name.errors %}
+                            <p class="error_msg">{{ form.shohin_name.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-2">
+                        <label for="price" class="col-form-label label_name">単価</label>
+                    </div>
+                    <div class="col-10">
+                        {{ form.price }}
+                        {% if form.price.errors %}
+                            <p class="error_msg">{{ form.price.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-2">
+                        <label for="zaikosu" class="col-form-label label_name">在庫数</label>
+                    </div>
+                    <div class="col-10">
+                        {{ form.zaikosu }}
+                        {% if form.zaikosu.errors %}
+                            <p class="error_msg">{{ form.zaikosu.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-2">
+                        <label for="memo" class="col-form-label label_name">メモ</label>
+                    </div>
+                    <div class="col-10">
+                        {{ form.memo }}
+                        {% if form.memo.errors %}
+                            <p class="error_msg">{{ form.memo.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </form>
+            
+            <!-- BUTTON -->
+            <div class="row">
+                <div class="col-12 button_area">
+                    <a href={% url 'shohin_list_view' %} class="common_circle_btn animsition-link"><i class="fas fa-chevron-left"></i><div class="btn_txt">戻る</div></a>
+                    <!--<a class="js_regist_btn common_circle_btn animsition-link"><i class="fas fa-plus"></i><div class="btn_txt">登録</div></a>-->
+                    {% if mode == 'regist' %}
+                        <button class="animsition-link js_execute_btn common_circle_btn"><i class="fas fa-check"></i><div class="btn_txt">登録</div></button>
+                    {% endif %}
+                    {% if mode == 'update' %}
+                        <button class="animsition-link js_execute_btn common_circle_btn"><i class="fas fa-check"></i><div class="btn_txt">更新</div></button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+<!-- ページごとのjs -->
+{% block extra_js %}
+    <script src="{% static 'resources/js/shohin/regist.js' %}"></script>
+    <script>
+        var shohin_regist_view_url = "{% url 'shohin_regist_view' %}";
+        var shohin_update_view_url = "{% url 'shohin_update_view' %}";
+        var mode = "{{ mode }}";
+    </script>
+{% endblock %}

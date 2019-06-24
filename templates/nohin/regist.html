@@ -1,294 +1,247 @@
+{% extends 'fragment/base.html' %}
 {% load static %}
 {% load humanize %}
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="shortcut icon" type="image/png" href="{% static 'resources/img/favicon.ico' %}"/>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
-        <link rel="stylesheet" href="{% static 'resources/css/lib/animsition.css' %}">
-        <link rel="stylesheet" href="{% static 'resources/css/main.css' %}">
-        <link rel="stylesheet" href="{% static 'resources/css/nohin/regist.css' %}">
-        <title>納品登録</title>
-    </head>
-    <body class="animsition">
-        <!-- HEADER -->
-        <div class="header">
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand header-title animsition-link" href="{% url 'home' %}"></a>
 
-                {% if user.is_authenticated %}
-                    <!-- TODO: テンプレートの共通部分を切り出す -->
-                    <button class="navbar-toggler" type="button"
-                        data-toggle="collapse"
-                        data-target="#navmenu1"
-                        aria-controls="navmenu1"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navmenu1">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item mr-1 top_manu_item">
-                                <a class="animsition-link nav-link" href="{% url 'shohin_list_view' %}"><i class="fas fa-copy fa-fw"></i> 商品管理</a>
-                            </li>
-                            <li class="nav-item mr-3 top_manu_item">
-                                <a class="animsition-link nav-link" href="{% url 'nohin_list_view' %}"><i class="fas fa-copy fa-fw"></i> 納品履歴</a>
-                            </li>
-                            <li class="nav-item mr-3 top_manu_item">
-                                <a class="animsition-link nav-link" href="{% url 'account_logout' %}"><i class="fas fa-sign-out-alt fa-fw"></i> ログアウト</a>
-                            </li>
-                        </ul>
-                    </div>
-                {% endif %}
-            </nav>
-        </div>
+<!-- ページごとのCSS -->
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'resources/css/nohin/regist.css' %}">
+{% endblock %}
 
-        <!-- CONTENTS -->
-        <div class="contents">
-            <div class="container-fluid">
-                {% if messages %}
-                    <div class="row">
-                        <div class="col-12">
-                            {% for message in messages %}
-                                <div class="{{ message.tags }}" role="alert" style="padding: 1.0ex 2.0ex;">
-                                    <span>{{ message }}</span>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
-                                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                                    </button>
-                                </div>
-                            {% endfor %}
-                            <br>
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
+<!-- タイトル -->
+{% block page_title %}
+    納品登録
+{% endblock %}
 
-            <div class="container-fluid animated fadeInUpSmall">
-                <form action="" method="post" name="nohin_form" autocomplete="off">
-                    {% csrf_token %}
-
-                    <!-- 更新対象のNohin.idの値 -->
-                    {% if mode == 'update' %}
-                        <input type="hidden" name="update_nohin_id" value="{{ update_nohin_id }}" />
-                    {% endif %}
-                    
-                    <div class="form-group row">
-                        <div class="col-2">
-                            <label for="nohin_date" class="col-form-label label_name">納品日</label>
-                        </div>
-                        <div class="col-10">
-                            <!-- <input required type="date" class="form-control form-control-lg width_210" id="nohin_date" name="nohin_date" autocomplete="off"/> -->
-                            {{ form.nohin_date }}
-                            {% if form.nohin_date.errors %}
-                                <p class="error_msg">{{ form.nohin_date.errors.0 }}</p>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-2">
-                            <label for="nohinsaki" class="col-form-label label_name">納品先</label>
-                        </div>
-                        <div class="col-10">
-                            <!-- <input required type="search" class="form-control form-control-lg" name="nohinsaki" autocomplete="off" list="company_list"> -->
-                            {{ form.nohinsaki }}
-                            {% if form.nohinsaki.errors %}
-                                <p class="error_msg">{{ form.nohinsaki.errors.0 }}</p>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-2">
-                            <label for="memo" class="col-form-label label_name">メモ</label>
-                        </div>
-                        <div class="col-10">
-                            <!-- <textarea name="memo" cols="40" rows="3" maxlength="1000" class="form-control form-control-lg" id="memo"></textarea> -->
-                            {{ form.memo }}
-                            {% if form.memo.errors %}
-                                <p class="error_msg">{{ form.memo.errors.0 }}</p>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <div class="form-group row mt-5">
-                        <div class="col-12">
-                            <table id="detail_table" class="table table-striped">
-                                <thead>
-                                    <tr class="modal_thead_tr">
-                                        <td class="nohin_shohin_width">
-                                            <span>型番・商品名</span>
-                                            <hr>
-                                        </td>
-                                        <td class="nohin_tanka_width">
-                                            <span>単価</span>
-                                            <hr>
-                                        </td>
-                                        <td class="nohin_suryo_width">
-                                            <span>数量</span>
-                                            <hr>
-                                        </td>
-                                        <td class="nohin_func_icon_width">
-                                            <a id="row_add_btn" class="circle_btn_small"><i class="fas fa-plus"></i></a>
-                                        </td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for detail in formset %}
-                                        <tr>
-                                            <td class="nohin_shohin_width">
-                                                {{ detail.kataban }}
-                                                {% if detail.kataban.errors %}
-                                                    <p class="error_msg">{{ detail.kataban.errors.0 }}</p>
-                                                {% endif %}
-                                            </td>
-                                            <td class="nohin_tanka_width">
-                                                {{ detail.price }}
-                                                {% if detail.price.errors %}
-                                                    <p class="error_msg">{{ detail.price.errors.0 }}</p>
-                                                {% endif %}
-                                            </td>
-                                            <td class="nohin_suryo_width nohin_suryo_row form-inline">
-                                                {{ detail.amount }}
-                                                <span class="slash">/</span>
-                                                <span class="zaikosu js_zaikosu"></span>
-                                                {% if detail.amount.errors %}
-                                                    <p class="error_msg">{{ detail.amount.errors.0 }}</p>
-                                                {% endif %}
-                                            </td>
-                                            <td class="nohin_func_icon_width nohin_func_icon_row">
-                                                {% if detail.instance.pk %}
-                                                    <a class="row_circle_btn js_row_toggle_btn"><i class="fas fa-times"></i></a>
-                                                    {{ detail.DELETE }}
-                                                {% else %}
-                                                    <a class="row_circle_btn js_row_delete_btn"><i class="fas fa-times"></i></a>
-                                                {% endif %}
-                                    
-                                                <!-- 隠しフィールドを出力 -->
-                                                {% for field in detail.hidden_fields %}
-                                                    {{ field }}
-                                                {% endfor %}
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                            {{ formset.management_form }}
-
-                            <!-- javascriptで一覧部の行を追加する際に使用するテンプレート -->
-                            <div class="display_none">
-                                {{ formset.empty_form.kataban }}
-                                {{ formset.empty_form.price }}
-                                {{ formset.empty_form.amount }}
-                            </div>
-                            <table class="display_none js_empty_row">
-                                <tbody>
-                                    <tr>
-                                        <td class="nohin_shohin_width">
-                                            <span class="js_dummy_kataban"></span>
-                                        </td>
-                                        <td class="nohin_tanka_width">
-                                            <span class="js_dummy_price"></span>
-                                        </td>
-                                        <td class="nohin_suryo_width nohin_suryo_row form-inline">
-                                            <span class="js_dummy_amount"></span>
-                                            <span class="slash">/</span>
-                                            <span class="zaikosu js_zaikosu"></span>
-                                        </td>
-                                        <td class="nohin_func_icon_width nohin_func_icon_row">
-                                            <a class="row_circle_btn js_row_delete_btn"><i class="fas fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                        </div><!-- end col-12 -->
-                    </div><!-- end row -->
-
-                    <!-- 合計表示 -->
-                    <div class="row mt-5">
-                        <div class="col-sm-4 col-12">
-                            <ui class="total">
-                                <li>税抜額</li>
-                                <li>
-                                    <i class="fas fa-yen-sign fa-fw"></i>
-                                    <span class="js_zeinuki total_num">0</span>
-                                </li>
-                            </ui>
-                            <hr class="total_hr">
-                        </div>
-                        <div class="col-sm-4 col-12">
-                            <ui class="total">
-                                <li>消費税</li>
-                                <li>
-                                    <i class="fas fa-yen-sign fa-fw"></i>
-                                    <span class="js_shohizei total_num">0‬‬</span>
-                                </li>
-                            </ui>
-                            <hr class="total_hr">
-                        </div>
-                        <div class="col-sm-4 col-12">
-                            <ui class="total">
-                                <li>税込合計</li>
-                                <li>
-                                    <i class="fas fa-yen-sign fa-fw"></i>
-                                    <span class="js_zeikomi total_num">0</span>
-                                </li>
-                            </ui>
-                            <hr class="total_hr">
-                        </div>
-                    </div>
-
-                    <!-- BUTTON AREA -->
-                    <div class="row mt-5">
-                        <div class="col-12 button_area">
-                            <a href="{% url 'nohin_list_view' %}" class="common_circle_btn animsition-link"><i class="fas fa-chevron-left"></i><div class="btn_txt">戻る</div></a>
-                            {% if mode == 'regist' %}
-                                <button class="js_execute_btn common_circle_btn animsition-link"><i class="fas fa-check"></i><div class="btn_txt">登録</div></button>
-                            {% endif %}
-                            {% if mode == 'update' %}
-                                <button class="js_execute_btn common_circle_btn animsition-link"><i class="fas fa-check"></i><div class="btn_txt">更新</div></button>
-                            {% endif %}
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        
-        <!-- FOOTER -->
-        <footer class="footer">
-            <div class="container-fluid">
+<!-- コンテンツ -->
+{% block content %}
+    <div class="contents">
+        <!-- メッセージ表示部 TODO: ここも切り出してインポートするように修正する-->
+        <div class="container-fluid">
+            {% if messages %}
                 <div class="row">
                     <div class="col-12">
-                        <p>django sample app 2019</p>
+                        {% for message in messages %}
+                            <div class="{{ message.tags }}" role="alert" style="padding: 1.0ex 2.0ex;">
+                                <span>{{ message }}</span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+                                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                        <br>
                     </div>
                 </div>
-            </div>
-        </footer>
-                
-        <!-- jsの初期処理でoptionを追加するdatalist -->
-        <datalist id="company_list">
-        </datalist>
-        <datalist id="shohin_list">
-        </datalist>
+            {% endif %}
+        </div>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/7.2.3/decimal.min.js"></script>
-        <script src="{% static 'resources/js/lib/wow.min.js' %}"></script>
-        <script src="{% static 'resources/js/lib/easeScroll.js' %}"></script>
-        <script src="{% static 'resources/js/lib/animsition.js' %}"></script>
-        <script src="{% static 'resources/js/main.js' %}"></script>
-        <script src="{% static 'resources/js/nohin/regist.js' %}"></script>
-        <script>
-            var shohinJson = JSON.parse( '{{ shohin_json }}'.replace(/&quot;/g,'"') );
-            var companyJson = JSON.parse( '{{ company_json }}'.replace(/&quot;/g,'"') );
-            var nohinRegistViewUrl = "{% url 'nohin_regist_view' %}";
-            var nohinUpdateViewUrl = "{% url 'nohin_update_view' %}";
-            var mode = "{{ mode }}";
-        </script>
-    </body>
-</html>
+        <!-- 個別コンテンツ -->
+        <div class="container-fluid animated fadeInUpSmall">
+            <form action="" method="post" name="nohin_form" autocomplete="off">
+                {% csrf_token %}
+
+                <!-- 更新対象のNohin.idの値 -->
+                {% if mode == 'update' %}
+                    <input type="hidden" name="update_nohin_id" value="{{ update_nohin_id }}" />
+                {% endif %}
+                
+                <div class="form-group row">
+                    <div class="col-2">
+                        <label for="nohin_date" class="col-form-label label_name">納品日</label>
+                    </div>
+                    <div class="col-10">
+                        <!-- <input required type="date" class="form-control form-control-lg width_210" id="nohin_date" name="nohin_date" autocomplete="off"/> -->
+                        {{ form.nohin_date }}
+                        {% if form.nohin_date.errors %}
+                            <p class="error_msg">{{ form.nohin_date.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-2">
+                        <label for="nohinsaki" class="col-form-label label_name">納品先</label>
+                    </div>
+                    <div class="col-10">
+                        <!-- <input required type="search" class="form-control form-control-lg" name="nohinsaki" autocomplete="off" list="company_list"> -->
+                        {{ form.nohinsaki }}
+                        {% if form.nohinsaki.errors %}
+                            <p class="error_msg">{{ form.nohinsaki.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-2">
+                        <label for="memo" class="col-form-label label_name">メモ</label>
+                    </div>
+                    <div class="col-10">
+                        <!-- <textarea name="memo" cols="40" rows="3" maxlength="1000" class="form-control form-control-lg" id="memo"></textarea> -->
+                        {{ form.memo }}
+                        {% if form.memo.errors %}
+                            <p class="error_msg">{{ form.memo.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-group row mt-5">
+                    <div class="col-12">
+                        <table id="detail_table" class="table table-striped">
+                            <thead>
+                                <tr class="modal_thead_tr">
+                                    <td class="nohin_shohin_width">
+                                        <span>型番・商品名</span>
+                                        <hr>
+                                    </td>
+                                    <td class="nohin_tanka_width">
+                                        <span>単価</span>
+                                        <hr>
+                                    </td>
+                                    <td class="nohin_suryo_width">
+                                        <span>数量</span>
+                                        <hr>
+                                    </td>
+                                    <td class="nohin_func_icon_width">
+                                        <a id="row_add_btn" class="circle_btn_small"><i class="fas fa-plus"></i></a>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for detail in formset %}
+                                    <tr>
+                                        <td class="nohin_shohin_width">
+                                            {{ detail.kataban }}
+                                            {% if detail.kataban.errors %}
+                                                <p class="error_msg">{{ detail.kataban.errors.0 }}</p>
+                                            {% endif %}
+                                        </td>
+                                        <td class="nohin_tanka_width">
+                                            {{ detail.price }}
+                                            {% if detail.price.errors %}
+                                                <p class="error_msg">{{ detail.price.errors.0 }}</p>
+                                            {% endif %}
+                                        </td>
+                                        <td class="nohin_suryo_width nohin_suryo_row form-inline">
+                                            {{ detail.amount }}
+                                            <span class="slash">/</span>
+                                            <span class="zaikosu js_zaikosu"></span>
+                                            {% if detail.amount.errors %}
+                                                <p class="error_msg">{{ detail.amount.errors.0 }}</p>
+                                            {% endif %}
+                                        </td>
+                                        <td class="nohin_func_icon_width nohin_func_icon_row">
+                                            {% if detail.instance.pk %}
+                                                <a class="row_circle_btn js_row_toggle_btn"><i class="fas fa-times"></i></a>
+                                                {{ detail.DELETE }}
+                                            {% else %}
+                                                <a class="row_circle_btn js_row_delete_btn"><i class="fas fa-times"></i></a>
+                                            {% endif %}
+                                
+                                            <!-- 隠しフィールドを出力 -->
+                                            {% for field in detail.hidden_fields %}
+                                                {{ field }}
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {{ formset.management_form }}
+
+                        <!-- javascriptで一覧部の行を追加する際に使用するテンプレート -->
+                        <div class="display_none">
+                            {{ formset.empty_form.kataban }}
+                            {{ formset.empty_form.price }}
+                            {{ formset.empty_form.amount }}
+                        </div>
+                        <table class="display_none js_empty_row">
+                            <tbody>
+                                <tr>
+                                    <td class="nohin_shohin_width">
+                                        <span class="js_dummy_kataban"></span>
+                                    </td>
+                                    <td class="nohin_tanka_width">
+                                        <span class="js_dummy_price"></span>
+                                    </td>
+                                    <td class="nohin_suryo_width nohin_suryo_row form-inline">
+                                        <span class="js_dummy_amount"></span>
+                                        <span class="slash">/</span>
+                                        <span class="zaikosu js_zaikosu"></span>
+                                    </td>
+                                    <td class="nohin_func_icon_width nohin_func_icon_row">
+                                        <a class="row_circle_btn js_row_delete_btn"><i class="fas fa-times"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div><!-- end col-12 -->
+                </div><!-- end row -->
+
+                <!-- 合計表示 -->
+                <div class="row mt-5">
+                    <div class="col-sm-4 col-12">
+                        <ui class="total">
+                            <li>税抜額</li>
+                            <li>
+                                <i class="fas fa-yen-sign fa-fw"></i>
+                                <span class="js_zeinuki total_num">0</span>
+                            </li>
+                        </ui>
+                        <hr class="total_hr">
+                    </div>
+                    <div class="col-sm-4 col-12">
+                        <ui class="total">
+                            <li>消費税</li>
+                            <li>
+                                <i class="fas fa-yen-sign fa-fw"></i>
+                                <span class="js_shohizei total_num">0‬‬</span>
+                            </li>
+                        </ui>
+                        <hr class="total_hr">
+                    </div>
+                    <div class="col-sm-4 col-12">
+                        <ui class="total">
+                            <li>税込合計</li>
+                            <li>
+                                <i class="fas fa-yen-sign fa-fw"></i>
+                                <span class="js_zeikomi total_num">0</span>
+                            </li>
+                        </ui>
+                        <hr class="total_hr">
+                    </div>
+                </div>
+
+                <!-- ボタン表示部 -->
+                <div class="row mt-5">
+                    <div class="col-12 button_area">
+                        <a href="{% url 'nohin_list_view' %}" class="common_circle_btn animsition-link"><i class="fas fa-chevron-left"></i><div class="btn_txt">戻る</div></a>
+                        {% if mode == 'regist' %}
+                            <button class="js_execute_btn common_circle_btn animsition-link"><i class="fas fa-check"></i><div class="btn_txt">登録</div></button>
+                        {% endif %}
+                        {% if mode == 'update' %}
+                            <button class="js_execute_btn common_circle_btn animsition-link"><i class="fas fa-check"></i><div class="btn_txt">更新</div></button>
+                        {% endif %}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+            
+    <!-- jsの初期処理でoptionを追加するdatalist -->
+    <datalist id="company_list">
+    </datalist>
+    <datalist id="shohin_list">
+    </datalist>
+{% endblock %}
+
+<!-- ページごとのjs -->
+{% block extra_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/7.2.3/decimal.min.js"></script>
+    <script src="{% static 'resources/js/nohin/regist.js' %}"></script>
+    <script>
+        var shohinJson = JSON.parse( '{{ shohin_json }}'.replace(/&quot;/g,'"') );
+        var companyJson = JSON.parse( '{{ company_json }}'.replace(/&quot;/g,'"') );
+        var nohinRegistViewUrl = "{% url 'nohin_regist_view' %}";
+        var nohinUpdateViewUrl = "{% url 'nohin_update_view' %}";
+        var mode = "{{ mode }}";
+    </script>
+{% endblock %}
