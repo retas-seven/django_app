@@ -1,8 +1,48 @@
-# django_app
+# 在庫管理アプリ (Django Practice)
 
-Python Practice
+## 概要
 
-* 参考書
+* 商品の情報、在庫数を記録できる。
+
+* 納品履歴を記録できる。
+
+* 納品書を出力できる。
+
+## 画面サンプル
+
+* ログイン
+
+![ログイン](etc/readme/ログイン.png)
+
+<br />
+
+* 在庫一覧
+
+![在庫一覧](etc/readme/在庫一覧.png)
+
+<br />
+
+* 納品履歴登録
+
+![納品履歴登録](etc/readme/納品履歴登録.png)
+
+<br />
+
+* 納品書出力
+
+![納品書出力](etc/readme/納品書出力.png)
+
+## 開発環境
+
+* Django 2.1.2, django-allauth 0.39.1, xhtml2pdf 0.2.3
+
+* MySQL
+
+* bootstrap 4.1.3
+
+* Anaconda, Visual Studio Code
+
+## 参考書
 
     * Python Django 超入門
     
