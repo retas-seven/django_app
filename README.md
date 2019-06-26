@@ -42,10 +42,6 @@
 
 * Anaconda, Visual Studio Code
 
-## 対応ブラウザ
-
-* Chrome のみ（他のブラウザは動作未検証）
-
 ## 参考書
 
 * Python Django 超入門
