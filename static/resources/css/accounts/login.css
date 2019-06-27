@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+/* ------------------------------------------- */
+/* ログイン画面 */
+/* ------------------------------------------- */
+.flex_content {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: linear-gradient(103deg, transparent 65%, rgba(0,0,0,0.04) 35%);
+}
+.login_content {
+    background-color: rgba(210, 210, 210, .095);
+    width: 35rem;
+    padding: 1rem 3rem 2.5rem 3rem;
+    border-left: solid 1px rgb(191, 191, 191);
+    border-bottom: solid 1px rgb(191, 191, 191);
+    border-top: solid 1px rgb(191, 191, 191);
+    border-right: solid 1px rgb(191, 191, 191);
+}
+.vw_center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login_btn {
+    display: inline-block;
+    letter-spacing: 0;
+    font-size: .9rem;
+    background-color: rgb(150, 150, 150);
+    /*
+    border-left: 1px solid rgb(181, 181, 181);
+    border-bottom: 1px solid rgb(181, 181, 181);
+    border-right: none;
+    border-top: none;
+    */
+    border: none;
+    width: 100%;
+    text-align: center;
+    color: white !important;
+    transition: all 270ms 0s ease;
+    line-height: 3rem;
+    /* border-radius: 1.5rem; */
+}
+.login_btn:hover {
+    /* letter-spacing: 5px; */
+    background-color: rgba(115, 207, 207, .7);
+    /*
+    border-left: solid 1px rgb(115, 207, 207);
+    border-bottom: solid 1px rgb(115, 207, 207);
+    */
+    text-decoration: none;
+    transition: all 270ms 0s ease;
+}
+
+
+/* ------------------------------------------- */
+/* モバイル用設定 */
+/* ------------------------------------------- */
+@media all and (max-width: 768px) {
+	.login_content {
+        width: 96%;
+    }
+}

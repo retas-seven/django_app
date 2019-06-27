@@ -12,137 +12,82 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
         <link rel="stylesheet" href="{% static 'resources/css/lib/animsition.css' %}">
         <link rel="stylesheet" href="{% static 'resources/css/main.css' %}">
-        <title>{% trans "Sign In" %}</title>
-        <style>
-            /* TODO: ページ構成とスタイル設定を再調整 */
-            .contents{
-                background-image: linear-gradient(103deg, transparent 65%, rgba(0,0,0,0.04) 35%);
-            }
-            .login_content {
-                background-color: rgba(210, 210, 210, .095);
-                width: 35rem;
-                height: 36.5rem;
-                padding: 1rem 3rem 2rem 3rem;
-                border-left: solid 1px rgb(191, 191, 191);
-                border-bottom: solid 1px rgb(191, 191, 191);
-                border-top: solid 1px rgb(191, 191, 191);
-                border-right: solid 1px rgb(191, 191, 191);
-                position: absolute;
-                top: -8rem;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                margin: auto;
-                z-index: 111;
-            }
-            .vh_center {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .login_btn {
-                letter-spacing: 0;
-                font-size: .9rem;
-                /* background-color: rgb(240, 240, 240); */
-                background-color: rgb(150, 150, 150);
-                /*
-                border-left: 1px solid rgb(181, 181, 181);
-                border-bottom: 1px solid rgb(181, 181, 181);
-                border-right: none;
-                border-top: none;
-                */
-                border: none;
-                width: 100%;
-                text-align: center;
-                height: 3rem;
-                color: white;
-                transition: all 270ms 0s ease;
-            }
-            .login_btn:hover {
-                /* letter-spacing: 5px; */
-                background-color: rgba(115, 207, 207, .7);
-                /*
-                border-left: solid 1px rgb(115, 207, 207);
-                border-bottom: solid 1px rgb(115, 207, 207);
-                */
-                text-decoration: none;
-                transition: all 270ms 0s ease;
-            }
-        </style>
+        <link rel="stylesheet" href="{% static 'resources/css/accounts/login.css' %}">
+        <!-- <title>{% trans "Sign In" %}</title> -->
+        <title>在庫管理</title>
     </head>
     <body class="animsition">
-        <div class="contents">
-            <!-- メッセージ表示部 TODO: ここも切り出してインポートするように修正する-->
-            <!--             
-            <div class="container-fluid">
-                {% if messages %}
-                    <div class="row">
-                        <div class="col-12">
-                            {% for message in messages %}
-                                <div class="{{ message.tags }}" role="alert" style="padding: 1.0ex 2.0ex;">
-                                    <span>{{ message }}</span>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
-                                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                                    </button>
-                                </div>
-                            {% endfor %}
-                            <br>
-                        </div>
+        <!-- メッセージ表示部 TODO: ここも切り出してインポートするように修正する-->
+        <!--             
+        <div class="container-fluid">
+            {% if messages %}
+                <div class="row">
+                    <div class="col-12">
+                        {% for message in messages %}
+                            <div class="{{ message.tags }}" role="alert" style="padding: 1.0ex 2.0ex;">
+                                <span>{{ message }}</span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+                                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                        <br>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        -->
+        
+        <!-- 個別コンテンツ -->
+        <div class="flex_content">
+            <div class="container-fluid animated fadeInUpSmall login_content">
+                <div class="vw_center">
+                    <img src="{% static 'resources/img/logo.png' %}">
+                </div>
+                <hr>
+
+                {% get_providers as socialaccount_providers %}
+
+                {% if socialaccount_providers %}
+                    <p>{% blocktrans with site.name as site_name %}Please sign in with one
+                    of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+                    for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+                    <div class="socialaccount_ballot">
+                        <ul class="socialaccount_providers">
+                        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                        </ul>
+                        <div class="login-or">{% trans 'or' %}</div>
+                    </div>
+
+                    {% include "socialaccount/snippets/login_extra.html" %}
+
+                {% else %}
+                    <div class="mt-4" style="text-align: center;">
+                        <p>アカウントをお持ちでなければ<a class="animsition-link" href="{{ signup_url }}"> 新規登録</a> してください。</p>
                     </div>
                 {% endif %}
-            </div>
-            -->
-            
-            <!-- 個別コンテンツ -->
-            <div class="vh_center">
-                <div class="container-fluid animated fadeInUpSmall login_content">
-                    <div class="vh_center">
-                        <img src="{% static 'resources/img/logo.png' %}">
+
+                <form class="login" method="POST" action="{% url 'account_login' %}" id="login_form">
+                    {% csrf_token %}
+                    <!-- {{ form.as_p }} -->
+                    <div class="mt-5 mb-1">メールアドレス</div>
+                    {{ form.login }}
+                    <div class="mt-4 mb-1">パスワード</div>
+                    {{ form.password }}
+                    <div class="mt-4 mb-4">
+                        <span>ログインしたままにする：</span>{{ form.remember }}
                     </div>
-                    <hr>
-
-                    {% get_providers as socialaccount_providers %}
-
-                    {% if socialaccount_providers %}
-                        <p>{% blocktrans with site.name as site_name %}Please sign in with one
-                        of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-                        for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
-
-                        <div class="socialaccount_ballot">
-                            <ul class="socialaccount_providers">
-                            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-                            </ul>
-                            <div class="login-or">{% trans 'or' %}</div>
-                        </div>
-
-                        {% include "socialaccount/snippets/login_extra.html" %}
-
-                    {% else %}
-                        <div class="mt-4" style="text-align: center;">
-                            <p>アカウントをお持ちでなければ<a href="{{ signup_url }}"> 新規登録</a> してください。</p>
-                        </div>
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}
-
-                    <form class="login" method="POST" action="{% url 'account_login' %}">
-                        {% csrf_token %}
-                        <!-- {{ form.as_p }} -->
-                        <div class="mt-5 mb-1">メールアドレス</div>
-                        {{ form.login }}
-                        <div class="mt-4 mb-1">パスワード</div>
-                        {{ form.password }}
-                        <div class="mt-4 mb-4">
-                            <span>ログインしたままにする：</span>{{ form.remember }}
-                        </div>
-                        {% if redirect_field_value %}
-                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                        {% endif %}
-                        <a class="button secondaryAction" href="{% url 'account_reset_password' %}"><i class="fas fa-question-circle"></i> {% trans "Forgot Password?" %}</a>
-                        
-                        <div class="mt-5">
-                            <button class="primaryAction login_btn" type="submit">{% trans "Sign In" %}</button>
-                        </div>
-                    </form>
-                </div>
+                    <a class="button animsition-link secondaryAction" href="{% url 'account_reset_password' %}"><i class="fas fa-question-circle"></i> {% trans "Forgot Password?" %}</a>
+                    
+                    <div class="mt-5">
+                        <!-- <button class="primaryAction login_btn" type="submit"><i class="fas fa-sign-in-alt fa-fw"></i> {% trans "Sign In" %}</button> -->
+                        <a class="animsition-link login_btn js_login_btn"><i class="fas fa-sign-in-alt fa-fw"></i> {% trans "Sign In" %}</a>
+                    </div>
+                </form>
             </div>
         </div>
           
@@ -153,10 +98,12 @@
         <script src="{% static 'resources/js/lib/easeScroll.js' %}"></script>
         <script src="{% static 'resources/js/lib/animsition.js' %}"></script>
         <script src="{% static 'resources/js/main.js' %}"></script>
+        <script src="{% static 'resources/js/account/login.js' %}"></script>
         <script type="text/javascript">
             $(function() {
               $('#id_login').addClass('form-control').addClass('form-control-lg').removeAttr('autofocus').blur();
               $('#id_password').addClass('form-control').addClass('form-control-lg');
+            //   $('#id_remember').addClass('form-control');
             });
           </script>
     </body>
