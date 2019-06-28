@@ -17,32 +17,32 @@
         <title>在庫管理</title>
     </head>
     <body class="animsition">
-        <!-- メッセージ表示部 TODO: ここも切り出してインポートするように修正する-->
-        <!--             
-        <div class="container-fluid">
-            {% if messages %}
-                <div class="row">
-                    <div class="col-12">
-                        {% for message in messages %}
-                            <div class="{{ message.tags }}" role="alert" style="padding: 1.0ex 2.0ex;">
-                                <span>{{ message }}</span>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
-                                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                                </button>
-                            </div>
-                        {% endfor %}
-                        <br>
-                    </div>
-                </div>
-            {% endif %}
-        </div>
-        -->
-        
         <!-- 個別コンテンツ -->
         <div class="flex_content">
+            <!-- メッセージ表示部 TODO: ここも切り出してインポートするように修正する-->
+            <!--
+            <div class="container-fluid">
+                {% if messages %}
+                    <div class="row">
+                        <div class="col-12">
+                            {% for message in messages %}
+                                <div class="{{ message.tags }}" role="alert" style="padding: 1.0ex 2.0ex;">
+                                    <span>{{ message }}</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+                                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                            <br>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            -->
+       
             <div class="container-fluid animated fadeInUpSmall login_content">
                 <div class="vw_center">
-                    <img src="{% static 'resources/img/logo.png' %}">
+                    <img class="d-lg-block" src="{% static 'resources/img/logo.png' %}">
                 </div>
                 <hr>
 
@@ -70,17 +70,40 @@
 
                 <form class="login" method="POST" action="{% url 'account_login' %}" id="login_form">
                     {% csrf_token %}
-                    <!-- {{ form.as_p }} -->
-                    <div class="mt-5 mb-1">メールアドレス</div>
-                    {{ form.login }}
-                    <div class="mt-4 mb-1">パスワード</div>
-                    {{ form.password }}
-                    <div class="mt-4 mb-4">
+
+                    <!-- form全体のエラーメッセージ -->
+                    <div class="mt-5">
+                        {% if form.non_field_errors %}
+                            <p class="error_msg">{{ form.non_field_errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- メールアドレス -->
+                    <div>
+                        {{ form.login }}
+                        {% if form.login.errors %}
+                            <p class="error_msg">{{ form.login.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- パスワード -->
+                    <div class="mt-3">
+                        {{ form.password }}
+                        {% if form.password.errors %}
+                            <p class="error_msg">{{ form.password.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- チェックボックス -->
+                    <div class="mt-4 mb-3">
                         <span>ログインしたままにする：</span>{{ form.remember }}
                     </div>
+
                     {% if redirect_field_value %}
                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}
+                    
+                    <!-- パスワード忘れリンク -->
                     <a class="button animsition-link secondaryAction" href="{% url 'account_reset_password' %}"><i class="fas fa-question-circle"></i> {% trans "Forgot Password?" %}</a>
                     
                     <div class="mt-5">

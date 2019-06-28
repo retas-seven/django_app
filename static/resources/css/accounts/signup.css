@@ -10,7 +10,7 @@
     justify-content: center;
     background-image: linear-gradient(103deg, transparent 65%, rgba(0,0,0,0.04) 35%);
 }
-.login_content {
+.signup_content {
     background-color: rgba(210, 210, 210, .095);
     width: 39rem;
     padding: 1rem 3rem 2.5rem 3rem;
@@ -25,11 +25,12 @@
     align-items: center;
     justify-content: center;
 }
-.login_btn {
+.signup_btn {
     display: inline-block;
     letter-spacing: 0;
     font-size: .9rem;
-    background-color: rgb(150, 150, 150);
+    /* background-color: rgb(150, 150, 150); */
+    background-color: rgb(255, 137, 137);
     /*
     border-left: 1px solid rgb(181, 181, 181);
     border-bottom: 1px solid rgb(181, 181, 181);
@@ -44,7 +45,7 @@
     line-height: 3rem;
     /* border-radius: 1.5rem; */
 }
-.login_btn:hover {
+.signup_btn:hover {
     /* letter-spacing: 5px; */
     background-color: rgba(115, 207, 207, .7);
     /*
@@ -60,7 +61,7 @@
 /* モバイル用設定 */
 /* ------------------------------------------- */
 @media all and (max-width: 768px) {
-	.login_content {
+	.signup_content {
         width: 96%;
     }
 }
