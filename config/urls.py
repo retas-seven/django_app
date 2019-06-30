@@ -16,13 +16,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from django.views import View
+from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class HomeView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'home.html', {})
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # django all-auth関連
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('accounts/', include('allauth.urls')),
     # 独自機能
+    path('', TemplateView.as_view(template_name='top.html'), name='top'),
+    # path('home/', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('home/', HomeView.as_view(), name='home'),
     path('shohin/', include('shohin.urls')),
     path('nohin/', include('nohin.urls')),
 ]

@@ -216,7 +216,8 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_EMAIL_REQUIRED = True
 SITE_ID = 1
 LOGIN_REDIRECT_URL = 'home'
-ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
+# ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'top'
 # ログアウト時、ログアウト画面を経由しない
 ACCOUNT_LOGOUT_ON_GET = True
 # 未ログインの場合の遷移先

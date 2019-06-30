@@ -7,7 +7,7 @@
         <link rel="shortcut icon" type="image/png" href="{% static 'resources/img/favicon.ico' %}"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
         <link rel="stylesheet" href="{% static 'resources/css/lib/animsition.css' %}">
         <link rel="stylesheet" href="{% static 'resources/css/main.css' %}">
         <!-- ページごとのCSS -->
@@ -19,7 +19,7 @@
         <!-- ヘッダ -->
         <div class="header">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand header-title animsition-link" href="{% url 'home' %}"></a>
+                <a class="navbar-brand header-title animsition-link" href="{% url 'top' %}"></a>
 
                 {% if user.is_authenticated %}
                     <button class="navbar-toggler" type="button"
@@ -32,6 +32,9 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navmenu1">
                         <ul class="navbar-nav ml-auto">
+                            <li class="nav-item mr-1 top_manu_item">
+                                <a class="animsition-link nav-link" href="{% url 'home' %}"><i class="fas fa-home fa-fw"></i> HOME</a>
+                            </li>
                             <li class="nav-item mr-1 top_manu_item">
                                 <a class="animsition-link nav-link" href="{% url 'shohin_list_view' %}"><i class="fas fa-list-ul fa-fw"></i> 商品管理</a>
                             </li>

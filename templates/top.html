@@ -1,0 +1,48 @@
+{% extends 'fragment/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+<!-- ページごとのCSS -->
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'resources/css/top.css' %}">
+{% endblock %}
+
+<!-- コンテンツ -->
+{% block content %}
+    <div class="contents">
+        <!-- メッセージエリア -->
+        <div class="container-fluid">
+            {% if messages %}
+                <div class="row">
+                    <div class="col-12">
+                        {% for message in messages %}
+                            <div class="{{ message.tags }}" role="alert" style="padding: 1.0ex 2.0ex;">
+                                <span>{{ message }}</span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+                                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                        <br>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <!-- 個別コンテンツ -->
+        <div class="container-fluid animated fadeInUpSmall">
+            <div class="row">
+                <div class="col-12">
+                    <ul class="menu_list">
+                        <li>
+                            <a class="animsition-link" href="{% url 'account_login' %}"><i class="fas fa-caret-right fa-fw"></i>ログイン</a>
+                        </li>
+                        <li>
+                            <a class="animsition-link" href="{% url 'account_signup' %}"><i class="fas fa-caret-right fa-fw"></i>新規登録</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+        
