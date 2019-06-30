@@ -1,34 +1,134 @@
 @charset "utf-8";
 
-.menu_list {
-    list-style: none;
-    padding-left: 0;
+.container-fluid {
+    display: flex;
+    justify-content: center;
+}
+/* ------------------------------------------- */
+/* 全体の設定 */
+/* ------------------------------------------- */
+html {
+    font-size: 100%;
+}
+body {
+    letter-spacing: .1em;
+    font-size: 1rem; /* 1rem == 16px */
+    line-height: 1.6;
+    color: rgb(81, 81, 81);
 }
 
-.menu_list a {
-    display:block;
-    font-size: 2.1875rem;
-    font-weight: 500;
+/* ------------------------------------------- */
+/* 全体の設定（モバイル用設定） */
+/* ------------------------------------------- */
+@media all and (max-width: 992px) {
+	html {
+	    font-size: 70%;
+	}
+}
+@media all and (max-width: 768px) {
+	html {
+	    font-size: 50%;
+	}
+}
+@media all and (max-width: 480px) {
+	html {
+	    font-size: 31.25%;
+	}
+}
+
+/* ------------------------------------------- */
+/* レイアウト設定 */
+/* ------------------------------------------- */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ------------------------------------------- */
+/* 各セクションの設定 */
+/* ------------------------------------------- */
+.left_top {
+    position: absolute;
+    z-index: 9999;
+    width: 12rem;
+    height: 7rem;
+    background-image: linear-gradient(330deg, transparent 55%, rgba(234, 234, 234, 1) 35%);
+    font-size: .8rem;
+    color: rgb(81, 81, 81);
+}
+.section_01_container {
+    background-image: linear-gradient(103deg, transparent 60%, rgba(234, 234, 234, 1) 35%);
+}
+.title_img {
+    width: 53ex;
+    height: 24.5ex;
+    /* opacity: .5; */
+    filter: drop-shadow(2rem -2rem 0rem rgba(234, 234, 234, 1));
+    display: block;
+}
+.title_str {
+    font-size: 5rem;
+    color: rgba(104, 104, 104, 1);
+}
+.section_01 {
+    display: flex;
+    width: 100vw;
+    max-width: 1200px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+.sign_up_btn, .login_btn {
+    font-size: 1.8rem;
+    font-weight: 300;
+    display: inline-block;
+    letter-spacing: .2rem;
+    box-sizing: border-box;
+    border-left: 1px solid rgb(181, 181, 181);
+    border-bottom: 1px solid rgb(181, 181, 181);
+    width: 30rem;
+    text-align: center;
+    line-height: 5rem;
+    /* color: inherit; */
+    color: rgb(141, 141, 141);
+    transition: all 170ms 0s ease;
+}
+.sign_up_btn:hover, .login_btn:hover {
+    box-sizing: border-box;
     text-decoration: none;
-    color: rgb(111, 111, 111);
+    transition: all 170ms 0s ease;
+    color: white;
+    /* letter-spacing: 1.2rem; */
+}
+.sign_up_btn:hover {
+    background-color: rgb(255, 167, 167);
+    border-left: solid 1px rgb(255, 167, 167);
+    border-bottom: solid 1px rgb(255, 167, 167);
+}
+.login_btn:hover {
+    background-color: rgb(157, 221, 221);
+    border-left: solid 1px rgb(157, 221, 221);
+    border-bottom: solid 1px rgb(157, 221, 221);
+}
+/* ------------------------------------------- */
+/* フッタの設定 */
+/* ------------------------------------------- */
+.footer{
+    border-top: solid 1px gray;
+    background: rgb(254, 254, 254);
+    padding-top: 6px;
+    line-height: 5rem;
 }
 
-.menu_list > li {
-    line-height: 4.8125rem;
-    padding-left: 1.375rem;
-    /*
-    margin-top: 5rem;
-    background-image: linear-gradient(103deg, transparent 68%, rgb(190, 190, 190) 32%);
-    */
-    background-image: linear-gradient(103deg, rgb(226, 226, 226) 60%, rgb(177, 177, 177) 40%);
-    border-bottom: solid 0.1875rem rgb(177, 177, 177);
-    border-left: solid 1.25rem rgb(177, 177, 177);
-}
-
-.menu_list > li:first-of-type {
-    margin-top: 1.5625rem;
-}
-
-.menu_list > li:not(:first-of-type) {
-    margin-top: 3.4375rem;
+/* ------------------------------------------- */
+/* モバイル用設定 */
+/* ------------------------------------------- */
+@media all and (max-width: 768px) {
+    .sign_up_btn, .login_btn {
+        width: 100%;
+        display: block;
+    }
 }

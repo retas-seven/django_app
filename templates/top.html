@@ -1,48 +1,58 @@
-{% extends 'fragment/base.html' %}
 {% load static %}
 <!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" type="image/png" href="{% static 'resources/img/favicon.ico' %}"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+        <link rel="stylesheet" href="{% static 'resources/css/lib/animsition.css' %}">
+        <link rel="stylesheet" href="{% static 'resources/css/top.css' %}">
+        <title>WEB-IMS</title>
+    </head>
+    <body class="animsition">
+        <!-- メッセージ -->
+        <!--
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+        -->
 
-<!-- ページごとのCSS -->
-{% block extra_css %}
-    <link rel="stylesheet" href="{% static 'resources/css/top.css' %}">
-{% endblock %}
-
-<!-- コンテンツ -->
-{% block content %}
-    <div class="contents">
-        <!-- メッセージエリア -->
-        <div class="container-fluid">
-            {% if messages %}
-                <div class="row">
-                    <div class="col-12">
-                        {% for message in messages %}
-                            <div class="{{ message.tags }}" role="alert" style="padding: 1.0ex 2.0ex;">
-                                <span>{{ message }}</span>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
-                                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                                </button>
-                            </div>
-                        {% endfor %}
-                        <br>
-                    </div>
-                </div>
-            {% endif %}
+        <div class="left_top">
         </div>
-        <!-- 個別コンテンツ -->
-        <div class="container-fluid animated fadeInUpSmall">
-            <div class="row">
-                <div class="col-12">
-                    <ul class="menu_list">
-                        <li>
-                            <a class="animsition-link" href="{% url 'account_login' %}"><i class="fas fa-caret-right fa-fw"></i>ログイン</a>
-                        </li>
-                        <li>
-                            <a class="animsition-link" href="{% url 'account_signup' %}"><i class="fas fa-caret-right fa-fw"></i>新規登録</a>
-                        </li>
-                    </ul>
+
+        <!-- コンテンツ -->
+        <div class="container-fluid section_01_container">
+            <div class="row section_01">
+                <img class="title_img" src="{% static 'resources/img/logo_large.png' %}" alt="top" />
+                <p class="title_str">web-ims</p>
+                <div class="mt-5" style="width: 100%; text-align: center;">
+                    <a class="animsition-link sign_up_btn" href="{% url 'account_signup' %}">新規登録</a>
+                    <a class="animsition-link login_btn" href="{% url 'account_login' %}">ログイン</a>
                 </div>
             </div>
         </div>
-    </div>
-{% endblock %}
+        
+        <!-- フッタ -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <p>django sample app 2019</p>
+                </div>
+            </div>
+        </footer>
+            
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="{% static 'resources/js/lib/wow.min.js' %}"></script>
+        <script src="{% static 'resources/js/lib/easeScroll.js' %}"></script>
+        <script src="{% static 'resources/js/lib/animsition.js' %}"></script>
+        <script src="{% static 'resources/js/main.js' %}"></script>
+    </body>
+</html>
         
