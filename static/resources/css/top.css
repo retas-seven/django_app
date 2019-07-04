@@ -1,5 +1,7 @@
 @charset "utf-8";
 
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap'); /* font-family: 'Montserrat', sans-serif; */
+
 .container-fluid {
     display: flex;
     justify-content: center;
@@ -46,8 +48,9 @@ body {
 }
 
 /* ------------------------------------------- */
-/* 各セクションの設定 */
+/* タイトル部の設定 */
 /* ------------------------------------------- */
+/* 
 .left_top {
     position: absolute;
     z-index: 9999;
@@ -56,30 +59,35 @@ body {
     background-image: linear-gradient(330deg, transparent 55%, rgba(234, 234, 234, 1) 35%);
     font-size: .8rem;
     color: rgb(81, 81, 81);
-}
+} */
+
 .section_01_container {
-    background-image: linear-gradient(103deg, transparent 60%, rgba(234, 234, 234, 1) 35%);
-}
-.title_img {
-    width: 53ex;
-    height: 24.5ex;
-    /* opacity: .5; */
-    filter: drop-shadow(2rem -2rem 0rem rgba(234, 234, 234, 1));
-    display: block;
-}
-.title_str {
-    font-size: 5rem;
-    color: rgba(104, 104, 104, 1);
+    background-image: linear-gradient(103deg, transparent 58%, rgba(228, 228, 228, 1) 30%);
 }
 .section_01 {
+    position: relative;
     display: flex;
     width: 100vw;
     max-width: 1200px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+.title_img {
+    width: 32ex;
+    height: 14.5ex;
+    /* opacity: .92; */
+    filter: drop-shadow(2rem -2rem 0rem rgba(228, 228, 228, 1));
+    display: block;
+    /* z-index: -.8; */
+}
+.title_str {
+    font-size: 4rem;
+    color: rgba(84, 84, 84, 1);
+    /* margin-top: -.8rem; */
+    font-family: 'Montserrat', sans-serif;
 }
 .sign_up_btn, .login_btn {
     font-size: 1.8rem;
@@ -87,42 +95,190 @@ body {
     display: inline-block;
     letter-spacing: .2rem;
     box-sizing: border-box;
+    /*
     border-left: 1px solid rgb(181, 181, 181);
     border-bottom: 1px solid rgb(181, 181, 181);
+    */
     width: 30rem;
     text-align: center;
-    line-height: 5rem;
-    /* color: inherit; */
-    color: rgb(141, 141, 141);
+    line-height: 4rem;
+    /* color: rgb(111, 111, 111); */
+    color: white;
     transition: all 170ms 0s ease;
 }
-.sign_up_btn:hover, .login_btn:hover {
+.sign_up_btn {
+    background-color: rgb(255, 167, 167);
+    border-left: solid 5px rgb(255, 140, 140);
+    border-bottom: solid 5px rgb(255, 140, 140);
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.login_btn {
+    background-color: rgb(157, 221, 221);
+    border-left: solid 5px rgb(140, 201, 201);
+    border-bottom: solid 5px rgb(140, 201, 201);
+    box-sizing:border-box;
+}
+.sign_up_btn:hover, .login_btn:hover {
     text-decoration: none;
     transition: all 170ms 0s ease;
     color: white;
     /* letter-spacing: 1.2rem; */
 }
 .sign_up_btn:hover {
+    /*
     background-color: rgb(255, 167, 167);
-    border-left: solid 1px rgb(255, 167, 167);
-    border-bottom: solid 1px rgb(255, 167, 167);
+    border-left: solid 5px rgb(255, 140, 140);
+    border-bottom: solid 5px rgb(255, 140, 140);
+    */
+    letter-spacing: .7rem;
 }
 .login_btn:hover {
+    /*
     background-color: rgb(157, 221, 221);
-    border-left: solid 1px rgb(157, 221, 221);
-    border-bottom: solid 1px rgb(157, 221, 221);
+    border-left: solid 5px rgb(140, 201, 201);
+    border-bottom: solid 5px rgb(140, 201, 201);
+    */
+    letter-spacing: .7rem;
 }
+
+/* ------------------------------------------- */
+/* 機能紹介部の設定 */
+/* ------------------------------------------- */
+.section_02_container {
+    border-top: double 4px gray;
+    /* background-color: rgb(254, 254, 254); */
+    /* background-color: rgb(247, 247, 247); */
+    padding-top: 2.5rem;
+    padding-bottom: 3rem;
+}
+.section_02 {
+    /*
+    position: relative;
+    display: flex;
+    */
+    width: 100vw;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    /*
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    */
+}
+.kinou_top {
+    display: inline-block;
+    line-height: 3.7rem;
+    font-size: 2.2rem;
+    letter-spacing: .5rem;
+    color: rgba(84, 84, 84, 1);
+    /* margin-top: -.8rem; */
+    font-family: 'Montserrat', sans-serif;
+    /* text-align: center; */
+    border-bottom: solid 1px rgb(184, 184, 184);
+    margin-left: -3000px;
+    padding-left: 3000px;
+}
+.kinou_cell {
+    padding-left: 1rem;
+    height: 9rem;
+    border-left: solid .5rem rgb(184, 184, 184);
+    /* border-bottom: solid .5rem rgb(184, 184, 184); */
+    border-bottom: solid 1px rgb(184, 184, 184);
+    background-image: linear-gradient(103deg, transparent 85%, rgba(230, 230, 230, 1) 15%);
+    /* position: relative; */
+    display: flex;
+    justify-content: space-between;
+}
+.kinou_title {
+    font-size: 1.375rem;
+    color: rgba(94, 94, 94, 1);
+    letter-spacing: .17rem;
+    margin-bottom: .2rem;
+}
+.kinou_title::before {
+    content: '';
+    display: inline-block;
+    width: 1.16rem;
+    height: 1.16rem;
+    background-image: url(../img/i.png);
+    background-repeat: no-repeat;
+    /* background-position: left bottom; */
+    background-size: contain;
+    margin-right: .5rem;
+    vertical-align: -.1ex;
+}
+.kinou_img {
+    width: 7rem;
+    height: 7rem;
+    margin: 1rem;
+}
+.p-tr {
+    padding-top: 2.4rem !important;
+    padding-right: .7rem !important;
+}
+.p-tl {
+    padding-top: 2.4rem !important;
+    padding-left: .7rem !important;
+}
+
+
+/* ------------------------------------------- */
+/* 03設定 */
+/* ------------------------------------------- */
+/*
+.section_03_container {
+    border-top: double 4px gray;
+    padding-top: 2.5rem;
+    padding-bottom: 3rem;
+    background-color: rgb(134, 134, 134);
+}
+.section_03 {
+    width: 100vw;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: 100%;
+    flex-direction: column;
+}
+*/
 /* ------------------------------------------- */
 /* フッタの設定 */
 /* ------------------------------------------- */
-.footer{
-    border-top: solid 1px gray;
-    background: rgb(254, 254, 254);
-    padding-top: 6px;
-    line-height: 5rem;
+.footer_container {
+    border-top: double 4px gray;
+    /* background: rgb(234, 234, 234); */
+    padding: 1rem;
+    display: flex;
+    /* height: 10rem; */
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
-
+.sns_link {
+    display: inline-block;
+    line-height: 2.8rem;
+    text-align: center;
+    cursor: pointer;
+    width: 3rem;
+    height: 3rem;
+    background-color: rgb(134, 134, 134);
+    border: solid 1px rgb(134, 134, 134);
+    color: white;
+    border-radius: 50%;
+    transition: all 250ms 0s ease;
+    padding: 0;
+    font-size: 1.4rem;
+}
+.sns_link:hover {
+    background-color: rgb(115, 207, 207);
+    border: solid 1px rgb(115, 207, 207);
+    text-decoration: none;
+    color: white;
+}
 /* ------------------------------------------- */
 /* モバイル用設定 */
 /* ------------------------------------------- */
@@ -131,4 +287,23 @@ body {
         width: 100%;
         display: block;
     }
+    .p-tr {
+        padding-top: 2.4rem !important;
+        padding-right: 0rem !important;
+    }
+    .p-tl {
+        padding-top: 2.4rem !important;
+        padding-left: 0rem !important;
+    }    
+}
+
+/* ------------------------------------------- */
+/* test */
+/* ------------------------------------------- */
+.border {
+    border-right: solid 1px gray;
+    border-left: solid 1px gray;
+}
+.bggr {
+    background-image: linear-gradient(103deg, white 50%, rgba(234, 234, 234, 1) 50%);
 }

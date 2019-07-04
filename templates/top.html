@@ -22,26 +22,109 @@
         {% endif %}
         -->
 
-        <div class="left_top">
-        </div>
+        <!-- <div class="left_top">
+        </div> -->
 
-        <!-- コンテンツ -->
+        <!-- タイトル部 -->
         <div class="container-fluid section_01_container">
-            <div class="row section_01">
-                <img class="title_img" src="{% static 'resources/img/logo_large.png' %}" alt="top" />
-                <p class="title_str">web-ims</p>
-                <div class="mt-5" style="width: 100%; text-align: center;">
-                    <a class="animsition-link sign_up_btn" href="{% url 'account_signup' %}">新規登録</a>
-                    <a class="animsition-link login_btn" href="{% url 'account_login' %}">ログイン</a>
+            <div class="row">
+                <div class="section_01">
+                    <img class="title_img" src="{% static 'resources/img/logo_large.png' %}" alt="top" />
+                    <p class="title_str">web-ims</p>
+                    <div class="mt-4" style="width: 100%; text-align: center;">
+                        <a class="animsition-link sign_up_btn" href="{% url 'account_signup' %}">新規登録</a>
+                        <a class="animsition-link login_btn" href="{% url 'account_login' %}">ログイン</a>
+                    </div>
                 </div>
             </div>
         </div>
         
+        <!-- 機能紹介部 -->
+        <div class="container-fluid section_02_container">
+            <div class="section_02">
+                <div>
+                    <div class="kinou_top">
+                        web-imsの特長
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-12 col-md-6 p-tr">
+                        <div class="kinou_cell">
+                            <div>
+                                <p class="kinou_title">商品情報管理</p>
+                                <span>
+                                    商品情報を登録し、在庫状況を把握できます。<br>
+                                </span>
+                            </div>
+                            <img class="kinou_img" src="{% static 'resources/img/icooon_mono/doc.svg' %}" alt="機能" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 p-tl">
+                        <div class="kinou_cell">
+                            <div>
+                                <p class="kinou_title">納品履歴管理／納品書作成</p>
+                                <span>
+                                    納品履歴を登録し、PDF形式の納品書をダウンロードできます。<br>
+                                </span>
+                            </div>
+                            <img class="kinou_img" src="{% static 'resources/img/icooon_mono/pdf.svg' %}" alt="機能" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-12 col-md-6 p-tr">
+                        <div class="kinou_cell">
+                            <div>
+                                <p class="kinou_title">モバイル端末対応</p>
+                                <span>
+                                    PCのブラウザだけでなく、タブレットやスマートフォンなどのモバイル端末からもご利用できます。
+                                </span>
+                            </div>
+                            <img class="kinou_img" src="{% static 'resources/img/icooon_mono/ipad.svg' %}" alt="機能" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 p-tl">
+                        <div class="kinou_cell">
+                            <div>
+                                <p class="kinou_title">これをやってみる</p>
+                                <span>
+                                    Django をつかってみる。<br>
+                                    何となくいい感じのデザインになるように画面の構成を考える。
+                                </span>
+                            </div>
+                            <img class="kinou_img" src="{% static 'resources/img/icooon_mono/leaf.svg' %}" alt="機能" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 03 -->
+        <!--
+        <div class="container-fluid section_03_container">
+            <div class="section_03">
+                <div>
+                    <div class="kinou_top">
+                        web-imsの特長
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+
         <!-- フッタ -->
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <p>django sample app 2019</p>
+        <footer>
+            <div class="container-fluid footer_container">
+                <p style="margin: 0; font-weight: 600;" class="ml-5">django sample app 2019</p>
+                <div>
+                    <a class="sns_link" href="http://twitter.com/share"
+                        onclick="window.open(encodeURI(decodeURI(this.href)), 'tweetwindow', 'width=650, height=470, personalbar=0, toolbar=0, scrollbars=1, sizable=1'); return false;"
+                        rel="nofollow"><i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="sns_link ml-2 mr-5" href="http://www.facebook.com/share.php"
+                        onclick="window.open(encodeURI(decodeURI(this.href)), 'FBwindow', 'width=554, height=470, menubar=no, toolbar=no, scrollbars=yes'); return false;"
+                        rel="nofollow"><i class="fab fa-facebook-f"></i></i>
+                    </a>
                 </div>
             </div>
         </footer>
