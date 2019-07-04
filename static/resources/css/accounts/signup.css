@@ -26,36 +26,32 @@
     justify-content: center;
 }
 .signup_btn {
+    background-color: rgb(250, 160, 160);
+}
+.back_btn {
+    background-color: rgb(150, 150, 150);
+}
+.signup_btn, .back_btn {
     display: inline-block;
     letter-spacing: 0;
     font-size: .9rem;
-    background-color: rgb(150, 150, 150);
-    /*
-    border-left: 1px solid rgb(181, 181, 181);
-    border-bottom: 1px solid rgb(181, 181, 181);
-    border-right: none;
-    border-top: none;
-    */
     border: none;
     width: 100%;
     text-align: center;
     color: white !important;
     transition: all 270ms 0s ease;
     line-height: 3rem;
-    /* border-radius: 1.5rem; */
 }
-.signup_btn:hover {
-    /* letter-spacing: 5px; */
-    /* background-color: rgba(115, 207, 207, .7); */
-    background-color: rgb(255, 167, 167);
-    /*
-    border-left: solid 1px rgb(115, 207, 207);
-    border-bottom: solid 1px rgb(115, 207, 207);
-    */
+.signup_btn:hover, .back_btn:hover {
     text-decoration: none;
     transition: all 270ms 0s ease;
 }
-
+.signup_btn:hover {
+    background-color: rgb(255, 182, 182);
+}
+.back_btn:hover {
+    background-color: rgb(172, 172, 172);
+}
 
 /* ------------------------------------------- */
 /* モバイル用設定 */

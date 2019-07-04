@@ -26,35 +26,32 @@
     justify-content: center;
 }
 .login_btn {
+    background-color: rgb(128, 226, 226);
+}
+.back_btn {
+    background-color: rgb(150, 150, 150);
+}
+.login_btn, .back_btn {
     display: inline-block;
     letter-spacing: 0;
     font-size: .9rem;
-    background-color: rgb(150, 150, 150);
-    /*
-    border-left: 1px solid rgb(181, 181, 181);
-    border-bottom: 1px solid rgb(181, 181, 181);
-    border-right: none;
-    border-top: none;
-    */
     border: none;
     width: 100%;
     text-align: center;
     color: white !important;
     transition: all 270ms 0s ease;
     line-height: 3rem;
-    /* border-radius: 1.5rem; */
 }
-.login_btn:hover {
-    /* letter-spacing: 5px; */
-    background-color: rgba(115, 207, 207, .7);
-    /*
-    border-left: solid 1px rgb(115, 207, 207);
-    border-bottom: solid 1px rgb(115, 207, 207);
-    */
+.login_btn:hover, .back_btn:hover {
     text-decoration: none;
     transition: all 270ms 0s ease;
 }
-
+.login_btn:hover {
+    background-color: rgb(100, 240, 240);
+}
+.back_btn:hover {
+    background-color: rgb(172, 172, 172);
+}
 
 /* ------------------------------------------- */
 /* モバイル用設定 */
