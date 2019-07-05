@@ -81,7 +81,7 @@
                                         {% if mode == 'pdf_list' %}
                                             <!-- 納品書プレビュー，ダウンロード -->
                                             <a href="{% url 'delivery_note_view' %}?nohin_id={{nohin.id}}&preview=1" target="_blank" class="row_circle_btn"><i class="far fa-file"></i></a>
-                                            <a href="{% url 'delivery_note_view' %}?nohin_id={{nohin.id}}" class="row_circle_btn"><i class="fas fa-download"></i></a>
+                                            <a class="row_circle_btn js_pdf_download_btn"><i class="fas fa-download"></i></a>
                                         {% endif %}
                                     </td>
                                 </tr>
@@ -140,9 +140,12 @@
 
 <!-- ページごとのjs -->
 {% block extra_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="{% static 'resources/js/nohin/list.js' %}"></script>
     <script>
         var nohinDeleteViewUrl = "{% url 'nohin_delete_view' %}";
         var nohinUpdateViewUrl = "{% url 'nohin_update_view' %}";
+        var deliveryNoteViewUrl = "{% url 'delivery_note_view' %}";
+        var mode = "{{ mode }}";
     </script>
 {% endblock %}

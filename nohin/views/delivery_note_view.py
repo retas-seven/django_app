@@ -33,6 +33,7 @@ class DeliveryNoteView(LoginRequiredMixin, View):
                 content = "attachment; filename=%s" %(fileName)
 
             response['Content-Disposition'] = content
+            response.set_cookie('loading_finish_flg', '')
             return response
 
         return HttpResponse("Not found")
