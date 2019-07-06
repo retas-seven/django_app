@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta, timezone
 from logging import getLogger
 import sys
 import traceback
@@ -18,6 +19,11 @@ class CommonMiddleware:
         '''
         業務処理前後の処理
         '''
+        # 現在時間を設定
+        # jst = timezone(timedelta(hours=+9), 'JST')
+        # request.requestDate = datetime.now(jst)
+        request.requestDateTime = datetime.now()
+
         self.__outLog(request, 'start')
 
         # 業務処理を実行

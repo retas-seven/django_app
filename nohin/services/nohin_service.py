@@ -149,7 +149,8 @@ class NohinService:
             company.belong_user = self.request.user.email
             company.company_name = companyName
             company.regist_user = self.request.user.email
-            company.regist_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+            # company.regist_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+            company.regist_date = self.request.requestDateTime
             company.save()
 
     def registNohin(self, form, detailFormset):
@@ -163,13 +164,15 @@ class NohinService:
         nohin.belong_user = self.request.user.email
         nohin.total_price = 0 # TODO:このカラムは使用しないため削除する
         nohin.regist_user = self.request.user.email
-        nohin.regist_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        # nohin.regist_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        nohin.regist_date = self.request.requestDateTime
         nohin.save()
 
         for detail in detailFormset.save(commit=False):
             detail.belong_user = self.request.user.email
             detail.regist_user = self.request.user.email
-            detail.regist_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+            # detail.regist_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+            detail.regist_date = self.request.requestDateTime
             detail.nohin = nohin
         detailFormset.save()
 
@@ -183,7 +186,8 @@ class NohinService:
         # 画面からPOSTされたデータの他に必要なデータをセットして保存する
         nohin.total_price = 0 # TODO:このカラムは使用しないため削除する
         nohin.update_user = self.request.user.email
-        nohin.update_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        # nohin.update_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        nohin.update_date = self.request.requestDateTime
         nohin.save()
 
         for detail in detailList:
@@ -191,11 +195,13 @@ class NohinService:
                 # 新規追加レコードの場合
                 detail.belong_user = self.request.user.email
                 detail.regist_user = self.request.user.email
-                detail.regist_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+                # detail.regist_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+                detail.regist_date = self.request.requestDateTime
                 detail.nohin = nohin
             else:
                 # 更新レコードの場合
                 detail.update_user = self.request.user.email
-                detail.update_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+                # detail.update_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+                detail.update_date = self.request.requestDateTime
 
         formset.save()

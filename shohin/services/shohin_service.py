@@ -1,5 +1,6 @@
 from app_table.models import Shohin
-import datetime
+from django.utils import timezone
+from datetime import datetime
 
 class ShohinService:
     '''
@@ -43,8 +44,10 @@ class ShohinService:
         shohin = form.save(commit=False)
         shohin.belong_user = self.request.user.email
         shohin.regist_user = self.request.user.email
-        shohin.regist_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        # shohin.regist_date = self.request.requestDate.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        shohin.regist_date = self.request.requestDateTime
         shohin.save()
+
 
     def updateShohin(self, form):
         '''
@@ -52,7 +55,8 @@ class ShohinService:
         '''
         shohin = form.save(commit=False)
         shohin.update_user = self.request.user.email
-        shohin.update_date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        # shohin.update_date = self.request.requestDate.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        shohin.update_date = self.request.requestDateTime
         shohin.save()
         
     def existShohin(self, kataban):
