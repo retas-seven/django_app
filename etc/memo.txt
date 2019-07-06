@@ -1,0 +1,4 @@
+-- model‚ÌC³‚ğDB‚É”½‰f
+python manage.py makemigrations
+python manage.py migrate
+
