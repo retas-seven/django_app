@@ -28,7 +28,7 @@ SECRET_KEY = '-$575nf!^z-=x47ewa%#=#i#pz_9e&^n^%l^!^b96#gj+t-*^9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -170,8 +170,11 @@ LOGGING = {
             'format': '\t'.join([
                 "[%(levelname)s]",
                 "%(asctime)s",
-                "%(user)s",
+                "%(addr)s",
+                "%(referer)s",
                 "%(url)s",
+                "%(mothod)s",
+                "%(user)s",
                 "%(message)s",
             ])
         },
