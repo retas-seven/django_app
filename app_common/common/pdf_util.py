@@ -29,11 +29,11 @@ def link_callback(uri, rel):
     sRoot = settings.STATIC_ROOT
     path = None
 
-    # if settings.DEBUG:
-    #     path = 'static/resources/font/GenYoMinJP-Regular.ttf'
-    # else:
-    #     path = os.path.join('static', uri)
-    path = 'static/resources/font/GenYoMinJP-Regular.ttf'
+    if settings.DEBUG:
+        path = 'static/resources/font/GenYoMinJP-Regular.ttf'
+    else:
+        # path = os.path.join('static', uri)
+        path = 'c:/var/www/django_app/static/resources/font/GenYoMinJP-Regular.ttf'
 
     if not os.path.isfile(path):
         # print('----------------')
