@@ -29,14 +29,11 @@ def link_callback(uri, rel):
     sRoot = settings.STATIC_ROOT
     path = None
 
-    if settings.DEBUG:
-        path = 'static/resources/font/GenYoMinJP-Regular.ttf'
-        # print('----------------')
-        # print(uri)
-        # print(path)
-        # print('----------------')
-    else:
-        path = os.path.join('static', uri)
+    # if settings.DEBUG:
+    #     path = 'static/resources/font/GenYoMinJP-Regular.ttf'
+    # else:
+    #     path = os.path.join('static', uri)
+    path = 'static/resources/font/GenYoMinJP-Regular.ttf'
 
     if not os.path.isfile(path):
         # print('----------------')
