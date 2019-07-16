@@ -49,13 +49,18 @@ class CommonMiddleware:
         '''
         リクエストごとのログを出力する
         '''
+        bodyParam = dict(request.POST.lists())
+        bodyParam.pop('password', None)
+        bodyParam.pop('csrfmiddlewaretoken', None)
+
         self.logger.info(
             logMessage,
             extra={
                 'addr': ApUtil.getSourceAddr(request),
                 'user': request.user.email if request.user.is_authenticated else 'AnonymousUser',
-                'url': request.build_absolute_uri(),
                 'mothod': request.method,
+                'url': request.build_absolute_uri(),
+                'bodyParam': bodyParam,
                 'referer': request.META.get('HTTP_REFERER'),
             }
         )
