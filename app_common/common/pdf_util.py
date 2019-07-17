@@ -30,24 +30,17 @@ def link_callback(uri, rel):
     path = None
 
     if settings.DEBUG:
-        path = 'static/resources/font/GenYoMinJP-Regular.ttf'
+        # uriは、delivery_note_pdf.htmlの「@font-face」内の「src: url(...)」の内容が設定されている
+        # デバッグ時はプロジェクトフォルダ内のstaticフォルダ内にあるfontファイルを使用する
+        path = '.' + sUrl + uri
     else:
-        # path = os.path.join('static', uri)
-        path = 'c:/var/www/django_app/static/resources/font/GenYoMinJP-Regular.ttf'
+        # 本番時は「manage.py collectstatic」で本番用に配置されたfontファイルを使用する
+        path = sRoot + '/' + uri
 
     if not os.path.isfile(path):
-        # print('----------------')
-        # print('fontファイルが存在しない')
-        # print('----------------')
         raise Exception(
             '%s must start with %s' % \
             (uri, sUrl)
         )
 
-    # print('----------------')
-    # print(uri)
-    # print(sUrl)
-    # print(sRoot)
-    # print(path)
-    # print('----------------')
     return path
