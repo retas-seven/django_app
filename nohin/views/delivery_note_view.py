@@ -11,6 +11,8 @@ from datetime import datetime
 from nohin.services.nohin_service import NohinService
 from nohin.forms.nohin_form import NohinForm
 from nohin.forms.nohin_form import NohinDetailFormset
+from urllib import parse
+from datetime import datetime
 
 
 class DeliveryNoteView(LoginRequiredMixin, View):
@@ -19,9 +21,9 @@ class DeliveryNoteView(LoginRequiredMixin, View):
         '''
         納品書PDFをダウンロードする
         '''
-        params, fileName = self.retrieveNohinData()
-        template = get_template('nohin/delivery_note_pdf.html')
-        html = template.render(params)
+        params, fileName = self._retrieveNohinData()
+        # template = get_template('nohin/delivery_note_pdf.html')
+        # html = template.render(params)
         pdf = PdfUtil.renderToPdf('nohin/delivery_note_pdf.html', params)
         
         if pdf:
@@ -38,7 +40,7 @@ class DeliveryNoteView(LoginRequiredMixin, View):
 
         return HttpResponse("Not found")
 
-    def retrieveNohinData(self):
+    def _retrieveNohinData(self):
         nohinId = self.request.GET['nohin_id']
         # nohinId = 45
         totalPrice = 0
@@ -66,8 +68,7 @@ class DeliveryNoteView(LoginRequiredMixin, View):
             'detailList': detailList,
         }
 
-        # TODO: ファイル名を日本語にする
-        # fileName = f'納品書_{nohin.get("nohinsaki")}'
-        fileName = 'delivery_note.pdf'
+        # ファイル名：例）納品書_20190706_株式会社〇〇〇〇.pdf
+        fileName = parse.quote(f'納品書_{nohin["nohin_date"].strftime("%Y%m%d")}_{nohin["nohinsaki"]}.pdf')
 
         return params, fileName
