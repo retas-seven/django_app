@@ -150,7 +150,7 @@ STATIC_URL = '/static/'
 # 静的ファイル格納場所（デバッグ用）
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # 静的ファイル格納場所（本番用）
-STATIC_ROOT = '/var/www/{}/static'.format(PROJECT_NAME)
+STATIC_ROOT = '/home/webims/static'
 
 # 'django.contrib.humanize'のための設定（数値３桁区切りでカンマ）
 NUMBER_GROUPING = 3
@@ -184,7 +184,7 @@ LOGGING = {
         'middleware_logfile_handler': {
             'level': 'DEBUG' if DEBUG else 'INFO',
             'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': '/home/webims/application.log',
+            'filename': '/home/webims/log/application.log',
             'when': 'D',
             'interval': 1,
             'backupCount': 365,
