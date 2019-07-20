@@ -3,6 +3,11 @@ from logging import getLogger
 import sys
 import traceback
 from app_common.common.ap_util import ApUtil
+from app_common.exception.application_exception import ApplicationException
+from django.shortcuts import render
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.contrib import messages
 
 
 class CommonMiddleware:
@@ -44,6 +49,11 @@ class CommonMiddleware:
         print(trc)
         print('---------------------')
         self.__outLog(request, trc)
+
+        if type(exception) == ApplicationException:
+            # アプリケーションエラーの場合はホーム画面に戻りエラーメッセージを表示する
+            messages.error(request, exception.message)
+            return redirect(reverse('home'))
 
     def __outLog(self, request, logMessage):
         '''
