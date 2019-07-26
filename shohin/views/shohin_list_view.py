@@ -6,7 +6,6 @@ from django.contrib import messages
 from shohin.services.shohin_service import ShohinService
 from shohin.forms.shohin_form import  ShohinForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.conf import settings
 # from app_common.exception.application_exception import ApplicationException
 
 

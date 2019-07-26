@@ -76,7 +76,9 @@ html {
     font-size: 125%;
     */
     font-size: 100%;
+    /*
     overflow: hidden;
+    */
 }
 body {
     letter-spacing: .1em;

@@ -27,7 +27,7 @@ PROJECT_NAME = os.path.basename(BASE_DIR)
 SECRET_KEY = '-$575nf!^z-=x47ewa%#=#i#pz_9e&^n^%l^!^b96#gj+t-*^9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -63,8 +63,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 単体テスト用ミドルウェア
-    # 'app_common.middleware.unittest_middleware.UnittestMiddleware',
     # 共通ミドルウェア
     'app_common.middleware.common_middleware.CommonMiddleware',
 ]
