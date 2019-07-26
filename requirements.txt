@@ -82,3 +82,10 @@ win-inet-pton==1.0.1
 wincertstore==0.2
 wrapt==1.10.11
 xhtml2pdf==0.2.3
+# pip install green で追加されたライブラリ
+coverage==4.5.3
+green==2.16.1
+lxml==4.3.4
+Unidecode==1.1.1
+# pip install mysqlclient で追加されたライブラリ
+mysqlclient==1.4.2.post1
