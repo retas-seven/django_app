@@ -24,7 +24,8 @@ from app_table.models import Shohin
 #   1.コマンド画面で「django_app」フォルダに移動
 #   2.コマンド「green -vvv shohin/tests」を実行
 # ・困ったこと
-#   日本語が使えない？
+#   日本語が使えない？（例えば「print("日本語")」で「'Ri Ben Yu'」が出力される）
+#   →19/09/09 Macではこの現象が発生しない 
 # ---------------------------------------------------------
 
 class TestShohinListView(TestCase):
@@ -94,4 +95,5 @@ class TestShohinListView(TestCase):
         self.assertTemplateUsed(response, 'shohin/list.html')
 
         resultShohinList = list(response.context['shohin_list'])
+        print(resultShohinList)
         self.assertEqual(len(resultShohinList), len(self.SHOHIN_LIST))
