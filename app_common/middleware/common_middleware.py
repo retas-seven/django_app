@@ -61,6 +61,8 @@ class CommonMiddleware:
         '''
         bodyParam = dict(request.POST.lists())
         bodyParam.pop('password', None)
+        bodyParam.pop('password1', None)
+        bodyParam.pop('password2', None)
         bodyParam.pop('csrfmiddlewaretoken', None)
 
         self.logger.info(
