@@ -12,7 +12,7 @@ colorama==0.4.0
 cryptography==2.3.1
 decorator==4.3.0
 defusedxml==0.6.0
-Django==2.1.2
+Django==2.1.11
 django-allauth==0.39.1
 docutils==0.14
 entrypoints==0.2.3
