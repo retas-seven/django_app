@@ -85,7 +85,7 @@ xhtml2pdf==0.2.3
 # pip install green で追加されたライブラリ
 coverage==4.5.3
 green==2.16.1
-lxml==4.3.4
+lxml==4.6.5
 Unidecode==1.1.1
 # pip install mysqlclient で追加されたライブラリ
 mysqlclient==1.4.2.post1
