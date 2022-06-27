@@ -62,7 +62,7 @@ pyzmq==17.1.2
 QtAwesome==0.5.3
 qtconsole==4.4.2
 QtPy==1.5.2
-reportlab==3.5.23
+reportlab==3.5.55
 requests==2.20.1
 requests-oauthlib==1.2.0
 rope==0.11.0
